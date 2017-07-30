@@ -17,7 +17,8 @@
 		numbersep=10pt,
 		basicstyle=\footnotesize,
 		columns=fullflexible,
-		backgroundcolor=\color{mygray}}
+		backgroundcolor=\color{mygray},
+		frame=single}
 
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
@@ -61,7 +62,7 @@ TODO
 Creates binary grid of signatures from categorical raster map(s).
 \\\\
 {\bf Usage:}
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=<n>] [-z <n>] [-f <n>] [-n <normalization_name>] [-t <n>]
 
 -i, --input=<file_name>    name of input file (GeoTIFF)
@@ -146,7 +147,7 @@ The output grid may be an input to one of the following GeoPAT modules: {\it gpa
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_gridts [-nh] -i <file_name> [-i <file_name>]... -o <file_name> [-d <n>]
 
 -i, --input=<file_name>  name of input file(s) (GeoTIFF)
@@ -161,7 +162,7 @@ ault: no)
 Calculates numerical signatures of individual motifels within a raster map.
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_pointshis [-lah] -i <file_name> -o <file_name> [-s <signature_name>] [--level=<n>] [-z <n>] [-n <normalization_name>] [-x <double>] [-y <double>] [-d <string>] [--xy_file=<file_name>]
 
 -i, --input=<file_name>    name of input file (GeoTIFF)
@@ -246,11 +247,13 @@ If used with append flag (-a), signatures can be calculated one by one and added
 
 Definition by text file:
 In this mode, scene midpoint's coordinates are defined in external text file in which each line contains X,Y coordinates and, optionally, name/description using the following syntax: x\_coordinate,y\_coordinate,scene\_name. The name of file with coordinates is provided using {\it xy\_file} option. Extent of a scene is defined by {\it size} parameter. {\it x, y} and {\it description} options are not used in this mode. Example of the content of coordinates file: 
-\begin{lstlisting}[frame=single]
+
+\begin{lstlisting}
 1289255,1271313,forest
 1306271,1272740,city
 1268560,1264726
 \end{lstlisting}
+
 If a description is not provided (like in the example above), the program will assign a default name ("location") with id representing the number of line in the coordinate file.
 
 The output signature text file can be used as an input to the following modules: {\it gpat\_search}, {\it gpat\_distmtx}.
@@ -259,7 +262,7 @@ The output signature text file can be used as an input to the following modules:
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-d <string>] [--xy_file=<file_name>]
 
 -i, --input=<file_name>    name of input file (GRID)
@@ -276,7 +279,7 @@ gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-
 Calculates numerical signatures of irregular regions.
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_polygon [-lh] -i <file_name> -e <file_name> -o <file_name> [-s <signature_name>] [-n <normalization_name>] [-t <n>]
 
 -i, --input=<file_name>    name of input file (GeoTIFF)
@@ -338,7 +341,7 @@ The output signature text file can be used as an input to the following modules:
 Produces similarity maps which show similarity value between query motifels (scenes) and every motifel in the input grid.
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_search [-dlh] -i <file_name> [-o <file_name>] -r <file_name> [-m <measure_name>] [--type=Byte/....] [-p <file_name>] [-n <n>] [-t <n>]
 
 -i, --input=<file_name>      name of input file (GRID)
@@ -366,7 +369,7 @@ Text file containing one or more signatures of either individual motifels (scene
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_compare [-lh] -i <file_name> -i <file_name> -o <file_name> [--type=Byte/....] [-p <file_name>] [-n <n>] [-m <measure_name>] [-t <n>]
 
 -i, --input=<file_name>      name of input files (GRID)
@@ -384,7 +387,7 @@ gpat_compare [-lh] -i <file_name> -i <file_name> -o <file_name> [--type=Byte/...
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n>] [-m <measure_name>] [--lthreshold=<double>] [--uthreshold=<double>] [--swap=<double>] [--minarea=<n>] [--maxhist=<n>] [-t <n>]
 
 -i, --input=<file_name>  name of input files (GRID)
@@ -426,7 +429,7 @@ gpat_distmtx [-lsh] -i <file_name> -o <file_name> [-m <measure_name>]
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_grd2txt [-h] -i <file_name> -o <file_name>
 
 -i, --input=<file_name>   name of input file (GRID)
@@ -438,7 +441,7 @@ gpat_grd2txt [-h] -i <file_name> -o <file_name>
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_globnorm [-lh] -i <file_name> -o <file_name> [-m <method_name>] [-t <n>]
 
 -i, --input=<file_name>   name of input file (GRID)
@@ -455,7 +458,7 @@ efault: '01')
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+\begin{lstlisting}
 gpat_segquality [-lcqwh] -i <file_name> -s <file name> [-g <file_name>] [-o <file_name>] [-m <measure_name>] [--maxhist=<n>] [-t <n>]
 
 -i, --input=<file_name>     name of input file (GRID)
@@ -633,7 +636,7 @@ submenu in Windows start menu with "GeoPAT console" and "Uninstall GeoPAT".
 
 The installer for Windows x64 is available at:
 
-\begin{lstlisting}[frame=single,escapechar=|]
+\begin{lstlisting}[escapechar=|]
 |\url{http://sil.uc.edu/cms/data/uploads/software_data/GPAT20setup.exe}|
 \end{lstlisting}
 
@@ -655,7 +658,7 @@ The file has to be placed in /etc/ld.so.conf.d directory.
 
 The Fedora 25 x64 binaries are available at:
 
-\begin{lstlisting}[frame=single,escapechar=|]
+\begin{lstlisting}[escapechar=|]
 |\url{http://sil.uc.edu/cms/data/uploads/software_data/gpat20.tar.gz}|
 \end{lstlisting}
 
@@ -725,19 +728,19 @@ directory.
 
 The source code of GeoPAT 2.0 is available at:
 
-\begin{lstlisting}[frame=single,escapechar=|]
+\begin{lstlisting}[escapechar=|]
 |\url{http://sil.uc.edu/cms/data/uploads/software_data/gpat2.0src.tar.gz}|
 \end{lstlisting}
 
 The source code of ezGDAL is available at:
 
-\begin{lstlisting}[frame=single,escapechar=|]
+\begin{lstlisting}[escapechar=|]
 |\url{http://pawel.netzel.pl/data/uploads/software/libezgdal.src.tar.gz}|
 \end{lstlisting}
 
 The source code of SML is available at:
 
-\begin{lstlisting}[frame=single,escapechar=|]
+\begin{lstlisting}[escapechar=|]
 |\url{http://pawel.netzel.pl/data/uploads/software/libsml.src.tar.gz}|
 \end{lstlisting}
 
