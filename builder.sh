@@ -22,3 +22,4 @@ rm $file_name.log
 rm $file_name.bbl
 rm $file_name.blg
 rm $file_name.toc
+rm $file_name.out

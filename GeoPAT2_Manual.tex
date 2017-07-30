@@ -8,12 +8,16 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{hyperref} % active links
+\usepackage[usenames]{color} % add colors
+
+\definecolor{mygray}{gray}{0.8}
 
 \lstset{breaklines=true,
 		breakatwhitespace=true,
 		numbersep=10pt,
 		basicstyle=\footnotesize,
-		columns=fullflexible}
+		columns=fullflexible,
+		backgroundcolor=\color{mygray}}
 
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
@@ -506,7 +510,7 @@ Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity 
 The first step is to prepare signature files for both query motifels and grid of motifels using two separate modules, {\it gpat\_pointshis} and {\it gpat\_gridhis} respectively. The second step is to use these signature files as inputs to {\it gpat\_search} module in order to produce similarity maps.\\\\
 {\bf Example:}
 
-\begin{lstlisting}[numbers=left]
+\begin{lstlisting}
 gpat_gridhis -i Augusta2011.tif -o grid -s cooc -z 50 -f 50 -n pdf
 gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf --xy_file=coordinates.txt
 gpat_search -i grid -r query_signatures.txt
@@ -629,8 +633,8 @@ submenu in Windows start menu with "GeoPAT console" and "Uninstall GeoPAT".
 
 The installer for Windows x64 is available at:
 
-\begin{lstlisting}[frame=single]
-http://sil.uc.edu/cms/data/uploads/software_data/GPAT20setup.exe
+\begin{lstlisting}[frame=single,escapechar=|]
+|\url{http://sil.uc.edu/cms/data/uploads/software_data/GPAT20setup.exe}|
 \end{lstlisting}
 
 \subsection{Fedora 25 binary installation}
@@ -651,8 +655,8 @@ The file has to be placed in /etc/ld.so.conf.d directory.
 
 The Fedora 25 x64 binaries are available at:
 
-\begin{lstlisting}[frame=single]
-http://sil.uc.edu/cms/data/uploads/software_data/gpat20.tar.gz
+\begin{lstlisting}[frame=single,escapechar=|]
+|\url{http://sil.uc.edu/cms/data/uploads/software_data/gpat20.tar.gz}|
 \end{lstlisting}
 
 \subsection{Building from source code}
@@ -721,20 +725,20 @@ directory.
 
 The source code of GeoPAT 2.0 is available at:
 
-\begin{lstlisting}[frame=single]
-http://sil.uc.edu/cms/data/uploads/software_data/gpat2.0src.tar.gz
+\begin{lstlisting}[frame=single,escapechar=|]
+|\url{http://sil.uc.edu/cms/data/uploads/software_data/gpat2.0src.tar.gz}|
 \end{lstlisting}
 
 The source code of ezGDAL is available at:
 
-\begin{lstlisting}[frame=single]
-http://pawel.netzel.pl/data/uploads/software/libezgdal.src.tar.gz
+\begin{lstlisting}[frame=single,escapechar=|]
+|\url{http://pawel.netzel.pl/data/uploads/software/libezgdal.src.tar.gz}|
 \end{lstlisting}
 
 The source code of SML is available at:
 
-\begin{lstlisting}[frame=single]
-http://pawel.netzel.pl/data/uploads/software/libsml.src.tar.gz
+\begin{lstlisting}[frame=single,escapechar=|]
+|\url{http://pawel.netzel.pl/data/uploads/software/libsml.src.tar.gz}|
 \end{lstlisting}
 
 \section{Numerical signatures and normalization methods available in GeoPAT} \label{signatures}
