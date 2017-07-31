@@ -13,4 +13,4 @@ RnwWeave: knitr
 LaTeX: pdfLaTeX
 
 BuildType: Custom
-CustomScriptPath: builder
+CustomScriptPath: builder.sh
