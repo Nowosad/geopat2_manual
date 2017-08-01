@@ -9,6 +9,7 @@
 \usepackage{listings}
 \usepackage{hyperref} % active links
 \usepackage[usenames]{color} % add colors
+\usepackage{float}
 
 \definecolor{mygray}{gray}{0.8}
 
@@ -39,14 +40,12 @@
 \tableofcontents
 \newpage
 
-
-
 \section{Introduction}
 TODO
 
 \section{GeoPAT 2.0 architecture}
 TODO
-\begin{figure}[h]
+\begin{figure}[H]
 %	\centering
 	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT2.png}}
 	\caption{Outline of GeoPAT 2.0 architecture.}
@@ -65,6 +64,8 @@ TODO
 Creates binary grid of signatures from categorical raster map(s).
 \\\\
 {\bf Usage:}
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=<n>] [-z <n>] [-f <n>] [-n <normalization_name>] [-t <n>]
 
@@ -79,6 +80,8 @@ gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=
 -t <n>                     number of threads (default: 1)
 -h, --help                 print this help and exit
 \end{lstlisting}
+\end{minipage}
+
 {\bf Options:}
 
 \newoption{input}
@@ -90,19 +93,21 @@ Defines categorical raster layer(s) which will be used as a source for extractin
 Output consists of two files: one of them is dataset containing grid of signatures in binary form, the other is a header text file (.hdr extension) containing grid topology and information about the input data parameters. Modifying the header is strongly discouraged. It may cause some calculations to fail. 
 Structure of the header is as follows:\\
 
-dim -- number of dimensions of each signature\\
-dims -- size of each dimension\\
-type -- type of data stored in the grid (integer, float, etc.)\\
-at0 -- top left x\\
-at1 -- w-e grid resolution\\
-at2 -- rotation (0 if grid is north-up)\\
-at3 -- top left y\\
-at4 -- rotation (0 if grid is north-up)\\
-at5 -- n-s grid resolution\\
-rows -- number of rows in the grid\\
-cols -- number of cols in the grid\\
-proj -- projection in wkt style\\
-desc -- command used to create the grid
+\begin{itemize}
+	\item dim -- number of dimensions of each signature
+	\item dims -- size of each dimension
+	\item type -- type of data stored in the grid (integer, float, etc.)
+	\item at0 -- top left x
+	\item at1 -- w-e grid resolution
+	\item at2 -- rotation (0 if grid is north-up)
+	\item at3 -- top left y
+	\item at4 -- rotation (0 if grid is north-up)
+	\item at5 -- n-s grid resolution
+	\item rows -- number of rows in the grid
+	\item cols -- number of cols in the grid
+	\item proj -- projection in wkt style
+	\item desc -- command used to create the grid
+\end{itemize}
 
 \newoption{size}
 
@@ -150,6 +155,8 @@ The output grid may be an input to one of the following GeoPAT modules: {\it gpa
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_gridts [-nh] -i <file_name> [-i <file_name>]... -o <file_name> [-d <n>]
 
@@ -160,11 +167,14 @@ gpat_gridts [-nh] -i <file_name> [-i <file_name>]... -o <file_name> [-d <n>]
 ault: no)
 -h, --help               print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newparagraph{gpat\_pointshis}
 Calculates numerical signatures of individual motifels within a raster map.
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_pointshis [-lah] -i <file_name> -o <file_name> [-s <signature_name>] [--level=<n>] [-z <n>] [-n <normalization_name>] [-x <double>] [-y <double>] [-d <string>] [--xy_file=<file_name>]
 
@@ -182,6 +192,7 @@ gpat_pointshis [-lah] -i <file_name> -o <file_name> [-s <signature_name>] [--lev
 -a, --append               append results to output file
 -h, --help                 print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 {\bf Options:}
 
@@ -251,11 +262,13 @@ If used with append flag (-a), signatures can be calculated one by one and added
 Definition by text file:
 In this mode, scene midpoint's coordinates are defined in external text file in which each line contains X,Y coordinates and, optionally, name/description using the following syntax: x\_coordinate,y\_coordinate,scene\_name. The name of file with coordinates is provided using {\it xy\_file} option. Extent of a scene is defined by {\it size} parameter. {\it x, y} and {\it description} options are not used in this mode. Example of the content of coordinates file: 
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 1289255,1271313,forest
 1306271,1272740,city
 1268560,1264726
 \end{lstlisting}
+\end{minipage}
 
 If a description is not provided (like in the example above), the program will assign a default name ("location") with id representing the number of line in the coordinate file.
 
@@ -265,6 +278,8 @@ The output signature text file can be used as an input to the following modules:
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-d <string>] [--xy_file=<file_name>]
 
@@ -277,11 +292,14 @@ gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-
 -a, --append               append results to output file
 -h, --help                 print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newparagraph{gpat\_polygon}
 Calculates numerical signatures of irregular regions.
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_polygon [-lh] -i <file_name> -e <file_name> -o <file_name> [-s <signature_name>] [-n <normalization_name>] [-t <n>]
 
@@ -294,6 +312,7 @@ gpat_polygon [-lh] -i <file_name> -e <file_name> -o <file_name> [-s <signature_n
 -t <n>                     number of threads (default: 1)
 -h, --help                 print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 {\bf Options:}
 
@@ -337,13 +356,14 @@ Module extracts signatures for a collection of irregular regions using the same 
 
 The output signature text file can be used as an input to the following modules: {\it gpat\_search}, {\it gpat\_distmtx}.
 
-
 \subsubsection{Similarity measuring}
 
 \newparagraph{gpat\_search}
 Produces similarity maps which show similarity value between query motifels (scenes) and every motifel in the input grid.
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_search [-dlh] -i <file_name> [-o <file_name>] -r <file_name> [-m <measure_name>] [--type=Byte/....] [-p <file_name>] [-n <n>] [-t <n>]
 
@@ -359,6 +379,7 @@ gpat_search [-dlh] -i <file_name> [-o <file_name>] -r <file_name> [-m <measure_n
 -t <n>                       number of threads (default: 1)
 -h, --help                   print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newoption{input}
 
@@ -372,6 +393,8 @@ Text file containing one or more signatures of either individual motifels (scene
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_compare [-lh] -i <file_name> -i <file_name> -o <file_name> [--type=Byte/....] [-p <file_name>] [-n <n>] [-m <measure_name>] [-t <n>]
 
@@ -385,11 +408,14 @@ gpat_compare [-lh] -i <file_name> -i <file_name> -o <file_name> [--type=Byte/...
 -t <n>                       number of threads (default: 1)
 -h, --help                   print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newparagraph{gpat\_segment}
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n>] [-m <measure_name>] [--lthreshold=<double>] [--uthreshold=<double>] [--swap=<double>] [--minarea=<n>] [--maxhist=<n>] [-t <n>]
 
@@ -411,12 +437,15 @@ gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n
 -t <n>                   number of threads (default: 1)
 -h, --help               print help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newparagraph{gpat\_distmtx}
 {}
 \\\\
 Usage:
-\begin{lstlisting}[frame=single]
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
 gpat_distmtx [-lsh] -i <file_name> -o <file_name> [-m <measure_name>]
 
 -i, --input=<file_name>  name of input file witch signatures (TXT)
@@ -426,12 +455,15 @@ gpat_distmtx [-lsh] -i <file_name> -o <file_name> [-m <measure_name>]
 -s, --similarity         output is a similarity matrix
 -h, --help               print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \subsubsection{Tools}
 \newparagraph{gpat\_grd2txt}
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_grd2txt [-h] -i <file_name> -o <file_name>
 
@@ -439,11 +471,14 @@ gpat_grd2txt [-h] -i <file_name> -o <file_name>
 -o, --output=<file_name>  name of output file (TXT)
 -h, --help                print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newparagraph{gpat\_globnorm}
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_globnorm [-lh] -i <file_name> -o <file_name> [-m <method_name>] [-t <n>]
 
@@ -456,11 +491,14 @@ efault: '01')
 -t <n>                    number of threads (default: 1)
 -h, --help                print this help and exit
 \end{lstlisting}
+\end{minipage}
 
 \newparagraph{gpat\_segquality}
 {}
 \\\\
 Usage:
+
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_segquality [-lcqwh] -i <file_name> -s <file name> [-g <file_name>] [-o <file_name>] [-m <measure_name>] [--maxhist=<n>] [-t <n>]
 
@@ -478,6 +516,7 @@ F)
 -t <n>                    number of threads (default: 1)
 -h, --help                print help and exit
 \end{lstlisting}
+\end{minipage}
 
 \section{Basic workflow paths with examples}
 
@@ -490,7 +529,7 @@ In this section, basic procedures that can be performed using GeoPAT are present
 \end{itemize}
 The procedures are explained using workflow schemes, and examples. All the examples of how to process categorical data are shown on a $1400\times 2300$ px ($42\times 69$ km) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}). This area is characterized by high diversity of land cover categories and patterns. Thus it is perfect for various pattern analyzes. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	%\includegraphics[width=\textwidth]{Augusta_legend.png}
 	\caption{Part of NLCD, covering area around Augusta, GA used in the examples.}
@@ -506,7 +545,7 @@ Search functionality enables user to produce a map of similarity. This map shows
 \subsubsection{Search on categorical maps}
 Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity maps using categorical raster data. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{search_scheme.png}
 	\caption{Workflow path for search on categorical maps.}
@@ -516,11 +555,13 @@ Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity 
 The first step is to prepare signature files for both query motifels and grid of motifels using two separate modules, {\it gpat\_pointshis} and {\it gpat\_gridhis} respectively. The second step is to use these signature files as inputs to {\it gpat\_search} module in order to produce similarity maps.\\\\
 {\bf Example:}
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_gridhis -i Augusta2011.tif -o grid -s cooc -z 50 -f 50 -n pdf
 gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf --xy_file=coordinates.txt
 gpat_search -i grid -r query_signatures.txt
 \end{lstlisting}
+\end{minipage}
 
 \vspace{5pt}
 
@@ -536,7 +577,7 @@ do not have to have the same size (but is recommended)
 
 \subsubsection{Search on time series}
 TODO
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{searchts_scheme.png}
 	\caption{Workflow path for search on time series.}
@@ -547,7 +588,7 @@ TODO
 
 \subsection{Change detection}
 TODO
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{compare_scheme.png}
 	\caption{Workflow path for change detection.}
@@ -558,7 +599,7 @@ TODO
 
 \subsection{Segmentation}
 TODO
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{segment_scheme.png}
 	\caption{Workflow path for segmentation.}
@@ -572,14 +613,14 @@ TODO
 
 \subsubsection{Clustering of individual motifels}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_points_scheme.png}
 	\caption{Workflow path for clustering of motifels.}
 	\label{FIG:CLUSTER_POINTS}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_pointsts_scheme.png}
 	\caption{Workflow path for clustering of time series motifels.}
@@ -590,7 +631,7 @@ TODO
 
 \subsubsection{Clustering of grid of motifels}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_grid_scheme.png}
 	\caption{Workflow path for clustering of grid of motifels.}
@@ -601,7 +642,7 @@ TODO
 
 \subsubsection{Clustering of segments/predefined irregular regions}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_seg_scheme.png}
 	\caption{Workflow path for clustering of segments (regions).}
