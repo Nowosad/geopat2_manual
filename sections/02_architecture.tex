@@ -14,7 +14,7 @@ TODO
 \subsubsection{Signature building}
 
 \newparagraph{gpat\_gridhis}
-Creates binary grid of signatures from categorical raster map(s).
+Creates a binary grid of signatures from a categorical raster map(s).
 \\\\
 {\bf Usage:}
 
@@ -39,11 +39,15 @@ gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=
 
 \newoption{input}
 
-Defines categorical raster layer(s) which will be used as a source for extracting pattern signature. Layers must be categorical. For Cartesian product method ('prod') there can be more than one input map. Other methods use one map only (the first one provided). In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
+Defines a categorical raster layer(s) which will be used as a source for extracting pattern signature.
+Layers must be a categorical one. For the Cartesian product method ('prod') there can be more than one input map.
+Other methods use a one map only (the first one provided). 
+In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
 
 \newoption{output}
 
-Output consists of two files: one of them is dataset containing grid of signatures in binary form, the other is a header text file (.hdr extension) containing grid topology and information about the input data parameters. Modifying the header is strongly discouraged. It may cause some calculations to fail. 
+Output consists of two files: one of them is a dataset containing a grid of signatures in binary form, the other one is a header text file (the .hdr extension) containing a grid topology and an information about the input data parameters.
+Modifying the header is strongly discouraged as tt may cause some calculations to fail. 
 Structure of the header is as follows:\\
 
 \begin{itemize}
@@ -64,11 +68,14 @@ Structure of the header is as follows:\\
 
 \newoption{size}
 
-Size of a motifel (local calculation window) expressed in the number of pixels. It defines the extent of a local pattern. It is the length of the side of square-shaped block of pixels (motifel). It must be at least 10 and cannot exceed input map size.
+Size of a motifel (local calculation window) expressed in the number of pixels. 
+It defines the extent of a local pattern.
+It is the length of the side of square-shaped block of pixels (motifel).
+It must be at least 10 and cannot exceed the input map size.
 
 \newoption{shift}
 
-Parameter defines the shift between adjacent scenes along the grid in n-s and w-e directions. It describes the density of the output gird and defines new topology of the grid. Formula original\_resolution $\times$ shift = new\_resolution explains how resolution of the original map will be reduced. If shift is set to the same value as 'size', the input map will be simply divided into a grid of non-overlapping motifels. Setting shift to a value smaller than 'size' parameter will result in grid of overlapping motifels. Shift cannot be larger than 'size', and cannot be smaller than 5.
+Parameter defines the shift between adjacent scenes along the grid in n-s and w-e directions. It describes the density of the output gird and defines a new topology of the grid. Formula original\_resolution $\times$ shift = new\_resolution explains how resolution of the original map will be reduced. If shift is set to the same value as 'size', the input map will be simply divided into a grid of non-overlapping motifels. Setting shift to a value smaller than 'size' parameter will result in grid of overlapping motifels. Shift cannot be larger than 'size', and cannot be smaller than 5.
 
 \newoption{signature}
 
@@ -82,19 +89,23 @@ Defines method of calculating signatures of motifels. GeoPAT offers the followin
 	\item lind -- landscape indices vector
 	\item linds -- selected landscape indices vector
 \end{itemize}
-See Appendix \ref{signatures} for details.
+See Appendix \ref{signatures} for the details.
 
 \newoption{level}
 
-This option is used only if 'full decomposition' (fdec) is used. It defines the highest level of decomposition. See Appendix \ref{signatures} for details.
+This option is used only if 'full decomposition' (fdec) is used.
+It defines the highest level of decomposition. See Appendix \ref{signatures} for the details.
 
 \newoption{normalization}
 
-Specifies normalization method used on the signatures. See Appendix \ref{signatures} for details.
+Specifies normalization method used on the signatures. See Appendix \ref{signatures} for the details.
 
 \newoption{threads (-t)}
 
-The module is parallel, it can use more than one processing thread in order to speed up calculations. This option specifies how many threads will be used. The default is 1.
+The module is parallel, therefore use more than one processing thread can be used in order to speed up calculations. 
+This option specifies how many threads will be used. 
+The default is 1.
+
 \\\\
 {\bf Description:}
 
