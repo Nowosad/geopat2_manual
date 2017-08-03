@@ -16,7 +16,7 @@ TODO
 \newparagraph{gpat\_gridhis}
 Creates a binary grid of signatures from a categorical raster map(s).
 \\\\
-{\bf Usage:}
+Usage:
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
@@ -75,7 +75,12 @@ It must be at least 10 and cannot exceed the input map size.
 
 \newoption{shift}
 
-Parameter defines the shift between adjacent scenes along the grid in n-s and w-e directions. It describes the density of the output gird and defines a new topology of the grid. Formula original\_resolution $\times$ shift = new\_resolution explains how resolution of the original map will be reduced. If shift is set to the same value as 'size', the input map will be simply divided into a grid of non-overlapping motifels. Setting shift to a value smaller than 'size' parameter will result in grid of overlapping motifels. Shift cannot be larger than 'size', and cannot be smaller than 5.
+Parameter defines the shift between adjacent scenes along the grid in n-s and w-e directions. 
+It describes the density of the output gird and defines a new topology of the grid.
+Formula original\_resolution $\times$ shift = new\_resolution explains how resolution of the original map will be reduced. 
+If shift is set to the same value as 'size', the input map will be simply divided into a grid of non-overlapping motifels. 
+Setting shift to a value smaller than 'size' parameter will result in grid of overlapping motifels. 
+Shift cannot be larger than 'size', and cannot be smaller than 5.
 
 \newoption{signature}
 
@@ -98,20 +103,34 @@ It defines the highest level of decomposition. See Appendix \ref{signatures} for
 
 \newoption{normalization}
 
-Specifies normalization method used on the signatures. See Appendix \ref{signatures} for the details.
+Specifies normalization method used on the signatures. 
+See Appendix \ref{signatures} for the details.
 
 \newoption{threads (-t)}
 
 The module is parallel, therefore use more than one processing thread can be used in order to speed up calculations. 
 This option specifies how many threads will be used. 
 The default is 1.
-
 \\\\
+
 {\bf Description:}
 
-This module extracts a "grid-of-scenes" (grid of pattern signatures, grid of motifels). The output is a grid of the same spatial extent as the input raster map, but with a different cell size. Each cell in a grid has only one attribute - the signature of its pattern. Pattern is calculated over window centered on that cell and having a user-defined size. Resolution of the output grid equals the resolution of the input raster map multiplied by the shift parameter. A signature of pattern for each scene is stored as numerical vector in binary form. The module outputs a header file (.hdr) containing a topology of a grid-of-scenes and a binary file containing signatures ordered row by row.
+This module extracts a "grid-of-scenes" (grid of pattern signatures, grid of motifels).
+The output is a grid of the same spatial extent as the input raster map, but with a different cell size.
+Each cell in a new grid has only one attribute - the signature of its pattern. 
+Pattern is calculated over a window centered on the cell and having a user-defined size.
+Resolution of the output grid equals to the resolution of the input raster map multiplied by the shift parameter. 
+A signature of pattern for each scene is stored as a numerical vector in a binary form.
+The module outputs a header file (.hdr) containing a topology of a grid-of-scenes and a binary file containing signatures ordered by rows.
 
-As an input module uses categorical raster data in GeoTIFF format. For Cartesian product signature it might be more than one map. Raster maps must be categorical and must be greater than scene size specified by the user. Size defines the size of individual scene for which the histogram is calculated. Shift shows how scenes shift along the grid in n-s and w-e directions. Shift defines the resolution of the new grid. If window size is bigger than shift (recommend), motifels will overlap. If shift and size is equal, windows will not overlap. Shift cannot be greater than size. 
+This module uses categorical raster data in GeoTIFF format as an input. 
+It might be more than one map for the Cartesian product signature. 
+Raster maps must be categorical and its size must be greater than the scene size specified by the user. 
+Size defines the size of individual scene for which the histogram is calculated. 
+Shift shows how scenes shift along the grid in n-s and w-e directions. 
+Shift defines the resolution of the new grid.
+If window size is bigger than shift (recommended), motifels will overlap.
+If shift and size is equal, windows will not overlap. Shift cannot be greater than size. 
 
 The output grid may be an input to one of the following GeoPAT modules: {\it gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grd2txt, and gpat\_globnorm}.
 
@@ -162,15 +181,23 @@ gpat_pointshis [-lah] -i <file_name> -o <file_name> [-s <signature_name>] [--lev
 
 \newoption{input}
 
-Defines categorical raster map(s) in GeoTIFF format, which will be used as a source for extracting pattern signature. For Cartesian product method ('prod') there can be more than one input map. Other methods use one map only (the first one provided). In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
+Defines categorical raster map(s) in the GeoTIFF format, which will be used as a source for extracting pattern signature.
+For the Cartesian product method ('prod') there can be more than one input map. 
+Other methods use one map only (the first one provided). 
+In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
 
 \newoption{output}
 
-Name of output text file containing signatures. In the output file each line corresponds to a single motifel's signature. Each signature is preceded by its header. A header always consists of: coordinates of the midpoint of motifel (scene), name, number of dimensions, and length of each dimension. Modifying the signature file is strongly discouraged. It may cause some calculations to fail.
+Name of output text file containing signatures. 
+In the output file, each line corresponds to a single motifel's signature. 
+Each signature is preceded by its header.
+A header always consists of: coordinates of the midpoint of motifel (scene), name, number of dimensions, and length of each dimension. 
+Modifying the signature file is strongly discouraged as it may cause some calculations to fail.
 
 \newoption{signature}
 
-Defines method of calculating signatures of motifels. GeoPAT offers the following methods: 
+Defines method for calculating signatures of motifels.
+GeoPAT offers the following methods: 
 \begin{itemize}
 	\item prod -- Cartesian product of input category lists
 	\item cooc -- spatial coocurrence of categories
@@ -184,15 +211,19 @@ See Appendix \ref{signatures} for details.
 
 \newoption{level}
 
-This option is used only if 'full decomposition' (fdec) is used. It defines the highest level of decomposition. See Appendix \ref{signatures} for details.
+This option is used only when 'full decomposition' (fdec) is used.
+It defines the highest level of decomposition.
+See Appendix \ref{signatures} for the details.
 
 \newoption{size}
 
-Size of a motifel (scene) for which signature is calculated. Scene is a square centered at the coordinate pair location, while its extent is defined by size. 
+Size of a motifel (scene) for which signature is calculated.
+Scene is a square centered at the coordinate pair location, while its extent is defined by size. 
 
 \newoption{normalization}
 
-Specifies normalization method used on the signatures. See Appendix \ref{signatures} for details.
+Specifies normalization method used on the signatures. 
+See Appendix \ref{signatures} for the details.
 
 \newoption{x}
 
@@ -204,27 +235,45 @@ Y coordinate of the midpoint of motifel for which signature will be calculated.
 
 \newoption{description}
 
-Description of motifel. It can be name of location, description of pattern, or anything else. If not provided, the default description is "location".
+Description of a motifel.
+It can be a name of location, description of pattern, or anything else. 
+If not provided, the default description is "location".
 
 \newoption{xy\_file}
 
-Name of a text file with a list of coordinates. This option is useful for calculating signatures for multiple motifels in a single run. %TODO what's the strucutre of this file? (check data/coordinates.txt)
+Name of a text file with list of coordinates. 
+This option is useful for calculating signatures for multiple motifels in a single run. 
 
 \newoption{append} (flag)
 
-Append mode. Useful when using coordinate pair mode and scenes are processed one by one (see description below). If the append flag is used and the output file already exists, signatures will be appended at the end of file instead of overwriting it.
+Append mode. 
+Useful when using the coordinate pair mode and when scenes are processed one by one (see description below). 
+If the append flag is used and the output file already exists, signatures will be appended at the end of file instead of overwriting it.
 \\\\
 {\bf Description:}
 
-This module extracts signatures for a scene (motifel) or a collection of scenes defined over square-shaped windows. User provides coordinates of the center of each scene and the size of the scene. The module outputs a list of scene-labeled signatures.
-As an input the module uses categorical raster map in GeoTIFF format (or a few maps if user calculates Cartesian product of multiple maps) and coordinates of the center of each scene and size of scenes. The coordinates are in the input map's coordinate system. There are two ways of defining the scenes:
+This module extracts signatures for a scene (motifel) or collection of scenes defined over square-shaped windows.
+User provides coordinates of the center of each scene and the size of the scene. 
+The module outputs a list of scene-labeled signatures.
+As an input the module uses categorical raster map in the GeoTIFF format (or a few maps if user calculates the Cartesian product of multiple maps), coordinates of the center of each scene and size of scenes. 
+The coordinates must be in the input map's coordinate system. 
+There are two ways of defining the scenes:
 
 Definition by coordinate pair: 
-This is the simplest mode designed for the batch or interactive processing. In this mode, scene is defined by a pair of its midpoint's coordinates ({\it x} and {\it y} options) and scene size parameter ({\it size} option). Only one scene can be processed at once. {\it xy\_file} option is not used in this mode.
-If used with append flag (-a), signatures can be calculated one by one and added to the same output file. Additionally, the {\it description} option let user name a scene. This name will be stored in the output file.
+This is the simplest mode designed for a batch or interactive processing. 
+In this mode, scene is defined by a pair of its midpoint's coordinates (the {\it x} and {\it y} options) and scene size parameter (the {\it size} option). 
+Only one scene can be processed at once. 
+The {\it xy\_file} option is not used in this mode.
+If used with the append flag (-a), signatures can be calculated one by one and added to the same output file. 
+Additionally, the {\it description} option lets user name a scene. 
+This name will be stored in the output file.
 
 Definition by text file:
-In this mode, scene midpoint's coordinates are defined in external text file in which each line contains X,Y coordinates and, optionally, name/description using the following syntax: x\_coordinate,y\_coordinate,scene\_name. The name of file with coordinates is provided using {\it xy\_file} option. Extent of a scene is defined by {\it size} parameter. {\it x, y} and {\it description} options are not used in this mode. Example of the content of coordinates file: 
+In this mode, scene midpoint's coordinates are defined in a external text file in which each line contains X,Y coordinates and, optionally, name/description using the following syntax: x\_coordinate,y\_coordinate,scene\_name.
+The name of a file with coordinates is provided using the {\it xy\_file} option. 
+Extent of a scene is defined by the {\it size} parameter. 
+The {\it x, y} and {\it description} options are not used in this mode. 
+Example of the content of coordinates file: 
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
@@ -282,19 +331,30 @@ gpat_polygon [-lh] -i <file_name> -e <file_name> -o <file_name> [-s <signature_n
 
 \newoption{input}
 
-Categorical raster map(s) in GeoTIFF format, which will be used as a source for extracting pattern signature. For Cartesian product method ('prod') there can be more than one input map. Other methods use one map only (the first one provided). In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
+Categorical raster map(s) in the GeoTIFF format, which will be used as a source for extracting pattern signature. 
+For the Cartesian product method ('prod') there can be more than one input map. 
+Other methods only use one map (the first one provided). 
+In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
 
 \newoption{segments}
 
-Categorical raster map in GeoTIFF format which defines spatial division of area of interest into polygonal regions. In this map, regions should be defined as areas of unique ids. Layer must be a raster and its projection, extents and resolution should be identical to the main input map. This layer may be a result of the segmentation module {\it gpat\_segment} or any other categorical map (e.g. map of ids of watersheds).
+Categorical raster map in the GeoTIFF format which defines spatial division of area of interest into polygonal regions.
+In this map, regions should be defined as areas of unique ids. 
+Layer must be a raster and its projection, extents and resolution should be identical to the main input map. 
+This layer may be a result of the segmentation module {\it gpat\_segment} or any other categorical map (e.g. map of ids of watersheds).
 
 \newoption{output}
 
-Name of output text file containing signatures. In the output file each line corresponds to a region's signature. Each signature is preceded by its header. A header always consists of: coordinates of the midpoint of region, name, number of dimensions, and length of each dimension. Modifying the signature file is strongly discouraged. It may cause some calculations to fail.
+Name of output text file containing signatures. 
+In the output file each line corresponds to a region's signature.
+Each signature is preceded by its header. 
+A header always consists of: the coordinates of the midpoint of region, name, number of dimensions, and length of each dimension. 
+Modifying the signature file is strongly discouraged as it may cause some calculations to fail.
 
 \newoption{signature}
 
-Defines method of calculating signatures of motifels. GeoPAT offers the following methods: 
+Defines method for calculating signatures of motifels. 
+GeoPAT offers the following methods: 
 \begin{itemize}
 	\item prod -- Cartesian product of input category lists
 	\item cooc -- spatial coocurrence of categories
@@ -304,19 +364,25 @@ Defines method of calculating signatures of motifels. GeoPAT offers the followin
 	\item lind -- landscape indices vector
 	\item linds -- selected landscape indices vector
 \end{itemize}
-See Appendix \ref{signatures} for details.
+See Appendix \ref{signatures} for the details.
 
 \newoption{normalization}
 
-Specifies normalization method used on the signatures. See Appendix \ref{signatures} for details.
+Specifies normalization method used on the signatures. 
+See Appendix \ref{signatures} for the details.
 
 \newoption{threads (-t)}
 
-The module is parallel, it can use more than one processing thread in order to speed up calculations. This option specifies how many threads will be used. The default is 1.
+The module is parallel, therefore use more than one processing thread can be used in order to speed up calculations. 
+This option specifies how many threads will be used. 
+The default is 1.
 \\\\
 {\bf Description:}
 
-Module extracts signatures for a collection of irregular regions using the same methods as in {\it gpat\_pointshis} and {\it gpat\_gridhis} module. As an input, apart from categorical raster map from which signatures are calculated, user provides a categorical raster map which defines spatial division of area of interest into polygonal regions. The module outputs a list of polygon labeled-signatures stored in the form of a text file. Output can be transferred to the p.sim.distmatrix for further processing.
+Module extracts signatures for a collection of irregular regions using the same methods as in the {\it gpat\_pointshis} and {\it gpat\_gridhis} modules. 
+As an input, apart from categorical raster map from which signatures are calculated, user provides a categorical raster map which defines spatial division of area of interest into polygonal regions. 
+The module outputs a list of polygon labeled-signatures stored in the form of a text file. 
+Output can be transferred to the p.sim.distmatrix for further processing.
 
 The output signature text file can be used as an input to the following modules: {\it gpat\_search}, {\it gpat\_distmtx}.
 
@@ -347,11 +413,22 @@ gpat_search [-dlh] -i <file_name> [-o <file_name>] -r <file_name> [-m <measure_n
 
 \newoption{input}
 
-Binary file containing grid of signatures (grid-of-scenes). Grid is mandatory. User has to provide name of grid file (without .hdr extension). Header file is read automatically. Grid is an output from either {\it gpat\_gridhis} or {\it gpat\_gridts} module. Header of the grid will define topology of the output layers. Do not modify header file.
+Binary file containing grid of signatures (grid-of-scenes). 
+Grid is mandatory. 
+User has to provide a name of grid file (without the .hdr extension). 
+Header file is read automatically. 
+Grid is an output from either {\it gpat\_gridhis} or {\it gpat\_gridts} module. 
+Header of the grid will define topology of the output layers. 
+Do not modify header file.
 
 \newoption{reference}
 
-Text file containing one or more signatures of either individual motifels (scenes) or irregular polygons. This option is mandatory. Input text file can be created using {\it gpat\_pointshis}, {\it gpat\_pointsts} or {\it gpat\_polygons} module. The number of outputs depends on the number of scenes in the input scene file. At least one scene is required. Name/description of  will be used to create name of output layer. 
+Text file containing one or more signatures of either individual motifels (scenes) or irregular polygons. 
+This option is mandatory. 
+Input text file can be created using the {\it gpat\_pointshis}, {\it gpat\_pointsts} or {\it gpat\_polygons} module. 
+The number of outputs depends on the number of scenes in the input scene file. 
+At least one scene is required. 
+%??Name/description of  will be used to create name of output layer. 
 
 \newparagraph{gpat\_compare}
 {}
