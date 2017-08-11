@@ -3,6 +3,13 @@
 The GeoPAT consists of twelve modules (Fig. \ref{FIG:GPAT}).
 Five modules are designed for extracting pattern signatures from an original data grid, four modules for actual geoprocessing of the patterns and three utility modules.
 
+\begin{figure}[H]
+%	\centering
+	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT2.png}}
+	\caption{Outline of the GeoPAT 2.0 architecture}
+	\label{FIG:GPAT} 
+\end{figure}
+
 The role of signature extraction modules (gpat\_gridhis, gpat\_gridts, gpat\_pointshis, gpat\_pointsts, gpat\_polygon) is to calculate pattern signatures for scenes defined:
 
 \begin{itemize}
@@ -29,13 +36,6 @@ The role of utility modules (gpat\_grd2txt, gpat\_globnorm, gpat\_segquality) is
   \item \textbf{gpat\_globnorm} - 
   \item \textbf{gpat\_segquality} - calculate the quality metrics (inhomogeneity and isolation) of a segmentation
 \end{itemize}
-
-\begin{figure}[H]
-%	\centering
-	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT2.png}}
-	\caption{Outline of GeoPAT 2.0 architecture.}
-	\label{FIG:GPAT} 
-\end{figure}
 
 \subsection{GeoPAT Modules}
 
