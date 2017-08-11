@@ -67,30 +67,22 @@ dnf install gdal-devel
 
 To install the ezGDAL library the user has to download the ezGDAL source code and unpack it.
 The source code of ezGDAL is available at:
-
 \begin{lstlisting}[escapechar=|]
 |\url{http://pawel.netzel.pl/data/uploads/software/libezgdal.src.tar.gz}|
 \end{lstlisting}
-
 Next, the user has to compile the code by calling the following command in an unpacked source code directory:
-
 \begin{lstlisting}
 make
 \end{lstlisting}
-
 And install it using:
-
 \begin{lstlisting}
 make install
 \end{lstlisting}
-
 By default, the library is placed in the /usr/local/lib directory and the include file is placed in /usr/local/include.
 The user can change the destination directory by adding the PREFIX parameter.
-
 \begin{lstlisting}
 make PREFIX=/my/destination/directory
 \end{lstlisting}
-
 When PREFIX is provided, the library is placed in /my/destination/directory/lib and the include file is placed in /my/destination/directory/include.
 
 The installation procedure of the SML library is similar.
@@ -98,8 +90,12 @@ The source code of SML is available at:
 \begin{lstlisting}[escapechar=|]
 |\url{http://pawel.netzel.pl/data/uploads/software/libsml.src.tar.gz}|
 \end{lstlisting}
-After an extraction of the source code of SML, the user should call: "make" and "make install".
-The command "make install" should be called using sudo command or in the root user context.
+After an extraction of the source code of SML, the user should call: 
+\begin{lstlisting}
+make
+make install
+\end{lstlisting}
+The command "make install" should be called using the sudo command or in the root user context.
 After finishing libraries installation procedure the user has to ensure that PREFIX/lib is on the library search path.
 
 The last step of the installation procedure is a compilation of the GeoPAT 2.0 source code.
@@ -110,5 +106,10 @@ The source code of GeoPAT 2.0 is available at:
 GeoPAT 2.0 depends on the GDAL, SML, and ezGDAL libraries.
 Therefore, after the installation of the above libraries, the user has to unpack, compile and install the GeoPAT 2.0.
 The installation procedure is similar to the installation procedures of the ezGDAL and SML libraries.
-PREFIX parameter works in the same way.
+\begin{lstlisting}
+make
+make install
+\end{lstlisting}
 The "make" and "make install" commands should be run in the main GeoPAT 2.0 source code directory.
+PREFIX parameter works in the same way.
+
