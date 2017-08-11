@@ -1,16 +1,21 @@
-In this section, basic procedures that can be performed using GeoPAT are presented. These are: 
+In this section, the basic GeoPAT procedures are presented. These are: 
+
 \begin{itemize}
-	\item {\bf Search} - search for areas similar to a query,
-	\item {\bf Change detection} - comparison of local patterns of two different maps,
-	\item {\bf Segmentation} - division of a map into regions of cohesive patterns,
-	\item {\bf Clustering} - grouping patterns that are similar to each other.
+	\item {\bf Search} - search for areas similar to a query
+	\item {\bf Change detection} - comparison of local patterns between two maps
+	\item {\bf Segmentation} - division of a map into regions of cohesive patterns
+	\item {\bf Clustering} - grouping patterns that are similar to each other
 \end{itemize}
-The procedures are explained using workflow schemes, and examples. All the examples of how to process categorical data are shown on a $1400\times 2300$ px ($42\times 69$ km) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}). This area is characterized by high diversity of land cover categories and patterns. Thus it is perfect for various pattern analyzes. 
+
+The procedures are explained using the workflow schemes and examples.
+All of the examples how to process categorical data are shown on a $42\times 69$ km ($1400\times 2300$ px) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}).
+This area is characterized by high diversity of land cover categories and patterns.
+Thus it is perfect for various pattern analyzes.
 
 \begin{figure}[H]
 	\centering
-	%\includegraphics[width=\textwidth]{Augusta_legend.png}
-	\caption{Part of NLCD, covering area around Augusta, GA used in the examples.}
+	\includegraphics[width=\textwidth]{atlanta.png}
+	\caption{Part of NLCD, covering area around Augusta, GA used in the examples}
 	\label{FIG:AUGUSTA}
 \end{figure}
 
@@ -18,7 +23,12 @@ The procedures are explained using workflow schemes, and examples. All the examp
 
 \subsection{Search}
 
-Search functionality enables user to produce maps of similarity. These maps show the level of similarity between a specified motifel (query) and a grid of motifels. The input is one or more GeoTIFF raster maps (depending on a data and signature type; see appendix \ref{signatures} for more information), and XY coordinates of one or more points in space. The result is one or more GeoTIFF raster maps which have the same extent as the grid of motifels specified by user. The number of resulting maps is the same as the number of points provided. The workflows for categorical maps and time series differ.
+Search functionality enables user to produce maps of similarity. 
+These maps show the level of similarity between a specified motifel (query) and a grid of motifels.
+The input is one or more GeoTIFF raster maps (depending on a data and signature type; see appendix \ref{signatures} for more information), and XY coordinates of one or more points in space.
+The result is one or more GeoTIFF raster maps which have the same extent as the grid of motifels specified by user.
+The number of resulting maps is the same as the number of points provided.
+The workflows for categorical and time series maps differ.
 
 \subsubsection{Search on categorical maps}
 Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity maps using a categorical raster data. 
@@ -26,11 +36,12 @@ Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{search_scheme.png}
-	\caption{Workflow path for search on categorical maps.}
+	\caption{Workflow path for search on categorical maps}
 	\label{FIG:SEARCH}
 \end{figure}
 
-The first step is to prepare signature files for both query motifels and grid of motifels using two separate modules, {\it gpat\_pointshis} and {\it gpat\_gridhis} respectively. The second step is to use these signature files as inputs to {\it gpat\_search} module in order to produce similarity maps.\\\\
+The first step is to prepare signature files for both, query motifels and grid of motifels, using two separate modules, {\it gpat\_pointshis} and {\it gpat\_gridhis} respectively. 
+The second step is to use these signature files as inputs to {\it gpat\_search} module in order to the produce similarity maps.\\\\
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
@@ -38,9 +49,9 @@ The first step is to prepare signature files for both query motifels and grid of
 gpat_gridhis -i Augusta2011.tif -o grid -s cooc -z 50 -f 50 -n pdf
 gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf --xy_file=coordinates.txt
 gpat_search -i grid -r query_signatures.txt
-gpat_pointsts -i grid -o query_signatures.txt --xy_file=coordinates.txt
 \end{lstlisting}
 \end{minipage}
+
 
 do not have to have the same size (but is recommended)
 
@@ -54,6 +65,12 @@ TODO
 	\caption{Workflow path for search on time series.}
 	\label{FIG:SEARCHTS}
 \end{figure}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_pointsts -i grid -o query_signatures.txt --xy_file=coordinates.txt
+\end{lstlisting}
+\end{minipage}
 
 \FloatBarrier
 
