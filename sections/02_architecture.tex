@@ -439,7 +439,6 @@ The default is 1.
 Module extracts signatures for a collection of irregular regions using the same methods as in the {\it gpat\_pointshis} and {\it gpat\_gridhis} modules. 
 As an input, apart from categorical raster map from which signatures are calculated, user provides a categorical raster map which defines spatial division of area of interest into polygonal regions. 
 The module outputs a list of polygon labeled-signatures stored in the form of a text file. 
-Output can be transferred to the p.sim.distmatrix for further processing.
 
 The output signature text file can be used as an input to the following modules: {\it gpat\_search}, {\it gpat\_distmtx}.
 
@@ -729,7 +728,7 @@ The swap parameter is used to alleviate this problem.
 It adjusts the boundaries between the segments.
 For each border motifel its linkage to the parent segment, $D_par$, as well as its linkage to the segment across the boundary, $D_neigh$ is calculated.
 If the difference between $D_par$ and $D_neigh$ is positive (the linkage to the segment across the boundary is smaller than the linkage to parent segment) the motifel is marked for possible reassignment (resulting in an adjustment to the boundary).
-The boundary between segments is adjusted only when the swap value is larger than the differnce between $D_par$ and $D_neigh$. 
+The boundary between segments is adjusted only when the swap value is larger than the difference between $D_par$ and $D_neigh$. 
 0 forces repetition till all unmatched segments will be swapped (note: this could distinctly increase the calculation time).
 
 \newoption{minarea}
@@ -739,9 +738,9 @@ The removal process is turned off if the minarea value equals to 0.
 
 \newoption{maxhist}
 
-Calculating linkage between two segments ould be computationally expensive if the segments contain large numbers of motifels.
+Calculating linkage between two segments could be computationally expensive if the segments contain large numbers of motifels.
 When the number of motifels in the segment exceeds the maxhist value, so-called leveraging is used to speed up the calculation.
-This means that only maxhist motifels, randomly selected from the segment, are used to calculate the linkage.
+This means that only a maxhist number of motifels, randomly selected from the segment, are used to calculate the linkage.
 0 switches off the leveraging.
 
 \newoption{complete}
@@ -840,7 +839,7 @@ Lists all the available measures.
 
 This module computes a distance matrix between a collection of scenes. 
 It uses signatures output by gpat\_pointshis, gpat\_pointsts, or gpat\_polygon and selected distance measure.
-The resultant distance matrix is usuallye used as an input for scene clustering, which could results in discovering structures in the data.
+The resultant distance matrix is usually used as an input for scene clustering, which could results in discovering structures in the data.
 Clustering itself is not implemented in GeoPAT 2.0; we recommend using clustering algorithms implemented in R. %CITE 
 An example of gpat\_distmtx usage would be the clustering of a collection of cities on the basis of the patterns of land cover classes within their boundaries.
 
@@ -1016,7 +1015,7 @@ Lists all the available measures.
 
 \newoption{maxhist}
 
-Calculating linkage between two segments ould be computationally expensive if the segments contain large numbers of motifels.
+Calculating linkage between two segments could be computationally expensive if the segments contain large numbers of motifels.
 When the number of motifels in the segment exceeds the maxhist value, so-called leveraging is used to speed up the calculation.
 This means that only maxhist motifels, randomly selected from the segment, are used to calculate the linkage.
 
