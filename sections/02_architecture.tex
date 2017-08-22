@@ -480,6 +480,9 @@ Do not modify header file.
 
 \newoption{output}
 
+Raster (geotiff) file or files containing the map of similarity. 
+The number of outputs depends on the number of scenes/polygons in the input reference file. 
+
 \newoption{reference}
 
 Text file containing one or more signatures of either individual motifels (scenes) or irregular polygons. 
@@ -520,6 +523,8 @@ Lists all the available measures.
 
 \newoption{type}
 
+Data type of the output rasteg (geotiff) file. Types of Byte, UInt16, Int16, UInt32, Int32, Float32, Float64, CInt16, CInt32, CFloat32 and CFloat64 are supported.
+
 \newoption{palette}
 
 \newoption{no\_data}
@@ -559,6 +564,8 @@ gpat_compare [-lh] -i <file_name> -i <file_name> -o <file_name> [--type=Byte/...
 \newoption{output}
 
 \newoption{type}
+
+Data type of the output rasteg (geotiff) file. Types of Byte, UInt16, Int16, UInt32, Int32, Float32, Float64, CInt16, CInt32, CFloat32 and CFloat64 are supported.
 
 \newoption{palette}
 
@@ -630,7 +637,14 @@ gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n
 \end{minipage}
 
 \newoption{input}
-The input is a GRID file created using the gpat_gridhis module. %or gpat_gridts
+
+Binary file containing grid of signatures (grid-of-scenes). 
+Grid is mandatory. 
+User has to provide a name of grid file (without the .hdr extension). 
+Header file is read automatically. 
+Grid is an output from either {\it gpat\_gridhis} or {\it gpat\_gridts} module. 
+Header of the grid will define topology of the output layers. 
+Do not modify header file.
 
 \newoption{output}
 
@@ -836,6 +850,14 @@ F)
 \end{minipage}
 
 \newoption{input}
+
+Binary file containing grid of signatures (grid-of-scenes). 
+Grid is mandatory. 
+User has to provide a name of grid file (without the .hdr extension). 
+Header file is read automatically. 
+Grid is an output from either {\it gpat\_gridhis} or {\it gpat\_gridts} module. 
+Header of the grid will define topology of the output layers. 
+Do not modify header file.
 
 \newoption{segments}
 
