@@ -977,10 +977,15 @@ This layer may be a result of the segmentation module gpat segment or any other 
 \newoption{inhomogeneity}
 
 The name of a raster (GeoTIFF) file containing the values of segment's inhomogeneity. 
+Inhomogeneity is a property of a single segment; it measures the degree of mutual dissimilarity between all motifels within the segment.
+Inhomogeneity has a range between 0 and 1, smaller values are better.
 
 \newoption{isolation}
 
 The name of a raster (GeoTIFF) file containing the values of segment's isolation. 
+It is calculated as the average dissimilarity between the focus segment and all of its immediate neighbors.
+It measures how much the segments stand out from its surroundings. 
+Isolation has a range between 0 and 1, larger values are better
 
 \newoption{measure}
 
@@ -1035,3 +1040,9 @@ The default is 1.
 
 % \\\\
 {\bf Description:}
+
+This module computes inhomogeneity and isolation of grid of signatures (grid-of-scenes for each segment (region).
+It uses signatures output by gpat\_gridhis and selected distance measure.
+The resultant raster files could be also used to calculate the quality of a segmentation or regionalization. 
+Quality is equal to 1 - (inhomogeneity/isolation).
+It has a range between 0 and 1 and larger numbers are better. 
