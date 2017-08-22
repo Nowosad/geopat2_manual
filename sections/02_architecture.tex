@@ -493,7 +493,30 @@ At least one scene is required.
 
 \newoption{measure}
 
+Defines method for calculating distance between motifels. 
+GeoPAT offers the following measures: 
+\begin{itemize}
+	\item jsd -- Jensen Shannon Divergence
+	\item euc -- Euclidean distance
+	\item eucn -- Normalized euclidean distance
+	\item eucp -- Normalized euclidean distance (periodic)
+	\item wh -- Wave-Hedges distance
+	\item cos -- Cosine distance
+	\item jac -- Jaccard distance
+	\item roz -- Rozicka distance
+	\item rozp -- Rozicka distance (extended)
+	\item hass -- Hassanat distance
+	\item tsEUC -- time series - euclidean distance
+	\item tsEUCP -- periodic time series - euclidean distance
+	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsDTWP -- time series - Periodic Dynamic Time Warping distance
+	\item tsDTWPa -- time series - Synchoronized Dynamic Time Warping distance
+\end{itemize}
+See Appendix \ref{measures} for the details.
+
 \newoption{list\_measures}
+
+Lists all the available measures.
 
 \newoption{type}
 
@@ -543,7 +566,30 @@ gpat_compare [-lh] -i <file_name> -i <file_name> -o <file_name> [--type=Byte/...
 
 \newoption{measure}
 
+Defines method for calculating distance between motifels. 
+GeoPAT offers the following measures: 
+\begin{itemize}
+	\item jsd -- Jensen Shannon Divergence
+	\item euc -- Euclidean distance
+	\item eucn -- Normalized euclidean distance
+	\item eucp -- Normalized euclidean distance (periodic)
+	\item wh -- Wave-Hedges distance
+	\item cos -- Cosine distance
+	\item jac -- Jaccard distance
+	\item roz -- Rozicka distance
+	\item rozp -- Rozicka distance (extended)
+	\item hass -- Hassanat distance
+	\item tsEUC -- time series - euclidean distance
+	\item tsEUCP -- periodic time series - euclidean distance
+	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsDTWP -- time series - Periodic Dynamic Time Warping distance
+	\item tsDTWPa -- time series - Synchoronized Dynamic Time Warping distance
+\end{itemize}
+See Appendix \ref{measures} for the details.
+
 \newoption{list\_measures}
+
+Lists all the available measures.
 
 \newoption{threads (-t)}
 
@@ -584,6 +630,7 @@ gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n
 \end{minipage}
 
 \newoption{input}
+The input is a GRID file created using the gpat_gridhis module. %or gpat_gridts
 
 \newoption{output}
 
@@ -593,15 +640,44 @@ gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n
 
 \newoption{measure}
 
+Defines method for calculating distance between motifels. 
+GeoPAT offers the following measures: 
+\begin{itemize}
+	\item jsd -- Jensen Shannon Divergence
+	\item euc -- Euclidean distance
+	\item eucn -- Normalized euclidean distance
+	\item eucp -- Normalized euclidean distance (periodic)
+	\item wh -- Wave-Hedges distance
+	\item cos -- Cosine distance
+	\item jac -- Jaccard distance
+	\item roz -- Rozicka distance
+	\item rozp -- Rozicka distance (extended)
+	\item hass -- Hassanat distance
+	\item tsEUC -- time series - euclidean distance
+	\item tsEUCP -- periodic time series - euclidean distance
+	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsDTWP -- time series - Periodic Dynamic Time Warping distance
+	\item tsDTWPa -- time series - Synchoronized Dynamic Time Warping distance
+\end{itemize}
+See Appendix \ref{measures} for the details.
+
 \newoption{list\_measures}
+
+Lists all the available measures.
 
 \newoption{lthreshold}
 
+Controls segment's sizes.
+
 \newoption{uthreshold}
+
+Prevents growth of inhomogeneous segments.
 
 \newoption{swap}
 
 \newoption{minarea}
+
+Minimum size of a segment not subject to removal process. Thre removal proecess is turned off if the value equals to 0.
 
 \newoption{maxhist}
 
@@ -646,7 +722,30 @@ gpat_distmtx [-lsh] -i <file_name> -o <file_name> [-m <measure_name>]
 
 \newoption{measure}
 
+Defines method for calculating distance between motifels. 
+GeoPAT offers the following measures: 
+\begin{itemize}
+	\item jsd -- Jensen Shannon Divergence
+	\item euc -- Euclidean distance
+	\item eucn -- Normalized euclidean distance
+	\item eucp -- Normalized euclidean distance (periodic)
+	\item wh -- Wave-Hedges distance
+	\item cos -- Cosine distance
+	\item jac -- Jaccard distance
+	\item roz -- Rozicka distance
+	\item rozp -- Rozicka distance (extended)
+	\item hass -- Hassanat distance
+	\item tsEUC -- time series - euclidean distance
+	\item tsEUCP -- periodic time series - euclidean distance
+	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsDTWP -- time series - Periodic Dynamic Time Warping distance
+	\item tsDTWPa -- time series - Synchoronized Dynamic Time Warping distance
+\end{itemize}
+See Appendix \ref{measures} for the details.
+
 \newoption{list\_measures}
+
+Lists all the available measures.
 
 \newoption{similarity}
 
@@ -746,7 +845,30 @@ F)
 
 \newoption{measure}
 
+Defines method for calculating distance between motifels. 
+GeoPAT offers the following measures: 
+\begin{itemize}
+	\item jsd -- Jensen Shannon Divergence
+	\item euc -- Euclidean distance
+	\item eucn -- Normalized euclidean distance
+	\item eucp -- Normalized euclidean distance (periodic)
+	\item wh -- Wave-Hedges distance
+	\item cos -- Cosine distance
+	\item jac -- Jaccard distance
+	\item roz -- Rozicka distance
+	\item rozp -- Rozicka distance (extended)
+	\item hass -- Hassanat distance
+	\item tsEUC -- time series - euclidean distance
+	\item tsEUCP -- periodic time series - euclidean distance
+	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsDTWP -- time series - Periodic Dynamic Time Warping distance
+	\item tsDTWPa -- time series - Synchoronized Dynamic Time Warping distance
+\end{itemize}
+See Appendix \ref{measures} for the details.
+
 \newoption{list\_measures}
+
+Lists all the available measures.
 
 \newoption{maxhist}
 
