@@ -621,7 +621,7 @@ The default is 1.
 
 This module compares two grids-of-scenes (grid of histograms) in a scene-by-scene fashion. 
 Both grids must be calculated using the same shift parameter and the same method.
-The output of gpat_compare is a raster having the same topology as the input grids.
+The output of gpat\_compare is a raster having the same topology as the input grids.
 Each cell in the output file contains the value of similarity between corresponding pairs of scenes where one scene is coming from the first grid and the other scene is coming from the second grid.
 The module is useful for comparing data of the same area created at two different times.
 It is also useful for estimating the uncertainty of the results.
@@ -809,6 +809,14 @@ gpat_grd2txt [-h] -i <file_name> -o <file_name>
 
 \newoption{input}
 
+Binary file containing grid of signatures (grid-of-scenes). 
+Grid is mandatory. 
+User has to provide a name of grid file (without the .hdr extension). 
+Header file is read automatically. 
+Grid is an output from either {\it gpat\_gridhis} or {\it gpat\_gridts} module. 
+Header of the grid will define topology of the output layers. 
+Do not modify header file.
+
 \newoption{output}
 
 % \\\\
@@ -834,11 +842,31 @@ gpat_globnorm [-lh] -i <file_name> -o <file_name> [-m <method_name>] [-t <n>]
 
 \newoption{input}
 
+Binary file containing grid of signatures (grid-of-scenes). 
+Grid is mandatory. 
+User has to provide a name of grid file (without the .hdr extension). 
+Header file is read automatically. 
+Grid is an output from either {\it gpat\_gridhis} or {\it gpat\_gridts} module. 
+Header of the grid will define topology of the output layers. 
+Do not modify header file.
+
 \newoption{output}
 
 \newoption{method}
 
+Specifies normalization method used on the signatures. 
+
+\begin{itemize}
+	\item 01 -- normalize coordinats to [0,1]
+	\item N01 -- normalize coordinats to N(0,1)
+	\item ind01 -- normalize coordinats to [0,1] for 72 landscape indices
+\end{itemize}
+
+See Appendix \ref{signatures} for the details.
+
 \newoption{list\_methods}
+
+Lists all the available normalization methods.
 
 \newoption{threads (-t)}
 
