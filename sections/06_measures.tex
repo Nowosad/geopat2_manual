@@ -1,4 +1,25 @@
+Distance, which assesses the degree of dissimilarity between two scenes, is the opposite of similarity. 
+When the value of distance function is equal to zero identical histograms are indicated, and thus scenes have identical or very similar patterns, whereas large values of the distance function indicate very different histograms and scenes having significantly different patterns. 
+Note that all histogram distance measures are heuristic and no single measure will work well with all signatures.
+
 \subsection{Jensen Shannon Divergence}
+
+This measure
+%\citep{Lin1991}
+expresses the informational distance between two histograms $P$ and $Q$ by calculating a deviation between the Shannon entropy of the mixture of the two histograms $(P+Q)/2$ (the second term in eq.(\ref{eq:jensen_divergence}) below) and the mean of their individual entropies (the second term in eq.(\ref{eq:jensen_divergence})).
+The value of the Jensen-Shannon divergence is given by the following formula,
+
+\begingroup
+\scriptsize
+\begin{equation} \label{eq:jensen_divergence}
+d_{JSD}=\sqrt{\sum\limits_{i=1}^{d}{ 
+\biggl[\dfrac{P_{i} log_{2} P_{i}+Q_{i} log_{2} Q_{i}}{2}
+-\biggl(\dfrac{P_{i}+Q_{i}}{2} \biggr)log_{2} \biggl(\dfrac{P_{i}+Q_{i}}{2} \biggr)\biggr]}}
+\end{equation}
+\endgroup
+
+\noindent where $d$ is the number of bins (the same for both histograms) and $P_i$ and $Q_i$ are the values of $i$th bin in the two histograms. 
+We have found Jensen-Shannon divergence works well (yields dissimilarity values in agreement with human visual perception) for comparison of land cover patterns as encapsulated by crossproduct signatures. % \citep{Jasiewicz2013b,Stepinski2014JSTARS,Netzel2015}. 
 
 \subsection{Euclidean distance}
 
@@ -8,9 +29,38 @@
 
 \subsection{Wave-Hedges distance}
 
+This measure is designed to work with co-occurrence signature histograms that tend to be dominated by bins corresponding to adjacent cells having the same class. 
+The value of the Wave Hedges distance is given by the following formula, % \citep{Cha2007},
+
+\begingroup
+\begin{equation} \label{eq:wave_hedges}
+d_{WH}=\sum\limits_{i=0}^{d}{
+ e_i\dfrac{ |P_{i} - Q_{i}|}{max(P_{i},Q_{i})}}
+\end{equation}
+\endgroup
+
+\noindent where $d$ is the maximum number of possible bins and $e_i = 1$ if $max(P_{i},Q_{i})>0$ or $e_i = 0$ otherwise.
+In other words, only pattern features present in at least one of the two scenes contribute to the value of the distance. 
+In Wave Hedges distance formula all present features contribute to the overall value of distance with the same weights regardless of feature abundance in the scenes. 
+In the case of the co-occurrence histogram this means that composition-related features and configuration-related features contribute equally to the distance value despite the heavy dominance of composition-related features in histograms stemming from all realistic scenes. 
+This makes the Wave Hedges distance particularly suitable for comparison of terrain scenes as encapsulated by co-occurrence signatures. % \citep{Jasiewicz2014GMRH}
+
 \subsection{Cosine distance}
 
 \subsection{Jaccard distance}
+
+This measure is an extension of the Jaccard similarity coefficient 
+%\citep{Jaccard1908}
+, originally developed to assess a similarity between two sets, but used here for assessing the dissimilarity between two histograms. 
+The value of the Jaccard distance is given by the following formula, % \citep{Cha2007},
+
+\begin{equation} \label{eq:Jaccard}
+d_J= 1-\dfrac
+{\sum\limits_{i=1}^{d} P_i Q_i}
+{\sum\limits_{i=1}^{d} P_i^2 + \sum\limits_{i=1}^{d} Q_i^2 - \sum\limits_{i=1}^{d} P_i Q_i}
+\end{equation}
+
+\noindent We have found that the Jaccard distance works well for comparison of land cover patterns as encapsulated by decomposition signatures.
 
 \subsection{Rozicka distance}
 
