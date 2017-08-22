@@ -714,11 +714,11 @@ Lists all the available measures.
 
 \newoption{lthreshold}
 
-Controls segment's sizes.
+Lower thresholdControls segment's sizes.
 
 \newoption{uthreshold}
 
-Prevents growth of inhomogeneous segments.
+Upper thresholdPrevents growth of inhomogeneous segments.
 
 \newoption{swap}
 
@@ -746,6 +746,19 @@ The default is 1.
 % \\\\
 {\bf Description:}
 
+This module segments a grid-of-scenes into regions of uniform patterns in the same fashion as traditional segmentation algorithms segment image (or other rasters) into segments of uniform color and texture.  % CITE(Niesterowicz and Stepinski, 2013)
+The difference is that gpat\_segment segments a grid-of-scenes rather than an ordinary grid, and uses scene signature as attribute rather than color or image texture to decide how to delineate the segments. 
+The module uses a variant of the region growing algorithm %CITE (Zucker, 1976; Câmara et al., 1996; Li and Narayanan, 2004; Blaschke, 2010). 
+% It has two free parameters: a similarity threshold that defines the minimum similarity between two scenes to be treated as “similar” and, optionally, a minimum number of scenes to constitute a separate segment.
+The segmentation provided by the gpat\_segment module is typically used as an intermediate step in regionalization of the
+dataset. 
+The goal of regionalization is to generalize and thus simplify spatial representation of data so it is more meaningful and
+easier to analyze.
+Examples of regionalization include delineation of landscape types % CITE(Niesterowicz and Stepinski, 2013) 
+or delineation of physiographic units. %CITE (Jasiewicz et al., 2014). 
+Regionalization is achieved by clustering segments output by gpat\_segment into a number of distinct pattern type classes.
+An output of the gpat\_distmtx module could be used as a distance matrix for clustering in an external software.
+
 \newparagraph{gpat\_distmtx}
 {}
 \\\\
@@ -755,7 +768,7 @@ Usage:
 \begin{lstlisting}
 gpat_distmtx [-lsh] -i <file_name> -o <file_name> [-m <measure_name>]
 
--i, --input=<file_name>  name of input file witch signatures (TXT)
+-i, --input=<file_name>  name of input file with signatures (TXT)
 -o, --output=<file_name> name of output file (CSV) with similarity matrix
 -m, --measure=<name>     similarity measure (use -l to list all measures; default 'jsd')
 -l, --list_measures      list all measures
@@ -799,6 +812,12 @@ Lists all the available measures.
 
 % \\\\
 {\bf Description:}
+
+This module computes a distance matrix between a collection of scenes. 
+It uses signatures output by gpat\_pointshis, gpat\_pointsts, or gpat\_polygon and selected distance measure.
+The resultant distance matrix is usuallye used as an input for scene clustering, which could results in discovering structures in the data.
+Clustering itself is not implemented in GeoPAT 2.0; we recommend using clustering algorithms implemented in R. %CITE 
+An example of gpat\_distmtx usage would be the clustering of a collection of cities on the basis of the patterns of land cover classes within their boundaries.
 
 \subsubsection{Tools}
 \newparagraph{gpat\_grd2txt}
