@@ -619,6 +619,13 @@ The default is 1.
 % \\\\
 {\bf Description:}
 
+This module compares two grids-of-scenes (grid of histograms) in a scene-by-scene fashion. 
+Both grids must be calculated using the same shift parameter and the same method.
+The output of gpat_compare is a raster having the same topology as the input grids.
+Each cell in the output file contains the value of similarity between corresponding pairs of scenes where one scene is coming from the first grid and the other scene is coming from the second grid.
+The module is useful for comparing data of the same area created at two different times.
+It is also useful for estimating the uncertainty of the results.
+
 \newparagraph{gpat\_segment}
 {}
 \\\\
@@ -660,7 +667,12 @@ Do not modify header file.
 
 \newoption{output}
 
+Categorical raster map in the GeoTIFF format which defines spatial division of area of interest into polygonal regions (segments).
+In this map, regions (segments) are defined as areas of unique ids.
+
 \newoption{vector}
+
+Vector (shapefile) map of segmentation. This data is automaticaly created by vectorization of an output file.
 
 \newoption{size}
 
@@ -703,7 +715,8 @@ Prevents growth of inhomogeneous segments.
 
 \newoption{minarea}
 
-Minimum size of a segment not subject to removal process. Thre removal proecess is turned off if the value equals to 0.
+Minimum number of cells in an individual segment not subject to removal process. 
+The removal proecess is turned off if the value equals to 0.
 
 \newoption{maxhist}
 
