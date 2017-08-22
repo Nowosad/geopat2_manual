@@ -657,7 +657,7 @@ gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n
 --maxhist=<n>            create similarity/distance matrix for maxhist histograms; leave 0 to use all (default: 200)
 -c, --complete           use complete linkage (default is average)
 -g, --no_growing         skip growing phase
--a, --no_hierarhical     skip herarhical phase
+-a, --no_hierarhical     skip hierarchical phase
 -q, --quad               quad mode (rook topology)
 -t <n>                   number of threads (default: 1)
 -h, --help               print help and exit
@@ -710,32 +710,57 @@ See Appendix \ref{measures} for the details.
 
 \newoption{list\_measures}
 
-Lists all the available measures.
+Lists all the available measures. 
 
 \newoption{lthreshold}
 
-Lower thresholdControls segment's sizes.
+The purpose of lthreshold is to control (to some degree) sizes of the segments. 
+It takes values between 0 and 1.
 
 \newoption{uthreshold}
 
-Upper thresholdPrevents growth of inhomogeneous segments.
+The purpose of uthreshold is to prevent the growth of inhomogeneous segments.
+It takes values between 0 and 1.
 
 \newoption{swap}
+
+Because the segment growing is a greedy process there is a chance that some motifels located at segments’ boundaries show more affinity to motifels across the boundary than to motifels in its own segment.
+The swap parameter is used to alleviate this problem.
+It adjusts the boundaries between the segments.
+For each border motifel its linkage to the parent segment, $D_par$, as well as its linkage to the segment across the boundary, $D_neigh$ is calculated.
+If the difference between $D_par$ and $D_neigh$ is positive (the linkage to the segment across the boundary is smaller than the linkage to parent segment) the motifel is marked for possible reassignment (resulting in an adjustment to the boundary).
+The boundary between segments is adjusted only when the swap value is larger than the differnce between $D_par$ and $D_neigh$. 
+0 forces repetition till all unmatched segments will be swapped (note: this could distinctly increase the calculation time).
 
 \newoption{minarea}
 
 Minimum number of cells in an individual segment not subject to removal process. 
-The removal proecess is turned off if the value equals to 0.
+The removal process is turned off if the minarea value equals to 0.
 
 \newoption{maxhist}
 
+Calculating linkage between two segments ould be computationally expensive if the segments contain large numbers of motifels.
+When the number of motifels in the segment exceeds the maxhist value, so-called leveraging is used to speed up the calculation.
+This means that only maxhist motifels, randomly selected from the segment, are used to calculate the linkage.
+0 switches off the leveraging.
+
 \newoption{complete}
+
+As the default, the average linkage (Unweighted Pair Group Method with Arithmetic Mean) is used for calculation of a dissimilarity between two segments. 
+This option changes the measure of dissimilarity between two segments to the complete linkage.
 
 \newoption{no\_growing}
 
-\newoption{no\_hierarhical}
+Skips growing phase of the segmentation.
+
+\newoption{no\_hierarchical}
+
+Skips hierarchical phase of the segmentation.
 
 \newoption{quad}
+
+As the default, the 6-connected brick wall topology is used, where square motifels are “laid” in alternative layers with each layer shifted a half motifel length with respect to the previous one like in masonry. 
+This option sets quad mode, which means that the rectangular grid topology with 4-connectivity will be used. 
 
 \newoption{threads (-t)}
 
@@ -986,9 +1011,19 @@ Lists all the available measures.
 
 \newoption{maxhist}
 
+Calculating linkage between two segments ould be computationally expensive if the segments contain large numbers of motifels.
+When the number of motifels in the segment exceeds the maxhist value, so-called leveraging is used to speed up the calculation.
+This means that only maxhist motifels, randomly selected from the segment, are used to calculate the linkage.
+
 \newoption{complete}
 
+As the default, the average linkage (Unweighted Pair Group Method with Arithmetic Mean) is used for calculation of a dissimilarity between two segments. 
+This option changes the measure of dissimilarity between two segments to the complete linkage.
+
 \newoption{quad}
+
+As the default, the 6-connected brick wall topology is used, where square motifels are “laid” in alternative layers with each layer shifted a half motifel length with respect to the previous one like in masonry. 
+This option sets quad mode, which means that the rectangular grid topology with 4-connectivity will be used. 
 
 \newoption{no\_weight}
 
