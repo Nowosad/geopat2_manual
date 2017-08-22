@@ -540,6 +540,15 @@ The default is 1.
 % \\\\
 {\bf Description:}
 
+Searching task is dedicated to perform a query-by-pattern-similarity (QBPS). 
+Searching procedure compares query/queries with the database in the scene-by-scene fashion and creates a layer(s) having the same topology as a grid-of-scenes but containing values of similarity between a query/queries and each scene in a grid-of-scenes.
+The results of QBPS can be visualized as a similarity map.
+Searching task is accomplished using gpat\_search module. 
+An input is a query scene (or a list of query scenes) is an output of gpat\_pointshis or gpat\_polygon modules and a grid-of-scenes (database to be queried) outputted by the gpat\_gridhis module. 
+Signature histogram of each query and signatures of histograms in a grid-of-scenes must be calculated using the same method (e.g. crossproduct must be used in both cases). 
+The number of output map depends on the number of provided query scenes.
+Each output map gets its name from the name of query scene preceded by a prefix.
+
 \newparagraph{gpat\_compare}
 {}
 \\\\
@@ -851,6 +860,8 @@ Header of the grid will define topology of the output layers.
 Do not modify header file.
 
 \newoption{output}
+
+Normalized binary file containing grid of signatures (grid-of-scenes) and the header text file (the .hdr extension) containing a grid topology and an information about the input data parameters.
 
 \newoption{method}
 
