@@ -713,6 +713,10 @@ Vector (shapefile) map of segmentation. This data is automatically created by ve
 
 \newoption{size}
 
+% Zmiana rozdzielczości mapy wyjściowej. Normalnie masz rozdzielczość gridu motifeli.
+% Czasem jednak chemy mieć np. rodzielczość pliku źródłowego z danymi.
+% Można wtedy podać size motifela i wyjdzie mapa zgodna ze źródłem danych co do rozdzielczości.
+
 \newoption{measure}
 
 Defines method for calculating distance between motifels. 
@@ -1059,6 +1063,9 @@ As the default, the 6-connected brick wall topology is used, where square motife
 This option sets quad mode, which means that the rectangular grid topology with 4-connectivity will be used. 
 
 \newoption{no\_weight}
+
+% Normalnie używane są wagi we wzorach na wskaźniki quality związane z długością granicy pomiędzy
+% sąsiednimi segmentami. Można to wyłączyc.
 
 \newoption{threads (-t)}
 
