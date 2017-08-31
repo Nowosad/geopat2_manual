@@ -456,7 +456,6 @@ gpat_search [-dlh] -i <file_name> [-o <file_name>] -r <file_name> [-m <measure_n
 -i, --input=<file_name>      name of input file (GRID)
 -o, --output=<file_name>     name of output file (TIFF)
 -r, --reference=<file_name>  reference data to calculate similarity (TXT)
--d, --description            use description of the reference histogram(s) as name of output file(s)
 -m, --measure=<measure_name> similarity measure (use -l to list all measures; default 'jsd')
 -l, --list_measures          list all measures
 --type=Byte/....             output data type (default: Float64)
@@ -491,8 +490,6 @@ The number of outputs depends on the number of scenes in the input scene file.
 At least one scene is required. 
 %??Name/description of  will be used to create name of output layer. 
 
-\newoption{description}
-
 \newoption{measure}
 
 Defines method for calculating distance between motifels. 
@@ -525,6 +522,22 @@ Lists all the available measures.
 Data type of the output raster (GeoTIFF) file. Types of Byte, UInt16, Int16, UInt32, Int32, Float32, Float64, CInt16, CInt32, CFloat32 and CFloat64 are supported.
 
 \newoption{palette}
+
+A text file containing colors definition. 
+It enables user to add its own palette to the output raster file.
+The structure of the text file is as follow:
+ID of the file (the first row), \# of colors max min (the second row), user comment (the third row), value red green blue alpha (the forth row). 
+
+For example: \\
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+PALETTE
+16 100 0
+my similarity
+0 40 54 154 255
+7 0 201 50 255
+\end{lstlisting}
+\end{minipage}
 
 \newoption{no\_data}
 
@@ -586,6 +599,22 @@ Raster (GeoTIFF) file containing the map of similarity between two input grid of
 Data type of the output raster (GeoTIFF) file. Types of Byte, UInt16, Int16, UInt32, Int32, Float32, Float64, CInt16, CInt32, CFloat32 and CFloat64 are supported.
 
 \newoption{palette}
+
+A text file containing colors definition. 
+It enables user to add its own palette to the output raster file.
+The structure of the text file is as follow:
+ID of the file (the first row), \# of colors max min (the second row), user comment (the third row), value red green blue alpha (the forth row). 
+
+For example: \\
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+PALETTE
+16 100 0
+my similarity
+0 40 54 154 255
+7 0 201 50 255
+\end{lstlisting}
+\end{minipage}
 
 \newoption{no\_data}
 
