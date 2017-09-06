@@ -709,13 +709,14 @@ In this map, regions (segments) are defined as areas of unique ids.
 
 \newoption{vector}
 
-Vector (shapefile) map of segmentation. This data is automatically created by vectorization of the output file.
+Vector (shapefile) map of segmentation.
+This data is automatically created by vectorization of the output file.
 
 \newoption{size}
 
-% Zmiana rozdzielczości mapy wyjściowej. Normalnie masz rozdzielczość gridu motifeli.
-% Czasem jednak chemy mieć np. rodzielczość pliku źródłowego z danymi.
-% Można wtedy podać size motifela i wyjdzie mapa zgodna ze źródłem danych co do rozdzielczości.
+As the default, the resolution of the output map equals to the resolution of the input grid.
+The size option modifies the output resolution.
+For example, when the size is set to 2, the output map resolution would be increased by a factor of 2.
 
 \newoption{measure}
 
