@@ -763,7 +763,7 @@ It adjusts the boundaries between the segments.
 For each border motifel its linkage to the parent segment, $D_{par}$, as well as its linkage to the segment across the boundary, $D_{neigh}$ is calculated.
 If the difference between $D_{par}$ and $D_{neigh}$ is positive (the linkage to the segment across the boundary is smaller than the linkage to parent segment) the motifel is marked for possible reassignment (resulting in an adjustment to the boundary).
 The boundary between segments is adjusted only when the swap value is larger than the difference between $D_{par}$ and $D_{neigh}$. 
-0 forces repetition till all unmatched segments will be swapped (note: this could distinctly increase the calculation time).
+The value of 0 forces repetition till all unmatched segments will be swapped (note: this could distinctly increase the calculation time).
 
 \newoption{minarea}
 
@@ -907,6 +907,8 @@ Do not modify header file.
 
 % \\\\
 {\bf Description:}
+
+This module converts a binary file containing grid of signatures (grid-of-scenes) into a text file.
 
 \newparagraph{gpat\_globnorm}
 {}
