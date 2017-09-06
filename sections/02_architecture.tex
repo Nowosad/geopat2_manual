@@ -709,7 +709,7 @@ In this map, regions (segments) are defined as areas of unique ids.
 
 \newoption{vector}
 
-Vector (shapefile) map of segmentation.
+Vector (shapefile) map of a segmentation.
 This data is automatically created by vectorization of the output file.
 
 \newoption{size}
@@ -760,9 +760,9 @@ It takes values between 0 and 1.
 Because the segment growing is a greedy process there is a chance that some motifels located at segments’ boundaries show more affinity to motifels across the boundary than to motifels in its own segment.
 The swap parameter is used to alleviate this problem.
 It adjusts the boundaries between the segments.
-For each border motifel its linkage to the parent segment, $D_par$, as well as its linkage to the segment across the boundary, $D_neigh$ is calculated.
-If the difference between $D_par$ and $D_neigh$ is positive (the linkage to the segment across the boundary is smaller than the linkage to parent segment) the motifel is marked for possible reassignment (resulting in an adjustment to the boundary).
-The boundary between segments is adjusted only when the swap value is larger than the difference between $D_par$ and $D_neigh$. 
+For each border motifel its linkage to the parent segment, $D_{par}$, as well as its linkage to the segment across the boundary, $D_{neigh}$ is calculated.
+If the difference between $D_{par}$ and $D_{neigh}$ is positive (the linkage to the segment across the boundary is smaller than the linkage to parent segment) the motifel is marked for possible reassignment (resulting in an adjustment to the boundary).
+The boundary between segments is adjusted only when the swap value is larger than the difference between $D_{par}$ and $D_{neigh}$. 
 0 forces repetition till all unmatched segments will be swapped (note: this could distinctly increase the calculation time).
 
 \newoption{minarea}
