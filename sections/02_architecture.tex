@@ -307,7 +307,7 @@ Additionally, the {\it description} option lets user name a scene.
 This name will be stored in the output file.
 
 Definition by text file:
-In this mode, scene midpoint's coordinates are defined in a external text file in which each line contains X,Y coordinates and, optionally, name/description using the following syntax: x\_coordinate,y\_coordinate,scene\_name.
+In this mode, scene midpoint's coordinates are defined in a external text file in which each line contains X,Y coordinates using the following syntax: x\_coordinate,y\_coordinate.
 The name of a file with coordinates is provided using the {\it xy\_file} option. 
 Extent of a scene is defined by the {\it size} parameter. 
 The {\it x, y} and {\it description} options are not used in this mode. 
@@ -315,15 +315,13 @@ Example of the content of coordinates file:
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-1260500, 1277638, water
-1289493, 1251381, urban
-1304934, 1285000, crops
-1316205, 1253206, pasture
+1260500, 1277638
+1289493, 1251381
+1304934, 1285000
+1316205, 1253206
 1277700, 1261936
 \end{lstlisting}
 \end{minipage}
-
-If a description is not provided (like in the example above), the program will assign a default name ("location") with id representing the number of line in the coordinate file.
 
 The output signature text file can be used as an input to the following modules: {\it gpat\_search}, {\it gpat\_distmtx}.
 
