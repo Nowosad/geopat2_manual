@@ -12,8 +12,8 @@ setwd("tmp/")
 
 ## norm data ------------------------------------------------------------------
 system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n")
-system("gpat_segment -i GB_pr_grid -o GB_pr_seg.tif -v GB_pr_seg.shp")
-system("gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_inh.tif -o GB_pr_seg_ins.tif")
+system("gpat_segment -i GB_pr_grid -o GB_pr_seg.tif -v GB_pr_seg.shp -m tsEUC")
+system("gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_inh.tif -o GB_pr_seg_ins.tif -m tsEUC")
 
 ## segmentation plot -------------------------------------------------------
 segm = st_read("GB_pr_seg.shp")
