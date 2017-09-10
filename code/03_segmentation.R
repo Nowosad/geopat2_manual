@@ -27,8 +27,8 @@ plot(augusta2011)
 dev.off()
 
 ## the code ------------------------------------------------------------------
-system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 100 -f 100")
-system("gpat_segment -i Augusta2011_grid50 -o Augusta2011_seg50.tif -v Augusta2011_seg50.shp")
+system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50")
+system("gpat_segment -i Augusta2011_grid50 -o Augusta2011_seg50.tif -v Augusta2011_seg50.shp --lthreshold=0.12 --uthreshold=0.35")
 system("gpat_segquality -i Augusta2011_grid50 -s Augusta2011_seg50.tif -g Augusta2011_seg50_inh.tif -o Augusta2011_seg50_ins.tif")
 
 ## segmentation plot -------------------------------------------------------
@@ -48,7 +48,7 @@ inh_plot
 ins_plot = levelplot(ins, margin = FALSE, main = "Isolation")
 ins_plot
 
-## calculation of a segmentation quality
+## calculation of a segmentation quality -------------------------------------
 seq_qual = function(inh, ins){
         1 - (inh/ins)
 }
@@ -56,6 +56,9 @@ seq_qual = function(inh, ins){
 qual = overlay(inh, ins, fun = seq_qual)
 qual_plot = levelplot(qual, margin = FALSE, main = "Quality")
 qual_plot
+
+## overall quality ------------------------------------------------------------
+cellStats(qual, "mean", na.rm = TRUE)
 
 ## the end --------------------------------------------------------------------
 setwd("..")
