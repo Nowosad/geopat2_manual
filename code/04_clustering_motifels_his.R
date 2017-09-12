@@ -30,6 +30,7 @@ system("gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv")
 dist_matrix = read.csv("Augusta2011_matrix.csv")[, -1] %>% as.dist()
 hclust_result = hclust(d = dist_matrix, method = "ward.D")
 plot(hclust_result)
+# create gpatUtils package
 
 ## clean --------------------------------------------------------------------
 setwd("..")
