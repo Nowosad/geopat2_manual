@@ -31,6 +31,9 @@ system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50")
 system("gpat_segment -i Augusta2011_grid50 -o Augusta2011_seg50.tif -v Augusta2011_seg50.shp --lthreshold=0.12 --uthreshold=0.35")
 system("gpat_segquality -i Augusta2011_grid50 -s Augusta2011_seg50.tif -g Augusta2011_seg50_inh.tif -o Augusta2011_seg50_ins.tif")
 
+## keep segmentation file --------------------------------------------------
+file.copy(from = "Augusta2011_seg50.tif", to = "../data/")
+
 ## segmentation plot -------------------------------------------------------
 segm = st_read("Augusta2011_seg50.shp")
 raster_seg_plot = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
