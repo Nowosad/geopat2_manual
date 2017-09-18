@@ -27,23 +27,27 @@ plot(augusta2011)
 dev.off()
 
 ## the code ------------------------------------------------------------------
-system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50")
-system("gpat_segment -i Augusta2011_grid50 -o Augusta2011_seg50.tif -v Augusta2011_seg50.shp --lthreshold=0.12 --uthreshold=0.35")
-system("gpat_segquality -i Augusta2011_grid50 -s Augusta2011_seg50.tif -g Augusta2011_seg50_inh.tif -o Augusta2011_seg50_ins.tif")
+system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100")
+system("gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.shp --lthreshold=0.1 --uthreshold=0.3")
+system("gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif")
 
 ## keep segmentation file --------------------------------------------------
-file.copy(from = "Augusta2011_seg50.tif", to = "../data/")
+file.copy(from = "Augusta2011_seg100.tif", to = "../data/")
 
 ## segmentation plot -------------------------------------------------------
-segm = st_read("Augusta2011_seg50.shp")
+segm = st_read("Augusta2011_seg100.shp")
 raster_seg_plot = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
                        xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE)) +
         layer(sp.lines(as(segm, "Spatial"), lwd=4, col='black'))
 raster_seg_plot
 
 ## quality plots ------------------------------------------------------------
-inh = raster("Augusta2011_seg50_inh.tif")
-ins = raster("Augusta2011_seg50_ins.tif")
+inh = raster("Augusta2011_seg100_ih.tif")
+ins = raster("Augusta2011_seg100_is.tif")
+
+in_rasters = stack(inh, ins)
+
+levelplot(in_rasters)
 
 inh_plot = levelplot(inh, margin = FALSE, main = "Inhomogeneity")
 inh_plot
