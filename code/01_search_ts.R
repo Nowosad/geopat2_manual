@@ -1,16 +1,18 @@
 library(raster)
 library(rasterVis)
 library(tidyverse)
+library(sf)
+library(rnaturalearth)
 
 ## coordinates create --------------------------------------------------------
-a = osmdata::getbb("London") %>% rowMeans()
-b = osmdata::getbb("Glasgow") %>% rowMeans()
-c = osmdata::getbb("Cardiff") %>% rowMeans()
-d = osmdata::getbb("Fort William") %>% rowMeans()
-e = osmdata::getbb("Dublin") %>% rowMeans()
-coordinates_gb = rbind(a, b, c, d, e) %>% as_data_frame()
-write_delim(coordinates_gb, "data/coordinates_gb.txt", 
-            delim = ",", col_names = FALSE)
+# a = osmdata::getbb("London") %>% rowMeans()
+# b = osmdata::getbb("Glasgow") %>% rowMeans()
+# c = osmdata::getbb("Cardiff") %>% rowMeans()
+# d = osmdata::getbb("Fort William") %>% rowMeans()
+# e = osmdata::getbb("Dublin") %>% rowMeans()
+# coordinates_gb = rbind(a, b, c, d, e) %>% as_data_frame()
+# write_delim(coordinates_gb, "data/coordinates_gb.txt",
+#             delim = ",", col_names = FALSE)
 
 ## files prep ----------------------------------------------------------------
 dir.create("tmp")
@@ -22,9 +24,22 @@ file.copy(from = "data/coordinates_gb.txt", to = "tmp")
 setwd("tmp/")
 
 ## the first figure ---------------------------------------------------------
+coord_gb = read.csv("coordinates_gb.txt", header = FALSE) %>% 
+        mutate(id = c("1.London", "2.Glasgow", "3.Cardiff", "4.Fort William", "5.Dublin")) %>% 
+        st_as_sf(., coords = c("V1", "V2"))
 
-## GB map with names of the selected cities
+europe = ne_countries(scale = 50, continent = "Europe", returnclass = "sf")
+gb = europe %>% filter(admin %in% c("United Kingdom", "Ireland"))
 
+library(tmap)
+tmap_gb = tm_shape(gb) +
+        tm_polygons() +
+        tm_shape(coord_gb) +
+        tm_dots(size = 0.25) +
+        tm_text("id", auto.placement = TRUE)
+
+save_tmap(tmap_gb, filename = "../figs/searchts_plot1.png",
+          height = 600, width = 390, scale = 0.5)
 
 ## search his calculations --------------------------------------------------
 system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n")
@@ -36,7 +51,7 @@ locs = stack(c("loc_00001.tif", "loc_00002.tif", "loc_00003.tif",
                "loc_00004.tif", "loc_00005.tif"))
 
 png("../figs/searchts_plot2.png", width = 500, height = 450)
-levelplot(locs)
+levelplot(locs, names.attr=c("1.London", "2.Glasgow", "3.Cardiff", "4.Fort William", "5.Dublin"))
 dev.off()
 
 ## post-clean ----------------------------------------------------------------

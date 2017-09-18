@@ -34,8 +34,6 @@ raster_point_plot = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FAL
         layer(sp.text(coordinates(as(coords, "Spatial")), txt = coords$id, 
                       pos = 3, col="black", cex = 3))
 
-
-
 png("../figs/searchhis_plot1.png", width = 1000, height = 600)
 raster_point_plot
 dev.off()
