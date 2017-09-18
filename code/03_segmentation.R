@@ -47,13 +47,9 @@ ins = raster("Augusta2011_seg100_is.tif")
 
 in_rasters = stack(inh, ins)
 
-levelplot(in_rasters)
-
-inh_plot = levelplot(inh, margin = FALSE, main = "Inhomogeneity")
-inh_plot
-
-ins_plot = levelplot(ins, margin = FALSE, main = "Isolation")
-ins_plot
+png("../figs/segmentation_quality.png", width = 800, height = 300)
+levelplot(in_rasters, names.attr=c("Inhomogeneity", "Isolation"))
+dev.off()
 
 ## calculation of a segmentation quality -------------------------------------
 seq_qual = function(inh, ins){
@@ -61,8 +57,10 @@ seq_qual = function(inh, ins){
 }
 
 qual = overlay(inh, ins, fun = seq_qual)
-qual_plot = levelplot(qual, margin = FALSE, main = "Quality")
-qual_plot
+
+png("../figs/segmentation_qualityall.png", width = 500, height = 450)
+levelplot(qual, margin = FALSE, main = "Quality")
+dev.off()
 
 ## overall quality ------------------------------------------------------------
 cellStats(qual, "mean", na.rm = TRUE)
@@ -70,3 +68,4 @@ cellStats(qual, "mean", na.rm = TRUE)
 ## the end --------------------------------------------------------------------
 setwd("..")
 unlink("tmp", recursive = TRUE, force = TRUE)
+
