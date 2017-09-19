@@ -20,6 +20,10 @@ dist_matrix = read.csv("Augusta2011_matrix2.csv")[, -1] %>% as.dist()
 hclust_result = hclust(d = dist_matrix, method = "ward.D")
 plot(hclust_result)
 
+hclust_cut = cutree(hclust_result, 5)
+
+# module for grid raster creation!!
+
 ## return to map -----------------------------------------------------------
 
 ## clean --------------------------------------------------------------------
