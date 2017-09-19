@@ -55,6 +55,8 @@ png("../figs/searchts_plot2.png", width = 500, height = 450)
 levelplot(locs, names.attr=c("1.London", "2.Glasgow", "3.Cardiff", "4.Fort William", "5.Dublin"))
 dev.off()
 
+system("mogrify -trim ../figs/searchts_plot2.png")
+
 ## post-clean ----------------------------------------------------------------
 setwd("..")
 unlink("tmp", recursive = TRUE, force = TRUE)

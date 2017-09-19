@@ -51,6 +51,10 @@ png("../figs/searchhis_plot2.png", width = 500, height = 450)
 levelplot(locs)
 dev.off()
 
+## trim images --------------------------------------------------------------
+
+system("mogrify -trim ../figs/searchhis_plot2.png")
+
 # gpat_pointsts -i grid -o query_signatures.txt --xy_file=coordinates.txt
 
 ## clean ---------------------------------------------------------------------
