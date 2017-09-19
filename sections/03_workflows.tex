@@ -8,7 +8,7 @@ In this section, the basic GeoPAT procedures are presented. These are:
 \end{itemize}
 
 The procedures are explained using the workflow schemes and examples.
-All of the examples how to process categorical data are shown on a $42\times 69$ km ($1400\times 2300$ px) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}).
+The examples how to process categorical data are shown on a $42\times 69$ km ($1400\times 2300$ px) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}).
 This area is characterized by high diversity of land cover categories and patterns.
 Thus it is perfect for various pattern analyzes.
 
@@ -17,6 +17,17 @@ Thus it is perfect for various pattern analyzes.
 	\includegraphics[width=\textwidth]{atlanta.png}
 	\caption{Part of NLCD, covering area around Augusta, GA used in the examples}
 	\label{FIG:AUGUSTA}
+\end{figure}
+
+Examples of time-series analysis were based on montly sums of precipitation for area of Great Britain from the WorldClim database (Figure \ref{FIG:PRCP}).
+It consists of twelve raster files, where each file has 240 rows and 319 columns.
+Precipitation values are expressed in milimeters.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{prcp.png}
+	\caption{Montly sums of precipitation for area of Great Britain used in the time-series examples}
+	\label{FIG:PRCP}
 \end{figure}
 
 \FloatBarrier
