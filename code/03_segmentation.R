@@ -36,10 +36,14 @@ file.copy(from = "Augusta2011_seg100.tif", to = "../data/")
 
 ## segmentation plot -------------------------------------------------------
 segm = st_read("Augusta2011_seg100.shp")
+detach(package:ggplot2)
 raster_seg_plot = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
                        xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE)) +
         layer(sp.lines(as(segm, "Spatial"), lwd=4, col='black'))
+
+png("../figs/augusta2011_seg.png", width = 1000, height = 600)
 raster_seg_plot
+dev.off()
 
 ## quality plots ------------------------------------------------------------
 inh = raster("Augusta2011_seg100_ih.tif")
