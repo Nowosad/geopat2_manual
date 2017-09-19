@@ -122,18 +122,20 @@ gpat_compare -i Augusta2006_grid50 -i Augusta2011_grid50 -o Augusta0611_compared
 	\centering
 	\includegraphics[width=\textwidth]{change_det_two_maps.png}
 	\caption{Land cover maps of Augusta for year 2006 and 2011}
-	\label{FIG:SEARCHTS1}
+	\label{FIG:CHANGEDET1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{change_det.png}
 	\caption{Maps of the similarity between a land cover of Augusta between 2006 and 2011}
-	\label{FIG:SEARCHTS2}
+	\label{FIG:CHANGEDET2}
 \end{figure}
+
 \FloatBarrier
 
 \subsection{Segmentation}
+
 TODO
 \begin{figure}[H]
 	\centering
@@ -141,6 +143,8 @@ TODO
 	\caption{Workflow path for segmentation.}
 	\label{FIG:SEGMENT}
 \end{figure}
+
+\subsubsection{Segmentation on categorical maps}
 
 {\bf Example:}
 
@@ -151,6 +155,57 @@ gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg
 gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif
 \end{lstlisting}
 \end{minipage}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{augusta2011_seg.png}
+	\caption{Segments of landcover patterns of 3km scale for Augusta}
+	\label{FIG:SEG1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{segmentation_quality.png}
+	\caption{Inhomogenety and isolation metrics for the segmentation output}
+	\label{FIG:SEG2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{segmentation_qualityall.png}
+	\caption{Quality of segmentation of landcover patterns}
+	\label{FIG:SEG3}
+\end{figure}
+
+% segmentation quality value (??) 0.7077751
+
+\FloatBarrier
+
+\subsubsection{Segmentation on time series}
+
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
+gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.shp  --lthreshold=0.1 --uthreshold=0.3
+gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{change_det_two_maps.png}
+	\caption{Land cover maps of Augusta for year 2006 and 2011}
+	\label{FIG:CHANGEDET1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{change_det.png}
+	\caption{Maps of the similarity between a land cover of Augusta between 2006 and 2011}
+	\label{FIG:CHANGEDET2}
+\end{figure}
 
 \FloatBarrier
 
