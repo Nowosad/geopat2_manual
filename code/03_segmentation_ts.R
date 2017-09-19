@@ -48,7 +48,10 @@ levelplot(qual, margin = FALSE, main = "Quality")
 dev.off()
 
 ## overall quality ------------------------------------------------------------
-cellStats(qual, "mean", na.rm = TRUE)
+# cellStats(qual, "mean", na.rm = TRUE)
+
+qual_seg_value = raster::extract(qual, as(segm, "Spatial"), fun = mean, df = TRUE)
+mean(qual_seg_value$layer, na.rm = TRUE)
 
 ## the end --------------------------------------------------------------------
 setwd("..")
