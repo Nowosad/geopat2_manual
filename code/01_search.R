@@ -47,7 +47,8 @@ locs = stack(c("loc_00001.tif", "loc_00002.tif", "loc_00003.tif",
                "loc_00004.tif"))
 
 png("../figs/searchhis_plot2.png", width = 500, height = 450)
-levelplot(locs, names.attr = c("Point 1", "Point 2", "Point 3", "Point 4"))
+levelplot(locs, names.attr = c("Point 1", "Point 2", "Point 3", "Point 4"), margin=FALSE,
+          xlab=NULL, ylab=NULL, scales=list(draw=FALSE))
 dev.off()
 
 ## trim images --------------------------------------------------------------
