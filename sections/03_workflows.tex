@@ -77,11 +77,27 @@ TODO
 	\label{FIG:SEARCHTS}
 \end{figure}
 
-% \begin{minipage}{\linewidth}
-% \begin{lstlisting}
-% gpat_pointsts -i grid -o query_signatures.txt --xy_file=coordinates.txt
-% \end{lstlisting}
-% \end{minipage}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n
+gpat_pointsts -i GB_pr_grid -o query_signatures_ts.txt --xy_file=coordinates_gb.txt
+gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{searchts_plot1.png}
+	\caption{Location of the points of interest}
+	\label{FIG:SEARCHTS1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{searchts_plot2.png}
+	\caption{Maps of the similarity in terms of precipitation time-series}
+	\label{FIG:SEARCHTS2}
+\end{figure}
 
 \FloatBarrier
 
@@ -109,9 +125,9 @@ TODO
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50
-gpat_segment -i Augusta2011_grid50 -o Augusta2011_seg50.tif -v Augusta2011_seg50.shp
-gpat_segquality -i Augusta2011_grid50 -s Augusta2011_seg50.tif -g Augusta2011_seg50_inh.tif -o Augusta2011_seg50_ins.tif
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
+gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.shp  --lthreshold=0.1 --uthreshold=0.3
+gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif
 \end{lstlisting}
 \end{minipage}
 
