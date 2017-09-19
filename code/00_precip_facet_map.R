@@ -19,7 +19,8 @@ gb = rnaturalearth::ne_countries(scale = 50, continent = "Europe", returnclass =
         as("Spatial")
 
 ## ploter ------------------------------------------------------------------
-png("figs/prcp.png", width = 600, height = 550)
+png("figs/prcp.png", width = 700, height = 670)
 levelplot(prcp_stack, par.settings = myTheme, at = seq(0, 300, 25)) +
         layer(sp.polygons(gb))
 dev.off()
+
