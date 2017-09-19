@@ -52,7 +52,8 @@ locs = stack(c("loc_00001.tif", "loc_00002.tif", "loc_00003.tif",
                "loc_00004.tif", "loc_00005.tif"))
 
 png("../figs/searchts_plot2.png", width = 500, height = 450)
-levelplot(locs, names.attr=c("1.London", "2.Glasgow", "3.Cardiff", "4.Fort William", "5.Dublin"))
+levelplot(locs, names.attr=c("1.London", "2.Glasgow", "3.Cardiff", "4.Fort William", "5.Dublin"), margin=FALSE,
+          xlab=NULL, ylab=NULL, scales=list(draw=FALSE))
 dev.off()
 
 system("mogrify -trim ../figs/searchts_plot2.png")
