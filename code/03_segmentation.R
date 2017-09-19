@@ -72,6 +72,10 @@ dev.off()
 qual_seg_value = raster::extract(qual, as(segm, "Spatial"), fun = mean, df = TRUE)
 mean(qual_seg_value$layer)
 
+## trim images ---------------------------------------------------------------
+system("mogrify -trim ../figs/segmentation_qualityall.png")
+system("mogrify -trim ../figs/segmentation_quality.png")
+
 ## the end --------------------------------------------------------------------
 setwd("..")
 unlink("tmp", recursive = TRUE, force = TRUE)
