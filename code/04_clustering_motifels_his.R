@@ -26,6 +26,7 @@ setwd("tmp/")
 system("gpat_pointshis -i Augusta2011.tif -o Augusta2011_selected.txt  -s cooc -z 50 -n pdf --xy_file=Augusta2011_sel_points.txt")
 system("gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv")
 
+file.copy(from = "Augusta2011_matrix.csv", to = "../data/")
 ## clustering ----------------------------------------------------------------
 dist_matrix = read.csv("Augusta2011_matrix.csv")[, -1] %>% as.dist()
 hclust_result = hclust(d = dist_matrix, method = "ward.D")
