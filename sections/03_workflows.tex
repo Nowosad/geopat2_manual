@@ -173,7 +173,7 @@ gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{segmentation_qualityall.png}
-	\caption{Quality of segmentation of landcover patterns}
+	\caption{Quality of the segmentation of landcover patterns}
 	\label{FIG:SEG3}
 \end{figure}
 
@@ -187,25 +187,34 @@ gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
-gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.shp  --lthreshold=0.1 --uthreshold=0.3
-gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif
+gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n
+gpat_segment -i GB_pr_grid -o GB_pr_seg.tif -v GB_pr_seg.shp -m tsEUC --lthreshold=0.5 --uthreshold=1
+gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_ih.tif -o GB_pr_seg_is.tif -m tsEUC
 \end{lstlisting}
 \end{minipage}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{change_det_two_maps.png}
-	\caption{Land cover maps of Augusta for year 2006 and 2011}
-	\label{FIG:CHANGEDET1}
+	\includegraphics[width=\textwidth]{ts_seg.png}
+	\caption{Segments of montly precipitation temporal patterns for Great Britain}
+	\label{FIG:SEGTS1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{change_det.png}
-	\caption{Maps of the similarity between a land cover of Augusta between 2006 and 2011}
-	\label{FIG:CHANGEDET2}
+	\includegraphics[width=\textwidth]{ts_segmentation_ihis.png}
+	\caption{Inhomogenety and isolation metrics for the segmentation of montly precipitation temporal patterns for Great Britain}
+	\label{FIG:SEGTS2}
 \end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{ts_segmentation_qualityall.png}
+	\caption{Quality of the segmentation of montly precipitation temporal patterns for Great Britain}
+	\label{FIG:SEGTS3}
+\end{figure}
+
+% segmentation quality value (??) 0.5353301
 
 \FloatBarrier
 
