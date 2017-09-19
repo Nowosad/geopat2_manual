@@ -110,6 +110,27 @@ TODO
 	\label{FIG:CHANGE}
 \end{figure}
 
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridhis -i Augusta2006.tif -o Augusta2006_grid50 -z 50 -f 50
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50
+gpat_compare -i Augusta2006_grid50 -i Augusta2011_grid50 -o Augusta0611_compared.tif
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{change_det_two_maps.png}
+	\caption{Land cover maps of Augusta for year 2006 and 2011}
+	\label{FIG:SEARCHTS1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{change_det.png}
+	\caption{Maps of the similarity between a land cover of Augusta between 2006 and 2011}
+	\label{FIG:SEARCHTS2}
+\end{figure}
 \FloatBarrier
 
 \subsection{Segmentation}

@@ -44,9 +44,11 @@ system("gpat_compare -i Augusta2006_grid50 -i Augusta2011_grid50 -o Augusta0611_
 ## the diff figure -----------------------------------------------------------
 change_det = raster("Augusta0611_compared.tif")
 
-png("../figs/change_det.png", width = 500, height = 450)
+png("../figs/change_det.png", width = 600, height = 450)
 levelplot(change_det, margin = FALSE)
 dev.off()
+
+system("mogrify -trim ../figs/change_det.png")
 
 ## clean --------------------------------------------------------------------
 setwd("..")
