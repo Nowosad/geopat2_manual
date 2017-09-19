@@ -16,12 +16,12 @@ system("gpat_segment -i GB_pr_grid -o GB_pr_seg.tif -v GB_pr_seg.shp -m tsEUC --
 system("gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_ih.tif -o GB_pr_seg_is.tif -m tsEUC")
 
 ## segmentation plot -------------------------------------------------------
-segm = st_read("GB_pr_seg.shp")
-segm$segment_id[segm$segment_id == -2147483648] = NA
+segm = st_read("GB_pr_seg.shp") %>% 
+        dplyr::filter(segment_id != -2147483648)
 
 library(tmap)
 segplot = tm_shape(segm) +
-        tm_borders()
+        tm_polygons()
 
 save_tmap(segplot, filename = "../figs/ts_seg.png",
           height = 500, width = 390, scale = 0.5)
@@ -56,3 +56,4 @@ mean(qual_seg_value$layer, na.rm = TRUE)
 ## the end --------------------------------------------------------------------
 setwd("..")
 unlink("tmp", recursive = TRUE, force = TRUE)
+
