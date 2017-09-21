@@ -19,5 +19,5 @@ The GeoPAT 2.0 manual is at https://rawgit.com/Nowosad/geopat2_manual/master/out
 
 We encourage contributions on any part of the GeoPAT 2.0 manual, including:
 
-    - Improvements to the text, e.g. clarifying unclear sentences, fixing typos
-    - Suggestions on content (see [the project's issue tracker](https://github.com/Nowosad/geopat2_manual/issues))
+- Improvements to the text, e.g. clarifying unclear sentences, fixing typos
+- Suggestions on content (see [the project's issue tracker](https://github.com/Nowosad/geopat2_manual/issues))
