@@ -19,7 +19,7 @@ Thus it is perfect for various pattern analyzes.
 	\label{FIG:AUGUSTA}
 \end{figure}
 
-Examples of time-series analysis were based on monthly sums of precipitation for area of Great Britain from the WorldClim database (Figure \ref{FIG:PRCP}).
+Examples of time-series analysis are based on monthly sums of precipitation for area of Great Britain from the WorldClim database (Figure \ref{FIG:PRCP}).
 It consists of twelve raster files, where each file has 240 rows and 319 columns.
 Precipitation values are expressed in milimeters.
 
@@ -97,12 +97,14 @@ gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC
 \end{minipage}
 
 % create a side panel
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\textwidth]{searchts_plot1.png}
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\includegraphics[width=0.48\textwidth]{searchts_plot1.png}
 	\caption{Location of the points of interest}
 	\label{FIG:SEARCHTS1}
-\end{figure}
+\end{wrapfigure}
+ 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\end{wrapfigure}
 
 \begin{figure}[H]
 	\centering
@@ -206,12 +208,16 @@ gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_ih.tif -o GB_pr_seg_
 \end{minipage}
 
 % create a side panel
-\begin{figure}[H]
+
+\begin{wrapfigure}{r}{0.5\textwidth}
 	\centering
 	\includegraphics[width=0.4\textwidth]{ts_seg.png}
 	\caption{Segments of the montly precipitation temporal patterns for Great Britain}
 	\label{FIG:SEGTS1}
-\end{figure}
+\end{wrapfigure}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\end{wrapfigure}
 
 \begin{figure}[H]
 	\centering
