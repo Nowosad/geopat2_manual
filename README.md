@@ -11,7 +11,7 @@ Complex cell contains a pattern of original variable.
 GeoPAT provides means for succinct description of such patterns and for calculation of similarity between patterns.
 This enables spatial analysis such as clustering, segmentation, and search to be performed on the grid of complex cells (local patterns).
 
-GeoPAT 2.0 is available at http://sil.uc.edu/cms/index.php?id=geopat2.
+The GeoPAT 2.0 software is available at http://sil.uc.edu/cms/index.php?id=geopat2.
 
 The GeoPAT 2.0 manual is at https://rawgit.com/Nowosad/geopat2_manual/master/output/GeoPAT2_Manual.pdf.
 
