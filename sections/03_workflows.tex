@@ -219,13 +219,25 @@ gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_
 \end{lstlisting}
 \end{minipage}
 
-The first step is to prepare signature file for the dataset, using the {\it gpat\_gridhis} module.
+The first step is to prepare a signature file for the dataset, using the {\it gpat\_gridhis} module.
 The second step is to use this signature file as input to the {\it gpat\_segment} module in order to the produce a segmentation map. 
 The third, optional, step is to determine a quality of segmentation using the {\it gpat\_segquality} module.\\\\
 
 \newpage
 
-For example, we want to 
+For example, we want to find and delineate areas of similar land cover patterns. 
+
+Firstly, we need to create a grid of signatures. 
+Several options could be specified, such as the size and shift, type of motifel's signature, and normalization method.
+Values of size and shift could be used to delineate patterns in different spatial scale, while the motifel's signature type and normalization method need to be selected based on the output data type.
+We want to create segments with a spatial scale of three kilometers. 
+To do so, we must to set the size and shift to 100 (one cell has resolution of 30 meters; 30 meters x 100 = 3 kilometers).
+We left the rest of the parameters to the default values, with the signature in form of spatial coocurrence of the categories and the pdf normalization.
+
+Secondly, the output of the previous step is used for segmentation. 
+There we can modify several parameters of segmentation, such as the silimarity measure, and minimum and maximum distance threshold to build areas.
+The threshold values could be used to control a number of final segments.
+As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEG1}).
 
 \begin{figure}[H]
 	\centering
@@ -241,15 +253,19 @@ For example, we want to
 	\label{FIG:SEG2}
 \end{figure}
 
+We can evaluate the quality of a segmentation using two metrices - inhomogeneity and isolation (Figure \ref{FIG:SEG2}).
+Inhomogeneity indicates how much each segment is internally diverse (lower is better).
+Isolation shows how much each segment is different from theirs neighbours (higher is better). 
+Based on these two raster, it is possible to calculate the segmentation quality raster ($quality = 1 - (inhomogeneity/isolation)$) (higher is better; Figure \ref{FIG:SEG3}).
+We can also calculate the overall quality as an average quality of all the segments.
+In this example it is 0.82.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{segmentation_qualityall.png}
 	\caption{Quality of the segmentation of landcover patterns}
 	\label{FIG:SEG3}
 \end{figure}
-
-% segmentation quality value (??) 0.7077751
-% more likely 0.8229831
 
 \FloatBarrier
 
@@ -265,7 +281,10 @@ gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_ih.tif -o GB_pr_seg_
 \end{lstlisting}
 \end{minipage}
 
-% create a side panel
+The first step is to prepare a signature file for the dataset, using the {\it gpat\_gridts} module.
+The second step is to use this signature file as input to the {\it gpat\_segment} module in order to the produce a segmentation map. 
+The third, optional, step is to determine a quality of segmentation using the {\it gpat\_segquality} module.\\\\
+
 
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\centering
