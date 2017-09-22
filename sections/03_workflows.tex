@@ -209,8 +209,6 @@ Figure \ref{FIG:SEGMENT} presents general workflow path for segmentation.
 
 \subsubsection{Segmentation on categorical maps}
 
-
-
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
@@ -221,10 +219,18 @@ gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_
 \end{lstlisting}
 \end{minipage}
 
+The first step is to prepare signature file for the dataset, using the {\it gpat\_gridhis} module.
+The second step is to use this signature file as input to the {\it gpat\_segment} module in order to the produce a segmentation map. 
+The third, optional, step is to determine a quality of segmentation using the {\it gpat\_segquality} module.\\\\
+
+\newpage
+
+For example, we want to 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{augusta2011_seg.png}
-	\caption{Segments of landcover patterns of 3km scale for Augusta}
+	\caption{Segments of landcover patterns of the 3km scale for Augusta}
 	\label{FIG:SEG1}
 \end{figure}
 
