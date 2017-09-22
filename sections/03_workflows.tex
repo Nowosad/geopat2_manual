@@ -140,8 +140,10 @@ Our final five maps show where the annual precipitation patterns are the most an
 
 \subsection{Change detection}
 
-Change detection module provides a way to compare patterns between two grids-of-scenes. 
+Change detection module provides a way to compare patterns between two grids-of-scenes.
 The output map show the level of similarity between two inputs.
+Figure \ref{FIG:CHANGE} presents general workflow path for producing maps of change. 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{compare_scheme.png}
@@ -191,6 +193,13 @@ The lowest values indicate the biggest change of a land cover pattern.
 
 \subsection{Segmentation}
 
+Segmentation module enables user to create maps of segments.
+Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjecent segments.
+The input is a grid of signatures.
+The result is a raster (GeoTIFF) and vector (ESRI Shapefile) file containing the segments.
+Quality of segmentation could be also determined with raster maps of inhomogeneity, isolation, and overall quality.
+Figure \ref{FIG:SEGMENT} presents general workflow path for segmentation. 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{segment_scheme.png}
@@ -199,6 +208,8 @@ The lowest values indicate the biggest change of a land cover pattern.
 \end{figure}
 
 \subsubsection{Segmentation on categorical maps}
+
+
 
 {\bf Example:}
 
