@@ -110,7 +110,7 @@ gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC
 \end{minipage}
 
 For example, we want to find out which cities in Great Britain have the most (and the least) similar temporal pattern of precipitation. 
-For this purpose, we need to have maps of precipitation (e.g. twelve rasters with montly sums of precipitation from January to December) and coordinates of our points of interest (Figure \ref{FIG:SEARCHTS1}).
+For this purpose, we need to have maps of precipitation (e.g. twelve rasters with monthly sums of precipitation from January to December) and coordinates of our points of interest (Figure \ref{FIG:SEARCHTS1}).
 
 \newpage
 
@@ -235,7 +235,7 @@ To do so, we must to set the size and shift to 100 (one cell has resolution of 3
 We left the rest of the parameters to the default values, with the signature in form of spatial coocurrence of the categories and the pdf normalization.
 
 Secondly, the output of the previous step is used for segmentation. 
-There we can modify several parameters of segmentation, such as the silimarity measure, and minimum and maximum distance threshold to build areas.
+There we can modify several parameters of segmentation, such as the similarity measure, and minimum and maximum distance threshold to build areas.
 The threshold values could be used to control a number of final segments.
 As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEG1}).
 
@@ -253,9 +253,9 @@ As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ES
 	\label{FIG:SEG2}
 \end{figure}
 
-We can evaluate the quality of a segmentation using two metrices - inhomogeneity and isolation (Figure \ref{FIG:SEG2}).
+We can evaluate the quality of a segmentation using two metrics - inhomogeneity and isolation (Figure \ref{FIG:SEG2}).
 Inhomogeneity indicates how much each segment is internally diverse (lower is better).
-Isolation shows how much each segment is different from theirs neighbours (higher is better). 
+Isolation shows how much each segment is different from theirs neighbors (higher is better). 
 Based on these two raster, it is possible to calculate the segmentation quality raster ($quality = 1 - (inhomogeneity/isolation)$) (higher is better; Figure \ref{FIG:SEG3}).
 We can also calculate the overall quality as an average quality of all the segments.
 In this example it is 0.82.
@@ -290,7 +290,7 @@ The third, optional, step is to determine a quality of segmentation using the {\
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\centering
 	\includegraphics[width=0.4\textwidth]{ts_seg.png}
-	\caption{Segments of the montly precipitation temporal patterns for Great Britain}
+	\caption{Segments of the monthly precipitation temporal patterns for Great Britain}
 	\label{FIG:SEGTS1}
 \end{wrapfigure}
 
@@ -310,14 +310,14 @@ In this example it is 0.67.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{ts_segmentation_ihis.png}
-	\caption{Inhomogenety and isolation metrics for the segmentation of the montly precipitation temporal patterns for Great Britain}
+	\caption{Inhomogenety and isolation metrics for the segmentation of the monthly precipitation temporal patterns for Great Britain}
 	\label{FIG:SEGTS2}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{ts_segmentation_qualityall.png}
-	\caption{Quality of the segmentation of the montly precipitation temporal patterns for Great Britain}
+	\caption{Quality of the segmentation of the monthly precipitation temporal patterns for Great Britain}
 	\label{FIG:SEGTS3}
 \end{figure}
 
