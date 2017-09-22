@@ -285,6 +285,7 @@ The first step is to prepare a signature file for the dataset, using the {\it gp
 The second step is to use this signature file as input to the {\it gpat\_segment} module in order to the produce a segmentation map. 
 The third, optional, step is to determine a quality of segmentation using the {\it gpat\_segquality} module.\\\\
 
+\newpage
 
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\centering
@@ -293,8 +294,18 @@ The third, optional, step is to determine a quality of segmentation using the {\
 	\label{FIG:SEGTS1}
 \end{wrapfigure}
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-\end{wrapfigure}
+For example, we want to find and delineate areas of similar time-series patterns of precipitation in Great Britain. 
+
+Firstly, we need to create a grid of signatures using twelve raster with monthly average values of precipitation.
+Depending on the input data it could be important to normalize data using the {\it --normalize} option.
+
+Secondly, the output of the previous step is used for segmentation.
+As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEGTS1}).
+
+We can evaluate the quality of a segmentation using two metrics - inhomogeneity and isolation (Figure \ref{FIG:SEGTS2}).
+Based on these two raster, it is possible to calculate the segmentation quality raster (Figure \ref{FIG:SEGTS3}).
+We can also calculate the overall quality as an average quality of all the segments.
+In this example it is 0.67.
 
 \begin{figure}[H]
 	\centering
@@ -309,9 +320,6 @@ The third, optional, step is to determine a quality of segmentation using the {\
 	\caption{Quality of the segmentation of the montly precipitation temporal patterns for Great Britain}
 	\label{FIG:SEGTS3}
 \end{figure}
-
-% segmentation quality value (??) 0.5353301
-% more likely 0.6709943
 
 \FloatBarrier
 
