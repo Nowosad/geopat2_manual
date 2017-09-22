@@ -129,24 +129,28 @@ To do so, we need to specify the similarity measure proper for time series data,
 Our final five maps show where the annual precipitation patterns are the most and the least similar to those in our selected cities (Figure \ref{FIG:SEARCHTS2}). \\\\\\\\\\
 
 \begin{figure}[H]
-	\centering
+        \begin{center}
 	\includegraphics[width=0.75\textwidth]{searchts_plot2.png}
 	\caption{Maps of the similarity in terms of precipitation time-series}
 	\label{FIG:SEARCHTS2}
+        \end{center}
 \end{figure}
 
 \FloatBarrier
 
 \subsection{Change detection}
 
-Change detection 
-
+Change detection module provides a way to compare patterns between two grids-of-scenes. 
+The output map show the level of similarity between two inputs.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{compare_scheme.png}
 	\caption{Workflow path for change detection.}
 	\label{FIG:CHANGE}
 \end{figure}
+
+The first step is to prepare signature files for both dataset, using either {\it gpat\_gridhis} for categorical data or {\it gpat\_gridts} for time series data.
+The second step is to use these signature files as inputs to the {\it gpat\_compare} module in order to the produce change maps. \\\\
 
 {\bf Example:}
 
@@ -157,6 +161,17 @@ gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
 gpat_compare -i Augusta2006_grid100 -i Augusta2011_grid100 -o Augusta0611_compared.tif
 \end{lstlisting}
 \end{minipage}
+
+For example, we want to compare a change in land cover patterns between years 2006 and 2011. 
+For this purpose, we can use a landcover data from NLCD for 2006 and 2011 (Figure \ref{FIG:CHANGEDET1}).
+Both of these datafiles need to have the same extent and resolution.
+
+Firstly, we need to create a grid of signatures for both GeoTIFF files.
+It is important to remember that both of the created grid of signatures must by created using the same size, shift, and signature.
+
+Secondly, the output map is created based on the grids of signatures.
+The final map shows where a land cover pattern stayed the same (value of 1) and where it changed. 
+The lowest values indicate the biggest change of a land cover pattern.
 
 \begin{figure}[H]
 	\centering
