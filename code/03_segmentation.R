@@ -51,7 +51,7 @@ ins = raster("Augusta2011_seg100_is.tif")
 
 in_rasters = stack(inh, ins)
 
-png("../figs/segmentation_quality.png", width = 800, height = 300)
+png("../figs/segmentation_quality.png", width = 500, height = 700)
 levelplot(in_rasters, names.attr=c("Inhomogeneity", "Isolation"))
 dev.off()
 
