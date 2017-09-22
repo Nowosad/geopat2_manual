@@ -37,9 +37,9 @@ levelplot(augusta_stack, col.regions=lc_colors$hex, margin=FALSE,
 dev.off()
 
 ## calculate the change ------------------------------------------------------
-system("gpat_gridhis -i Augusta2006.tif -o Augusta2006_grid50 -z 50 -f 50")
-system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50")
-system("gpat_compare -i Augusta2006_grid50 -i Augusta2011_grid50 -o Augusta0611_compared.tif")
+system("gpat_gridhis -i Augusta2006.tif -o Augusta2006_grid100 -z 100 -f 100")
+system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100")
+system("gpat_compare -i Augusta2006_grid100 -i Augusta2011_grid100 -o Augusta0611_compared.tif")
 
 ## the diff figure -----------------------------------------------------------
 change_det = raster("Augusta0611_compared.tif")
