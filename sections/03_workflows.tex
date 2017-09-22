@@ -51,8 +51,9 @@ Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity 
 	\label{FIG:SEARCH}
 \end{figure}
 
-The first step is to prepare signature files for both, query motifels and grid of motifels, using two separate modules, {\it gpat\_pointshis} and {\it gpat\_gridhis} respectively. 
+The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\it gpat\_gridhis} and {\it gpat\_pointshis} respectively. 
 The second step is to use these signature files as inputs to {\it gpat\_search} module in order to the produce similarity maps.\\\\
+
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
@@ -62,6 +63,12 @@ gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf -
 gpat_search -i grid -r query_signatures.txt
 \end{lstlisting}
 \end{minipage}
+
+For example, we can search for the most similar motifels to those located in the four points in the Figure \ref{FIG:SEARCH1}. 
+Firstly, we need to build a grid of a motifels of a desired signature, size, shift, etc. 
+Secondly, query motifels are extracted using a set of coordinates as an input. 
+Finally, we can obtain the maps of similarity by comparing the grid from the first step with the query motifels from the second step.
+The four final maps (Figure \ref{FIG:SEARCH2} shows similarity to each of the given points, where the brightest color indicates the most similar areas and the darkest color indicates the least similar areas.
 
 \begin{figure}[H]
 	\centering
@@ -80,6 +87,7 @@ gpat_search -i grid -r query_signatures.txt
 \FloatBarrier
 
 \subsubsection{Search on time series}
+Figure \ref{FIG:SEARCHTS} presents general workflow path for producing similarity maps using a time-series raster data. 
 
 \begin{figure}[H]
 	\centering
@@ -87,6 +95,11 @@ gpat_search -i grid -r query_signatures.txt
 	\caption{Workflow path for search on time series.}
 	\label{FIG:SEARCHTS}
 \end{figure}
+
+The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\it gpat\_gridts} and {\it gpat\_pointsts} respectively. 
+The second step is to use these signature files as inputs to {\it gpat\_search} module in order to the produce similarity maps.\\\\
+
+{\bf Example:}
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
@@ -96,19 +109,28 @@ gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC
 \end{lstlisting}
 \end{minipage}
 
-% create a side panel
-\begin{wrapfigure}{r}{0.5\textwidth}
-	\includegraphics[width=0.48\textwidth]{searchts_plot1.png}
+For example, we want to find out which cities in Great Britain have the most (and the least) similar temporal pattern of precipitation. 
+For this purpose, we need to have maps of precipitation (e.g. twelve rasters with montly sums of precipitation from January to December) and coordinates of our points of interest (Figure \ref{FIG:SEARCHTS1}).
+
+\newpage
+
+\begin{wrapfigure}{l}{0.35\textwidth}
+	\includegraphics[width=0.33\textwidth]{searchts_plot1.png}
 	\caption{Location of the points of interest}
 	\label{FIG:SEARCHTS1}
 \end{wrapfigure}
- 
-\begin{wrapfigure}{r}{0.5\textwidth}
-\end{wrapfigure}
+
+Firstly, a grid which contains temporal patterns of precipitation need to be built based on the precipitation rasters.
+
+Secondly, query signatures are extracted based on the coordinates of points of interest - in our case cities of London, Glasgow, Cardiff, Fort William, and Dublin. 
+
+Finally, we can create the maps of similarity (one for each city). 
+To do so, we need to specify the similarity measure proper for time series data, such as {\it tsEUC} (time series - euclidean distance).
+Our final five maps show where the annual precipitation patterns are the most and the least similar to those in our selected cities (Figure \ref{FIG:SEARCHTS2}). \\\\\\\\\\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{searchts_plot2.png}
+	\includegraphics[width=0.75\textwidth]{searchts_plot2.png}
 	\caption{Maps of the similarity in terms of precipitation time-series}
 	\label{FIG:SEARCHTS2}
 \end{figure}
@@ -117,6 +139,8 @@ gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC
 
 \subsection{Change detection}
 
+Change detection 
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{compare_scheme.png}
@@ -124,11 +148,13 @@ gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC
 	\label{FIG:CHANGE}
 \end{figure}
 
+{\bf Example:}
+
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_gridhis -i Augusta2006.tif -o Augusta2006_grid50 -z 50 -f 50
-gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50
-gpat_compare -i Augusta2006_grid50 -i Augusta2011_grid50 -o Augusta0611_compared.tif
+gpat_gridhis -i Augusta2006.tif -o Augusta2006_grid100 -z 100 -f 100
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
+gpat_compare -i Augusta2006_grid100 -i Augusta2011_grid100 -o Augusta0611_compared.tif
 \end{lstlisting}
 \end{minipage}
 
