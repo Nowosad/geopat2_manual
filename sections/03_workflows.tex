@@ -191,7 +191,7 @@ The lowest values indicate the biggest change of a land cover pattern.
 
 \FloatBarrier
 
-\subsection{Segmentation}
+\subsection{Segmentation \label{segmentation}}
 
 Segmentation module enables user to create maps of segments.
 Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjecent segments.
@@ -379,7 +379,7 @@ For example, we want to find cities in Great Britain with very similar temporal 
 For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB\_cities.csv file).
 Firstly, we can create a signature grid. 
 Next step is to extract the signature only for the locations in our GB\ cities.csv file.
-Finally, we can calculate and export distance matrix using eucidean distance (\it tsEUC).
+Finally, we can calculate and export distance matrix using eucidean distance {\it tsEUC}.
 
 \FloatBarrier
 
@@ -423,6 +423,9 @@ A default similarity measure, Jensen-Shannon divergence, can be used here, as it
 	\label{FIG:CLUSTER_SEGMENT}
 \end{figure}
 
+The first step is to calculate the signature file based on a raster data which contain a pattern to analyze and a raster data with segments (or any other irregular regions) using the {\it gpat\_polygon} module.
+The second step is to create and export a distance matrix using {\it gpat\_distmtx} (Figure \ref{FIG:CLUSTER_SEGMENT}).
+
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
@@ -431,3 +434,12 @@ gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100.tif -o Augusta2011_psign.t
 gpat_distmtx -i Augusta2011_psign.txt -o Augusta2011_matrix_seg.csv
 \end{lstlisting}
 \end{minipage}
+
+For example, in the section \ref{segmentation} we created segments with homogeneous patterns of land cover.
+Now we can find and group similar non-adjecent segements with clustering.
+Firstly, we need to create a signature text file for each of the segments.
+Based on the new file we can calculate a distance between each pair of the segments using selected dissimilarity metric, such as Jensen-Shannon divergence.
+% jadzia in the train.
+% Wowowowwowowowowwowowowow
+
+\newpage
