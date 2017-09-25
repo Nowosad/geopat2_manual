@@ -338,6 +338,9 @@ a grid of motifels, and predefined regions (e.g. segments).
 	\label{FIG:CLUSTER_POINTS}
 \end{figure}
 
+The first step is to prepare a signature file for query motifels using the {\it gpat\_pointsts} module. 
+The second step is to calculate a distance matrix based on a selected similarity measure using {\it gpat\_distmtx} (Figure \ref{FIG:CLUSTER_POINTS}).
+
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
@@ -347,6 +350,9 @@ gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv
 \end{lstlisting}
 \end{minipage}
 
+For example, we can create signatures based on a given size (e.g. 50) and signature type for selected motifels using a text file with the coordinates of points of interest.
+Next, we can calculate distances between all of these motifels using selected similarity measure (in this example, we used the default one - 'jsd' Jensen-Shannon Divergence).
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_pointsts_scheme.png}
@@ -354,15 +360,26 @@ gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv
 	\label{FIG:CLUSTER_POINTSTS}
 \end{figure}
 
+Procedure for time-series data is slighty different (Figure \ref{FIG:CLUSTER_POINTSTS}).
+The first step is to create a signature grid file using a time-series of rasters using the {\it gpat\_gridts} module.
+The second step is to extract only selected motifels using {\it gpat\_pointsts}.
+The third step is to calculate and export a distance matrix with {\it gpat_distmtx}.
+
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n
 gpat_pointsts -i GB_pr_grid -o GB_pr_points.txt --xy_file=GB_cities.csv
-gpat_distmtx -i GB_pr_points.txt -o GB_pr_distmat.csv
+gpat_distmtx -i GB_pr_points.txt -o GB_pr_distmat.csv -m tsEUC 
 \end{lstlisting}
 \end{minipage}
+
+For example, we want to find cities in Great Britain with very similar temporal patterns of a monthly sum of precipitation. 
+For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB_cities.csv file).
+Firstly, we can create a signature grid. 
+Next step is to extract the signature only for the locations in our GB cities.csv file.
+Finally, we can calculate and export distance matrix using eucidean distance (\it{tsEUC}).
 
 \FloatBarrier
 
