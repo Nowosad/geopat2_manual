@@ -363,7 +363,7 @@ Next, we can calculate distances between all of these motifels using selected si
 Procedure for time-series data is slighty different (Figure \ref{FIG:CLUSTER_POINTSTS}).
 The first step is to create a signature grid file using a time-series of rasters using the {\it gpat\_gridts} module.
 The second step is to extract only selected motifels using {\it gpat\_pointsts}.
-The third step is to calculate and export a distance matrix with {\it gpat_distmtx}.
+The third step is to calculate and export a distance matrix with {\it gpat\_distmtx}.
 
 {\bf Example:}
 
@@ -376,9 +376,9 @@ gpat_distmtx -i GB_pr_points.txt -o GB_pr_distmat.csv -m tsEUC
 \end{minipage}
 
 For example, we want to find cities in Great Britain with very similar temporal patterns of a monthly sum of precipitation. 
-For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB_cities.csv file).
+For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB\_cities.csv file).
 Firstly, we can create a signature grid. 
-Next step is to extract the signature only for the locations in our GB cities.csv file.
+Next step is to extract the signature only for the locations in our GB\ cities.csv file.
 Finally, we can calculate and export distance matrix using eucidean distance (\it{tsEUC}).
 
 \FloatBarrier
@@ -392,6 +392,10 @@ Finally, we can calculate and export distance matrix using eucidean distance (\i
 	\label{FIG:CLUSTER_GRID}
 \end{figure}
 
+The first step is to create a signature grid using either the {\it gpat\_gridhis} or {\it gpat_gridts} module.
+The second step is to convert the obtained signature grid from binary to text format with {\it gpat_grd2txt}.
+The final step is to calculate and export a distance matrix using the {\it gpat_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
+
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
@@ -401,6 +405,12 @@ gpat_grd2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt
 gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv
 \end{lstlisting}
 \end{minipage}
+
+For example, we want to find groups of areas with similar pattern of a land-cover in scale of 3 kilometers.
+Firstly, we need to calculate a signature grid with the size and shift options set to 100 (30 meters resolution multiplied by 100 is 3 kilometers).
+Next, we convert the signature grid to a text file.
+This new file will be an output to for the calculations of a distance matrix.
+A default similarity measure, Jensen-Shannon divergence, can be used here, as it is suitable for a land-cover data.
 
 \FloatBarrier
 
