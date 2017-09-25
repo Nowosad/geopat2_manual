@@ -325,7 +325,7 @@ In this example it is 0.67.
 
 \subsection{Clustering}
 
-Clustering module enables user to create distance matrices, which can be later used in many statistical softwares (such as R) to perform a clustering.
+Clustering module enables user to create distance matrices, which can be later used in a statistical software (such as R) to perform a clustering.
 Distance matrix can be created for selected motifels,
 a grid of motifels, and predefined regions (e.g. segments).
 
@@ -360,7 +360,7 @@ Next, we can calculate distances between all of these motifels using selected si
 	\label{FIG:CLUSTER_POINTSTS}
 \end{figure}
 
-Procedure for time-series data is slighty different (Figure \ref{FIG:CLUSTER_POINTSTS}).
+Procedure for time-series data is slightly different (Figure \ref{FIG:CLUSTER_POINTSTS}).
 The first step is to create a signature grid file using a time-series of rasters using the {\it gpat\_gridts} module.
 The second step is to extract only selected motifels using {\it gpat\_pointsts}.
 The third step is to calculate and export a distance matrix with {\it gpat\_distmtx}.
@@ -379,7 +379,7 @@ For example, we want to find cities in Great Britain with very similar temporal 
 For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB\_cities.csv file).
 Firstly, we can create a signature grid. 
 Next step is to extract the signature only for the locations in our GB\ cities.csv file.
-Finally, we can calculate and export distance matrix using eucidean distance {\it tsEUC}.
+Finally, we can calculate and export distance matrix using euclidean distance {\it tsEUC}.
 
 \FloatBarrier
 
@@ -436,7 +436,7 @@ gpat_distmtx -i Augusta2011_psign.txt -o Augusta2011_matrix_seg.csv
 \end{minipage}
 
 For example, in the section \ref{segmentation} we created segments with homogeneous patterns of land cover.
-Now we can find and group similar non-adjecent segements with clustering.
+Now we can find and group similar non-adjacent segements with clustering.
 Firstly, we need to create a signature text file for each of the segments.
 Based on the new file we can calculate a distance between each pair of the segments using selected dissimilarity metric, such as Jensen-Shannon divergence.
 % jadzia in the train.
