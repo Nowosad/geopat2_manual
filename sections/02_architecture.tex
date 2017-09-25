@@ -834,7 +834,13 @@ gpat_distmtx [-lsh] -i <file_name> -o <file_name> [-m <measure_name>]
 
 \newoption{input}
 
+Text file with signatures created using either {\it gpat\_pointshis}, {\it gpat\_pointsts}, {\it gpat\_grid2txt}, or {\it gpat\_polygon} module.
+
 \newoption{output}
+
+Text file which contain a distance matrix.
+The first row and first column contains names of objects. 
+The rest of the file has values of distance for the pairs of objects.
 
 \newoption{measure}
 
@@ -901,6 +907,9 @@ Header of the grid will define topology of the output layers.
 Do not modify header file.
 
 \newoption{output}
+
+Text file with a grid of signatures. 
+It can be an input for the {\it gpat\_distmtx} module.
 
 % \\\\
 {\bf Description:}
