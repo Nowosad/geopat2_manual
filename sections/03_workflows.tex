@@ -379,7 +379,7 @@ For example, we want to find cities in Great Britain with very similar temporal 
 For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB\_cities.csv file).
 Firstly, we can create a signature grid. 
 Next step is to extract the signature only for the locations in our GB\ cities.csv file.
-Finally, we can calculate and export distance matrix using eucidean distance (\it{tsEUC}).
+Finally, we can calculate and export distance matrix using eucidean distance (\it tsEUC).
 
 \FloatBarrier
 
@@ -392,9 +392,9 @@ Finally, we can calculate and export distance matrix using eucidean distance (\i
 	\label{FIG:CLUSTER_GRID}
 \end{figure}
 
-The first step is to create a signature grid using either the {\it gpat\_gridhis} or {\it gpat_gridts} module.
-The second step is to convert the obtained signature grid from binary to text format with {\it gpat_grd2txt}.
-The final step is to calculate and export a distance matrix using the {\it gpat_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
+The first step is to create a signature grid using either the {\it gpat\_gridhis} or {\it gpat\_gridts} module.
+The second step is to convert the obtained signature grid from binary to text format with {\it gpat\_grd2txt}.
+The final step is to calculate and export a distance matrix using the {\it gpat\_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
 
 {\bf Example:}
 
