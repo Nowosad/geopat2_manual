@@ -335,12 +335,31 @@ Work in progress...
 	\label{FIG:CLUSTER_POINTS}
 \end{figure}
 
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_pointshis -i Augusta2011.tif -o Augusta2011_selected.txt  -s cooc -z 50 -n pdf --xy_file=Augusta2011_sel_points.txt
+gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv
+\end{lstlisting}
+\end{minipage}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_pointsts_scheme.png}
 	\caption{Workflow path for clustering of time series motifels.}
 	\label{FIG:CLUSTER_POINTSTS}
 \end{figure}
+
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n
+gpat_pointsts -i GB_pr_grid -o GB_pr_points.txt --xy_file=GB_cities.csv
+gpat_distmtx -i GB_pr_points.txt -o GB_pr_distmat.csv
+\end{lstlisting}
+\end{minipage}
 
 \FloatBarrier
 
@@ -353,6 +372,16 @@ Work in progress...
 	\label{FIG:CLUSTER_GRID}
 \end{figure}
 
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
+gpat_grd2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt
+gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv
+\end{lstlisting}
+\end{minipage}
+
 \FloatBarrier
 
 \subsubsection{Clustering of segments / predefined irregular regions}
@@ -363,3 +392,12 @@ Work in progress...
 	\caption{Workflow path for clustering of segments (regions).}
 	\label{FIG:CLUSTER_SEGMENT}
 \end{figure}
+
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100.tif -o Augusta2011_psign.txt
+gpat_distmtx -i Augusta2011_psign.txt -o Augusta2011_matrix_seg.csv
+\end{lstlisting}
+\end{minipage}
