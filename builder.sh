@@ -5,7 +5,7 @@ file_name="GeoPAT2_Manual"
 # build
 
 pdflatex $file_name
-# bibtex file_name
+biber $file_name
 pdflatex $file_name
 pdflatex $file_name
 
@@ -23,3 +23,5 @@ rm $file_name.bbl
 rm $file_name.blg
 rm $file_name.toc
 rm $file_name.out
+rm $file_name.bcf
+rm $file_name.run.xml
