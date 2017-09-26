@@ -3,7 +3,7 @@ A signature is a numerical description of a motifel
 \subsection{Cartesian product}
 
 This method calculates signature as a $k$-dimensional histogram using $k$ primitive features assigned to each cell. 
-Examples of such features include cell class, the size of the clump to which the cell belongs, the shape of the clump and its spatial orientation.  % CITE \citep{Williams2008}. 
+Examples of such features include cell class, the size of the clump to which the cell belongs, the shape of the clump and its spatial orientation (\cite{Williams2008}). 
 Because all features must be categorical (so the histogram can be formed), numerical features need to be categorized. 
 For example, clump sizes need to be categorized into size categories from the smallest to the largest.
 The number of bins in the crossproduct histogram is $N_1 \times N_2 \times \ldots \times N_k$, where $N_i$ is the number of categories of $i$-th feature. 
@@ -11,11 +11,7 @@ Crossproduct signature is designed to be effective in encapsulating spatial stru
 
 \subsection{Class co-occurrence histogram}
 
-This method uses a color co-occurrence histogram
-%\citep{Barnsley1996,Chang1999}
-, a variant of the Gray-Level Co-occurrence Matrix (GLCM) originally introduced by
-%\cite{Haralick1973}
-to characterize texture in grayscale images.
+This method uses a color co-occurrence histogram (\cite{Barnsley1996,Chang1999}), a variant of the Gray-Level Co-occurrence Matrix (GLCM) originally introduced by \cite{Haralick1973} to characterize texture in grayscale images.
 In GeoPAT, color is replaced by cell class and a single cell separation of one pixel is used to calculate a co-occurrence histogram. 
 This results in a single primitive feature - a pair of classes assigned to two neighboring cells; eight-connectivity is assumed for establishing the existence of a neighborhood relationship between the two cells. 
 Thus, eight features are calculated for each cell, but their total number is halved as the same feature is generated twice by the pairs of neighboring cells.
@@ -24,9 +20,7 @@ The co-occurrence signature is designed to be effective in encapsulating spatial
 
 \subsection{Decomposition histogram}
 
-This signature method is 
-% inspired by the work of \cite{Remmel2006} 
-used to describe a scene using a set of sub-scenes having a hierarchy of sizes. 
+This signature method, inspired by the work of \cite{Remmel2006}, is used to describe a scene using a set of sub-scenes having a hierarchy of sizes. 
 For the decomposition method to work best the scene should be a square having a linear size of $2^{D}$ cells.
 The scene with $k$ cell classes is scanned without overlap by a series of square moving windows with sizes $w=2^{i}$ cells where $i=2, \ldots, D$ are the decomposition levels. 
 The size of the maximum scanning window, $2^D$, is the size of the scene. 
