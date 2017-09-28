@@ -2,7 +2,7 @@ Distance, which assesses the degree of dissimilarity between two scenes, is the 
 When the value of distance function is equal to zero identical histograms are indicated, and thus scenes have identical or very similar patterns, whereas large values of the distance function indicate very different histograms and scenes having significantly different patterns. 
 Note that all histogram distance measures are heuristic and no single measure will work well with all signatures.
 
-\subsection{Jensen Shannon Divergence}
+\subsection{Jensen Shannon Divergence (jsd)}
 
 This measure (\cite{Lin1991}) expresses the informational distance between two histograms $P$ and $Q$ by calculating a deviation between the Shannon entropy of the mixture of the two histograms $(P+Q)/2$ (the second term in eq. \ref{eq:jensen_divergence} below) and the mean of their individual entropies (the second term in eq. \ref{eq:jensen_divergence}).
 The value of the Jensen-Shannon divergence is given by the following formula,
@@ -19,15 +19,15 @@ d_{JSD}=\sqrt{\sum\limits_{i=1}^{d}{
 \noindent where $d$ is the number of bins (the same for both histograms) and $P_i$ and $Q_i$ are the values of $i$th bin in the two histograms. 
 We have found Jensen-Shannon divergence works well (yields dissimilarity values in agreement with human visual perception) for comparison of land cover patterns as encapsulated by crossproduct signatures (\cite{Jasiewicz2013b,Stepinski2014JSTARS,Netzel2015}).
 
-\subsection{Euclidean distance}
+\subsection{Euclidean distance (euc)}
 
 % paper Cha_2007_IJMMMAS.pdf
 
-\subsection{Normalized euclidean distance}
+\subsection{Normalized euclidean distance (eucn)}
 
-\subsection{Normalized euclidean distance (periodic)}
+\subsection{Normalized euclidean distance (periodic) (eucp)}
 
-\subsection{Wave-Hedges distance}
+\subsection{Wave-Hedges distance (wh)}
 
 This measure is designed to work with co-occurrence signature histograms that tend to be dominated by bins corresponding to adjacent cells having the same class. 
 The value of the Wave Hedges distance is given by the following formula (\cite{Cha2007}),
@@ -45,11 +45,11 @@ In Wave Hedges distance formula all present features contribute to the overall v
 In the case of the co-occurrence histogram this means that composition-related features and configuration-related features contribute equally to the distance value despite the heavy dominance of composition-related features in histograms stemming from all realistic scenes. 
 This makes the Wave Hedges distance particularly suitable for comparison of terrain scenes as encapsulated by co-occurrence signatures (\cite{Jasiewicz2014GMRH}).
 
-\subsection{Cosine distance}
+\subsection{Cosine distance (cos)}
 
 % paper Cha_2007_IJMMMAS.pdf #20
 
-\subsection{Jaccard distance}
+\subsection{Jaccard distance (jac)}
 
 This measure is an extension of the Jaccard similarity coefficient (\cite{Jaccard1908})
 , originally developed to assess a similarity between two sets, but used here for assessing the dissimilarity between two histograms. 
@@ -63,20 +63,20 @@ d_J= 1-\dfrac
 
 \noindent We have found that the Jaccard distance works well for comparison of land cover patterns as encapsulated by decomposition signatures.
 
-\subsection{Rozicka distance}
+\subsection{Rozicka distance (roz)}
 
 % paper Cha_2007_IJMMMAS.pdf
 
-\subsection{Rozicka distance (extended)}
+\subsection{Rozicka distance (extended) (rozp)}
 
-\subsection{Hassant distance}
+\subsection{Hassant distance (hass)}
 
-\subsection{Euclidean distance - time series}
+\subsection{Euclidean distance - time series (tsEUC)}
 
-\subsection{Euclidean distance - periodic time series}
+\subsection{Euclidean distance - periodic time series (tsEUCP)}
 
-\subsection{Dynamic Time Warping distance - time series}
+\subsection{Dynamic Time Warping distance - time series (tsDTW)}
 
-\subsection{Periodic Dynamic Time Warping distance - time series}
+\subsection{Periodic Dynamic Time Warping distance - time series (tsDTWP)}
 
-\subsection{Synchoronized Dynamic Time Warping distance - time series}
+\subsection{Synchronized Dynamic Time Warping distance - time series (tsDTWPa}
