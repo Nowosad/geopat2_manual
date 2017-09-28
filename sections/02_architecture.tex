@@ -325,7 +325,7 @@ Example of the content of coordinates file:
 The output signature text file can be used as an input to the following modules: {\it gpat\_search}, {\it gpat\_distmtx}.
 
 \newparagraph{gpat\_pointsts}
-{}
+Calculates numerical signatures of individual cell within a time series data.
 \\\\
 Usage:
 
@@ -348,17 +348,36 @@ gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-
 
 \newoption{output}
 
-\newoption{x coord (-x)}
+Name of output text file containing signatures.
+In the output file, each line corresponds to a single motifel’s signature. 
+Each signature is preceded by its header. 
+Modifying the signature file is strongly discouraged as it may cause some calculations to fail.
 
-\newoption{y coord (-y)}
+\newoption{x}
+
+X coordinate of the midpoint of motifel for which signature will be calculated.
+
+\newoption{y}
+
+Y coordinate of the midpoint of motifel for which signature will be calculated.
 
 \newoption{description}
 
+Description of a motifel.
+It can be a name of location, description of pattern, or anything else. 
+If not provided, the default description is "location".
+
 \newoption{xy\_file}
 
-\newoption{append}
+Name of a text file with list of coordinates. 
+This option is useful for calculating signatures for multiple motifels in a single run. 
 
-% \\\\
+\newoption{append} (flag)
+
+Append mode. 
+Useful when using the coordinate pair mode and when scenes are processed one by one (see description below). 
+If the append flag is used and the output file already exists, signatures will be appended at the end of file instead of overwriting it.
+\\\\
 {\bf Description:}
 
 \newparagraph{gpat\_polygon}
