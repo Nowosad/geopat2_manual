@@ -19,7 +19,8 @@ system("gpat_search -i grid -r query_signatures.txt")
 locs = stack(c("loc_00002.tif"))
 
 searchmap = levelplot(locs, main = c("Search"), margin=FALSE,
-                      xlab=NULL, ylab=NULL, scales=list(draw=FALSE))
+                      xlab=NULL, ylab=NULL, scales=list(draw=FALSE),
+                      colorkey = FALSE)
 
 searchmap
 
@@ -30,7 +31,8 @@ system("gpat_compare -i Augusta2006_grid100 -i Augusta2011_grid100 -o Augusta061
 change_det = raster("Augusta0611_compared.tif")
 
 changemap = levelplot(change_det, main = c("Change detection"), margin=FALSE,
-                      xlab=NULL, ylab=NULL, scales=list(draw=FALSE))
+                      xlab=NULL, ylab=NULL, scales=list(draw=FALSE),
+                      colorkey = FALSE, par.settings=GrTheme())
 
 changemap
 
@@ -80,17 +82,22 @@ segm3 = segm2 %>%
         summarise()
 
 detach(package:ggplot2)
-cluster_map = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
+clustermap = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
                        xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE),
                        main = "Clustering") +
         layer(sp.polygons(as(segm3, "Spatial"), lwd=4, col='black', fill=segm3$class, alpha = 0.25))
 
-cluster_map
+clustermap
 
 ## merge images --------------------------------------------------------------
+library(gridExtra)
+allmaps = arrangeGrob(searchmap, changemap, segmentmap, clustermap)
 
+png("../figs/logo.png", width = 877, height = 598)
+plot(allmaps)
+dev.off()
 ## trim images ---------------------------------------------------------------
-# system("mogrify -trim ../figs/segmentation_qualityall.png")
+system("mogrify -trim ../figs/logo.png")
 
 ## the end --------------------------------------------------------------------
 setwd("..")
