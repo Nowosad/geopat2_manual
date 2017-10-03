@@ -6,7 +6,6 @@ library(tidyverse)
 ## files prep ----------------------------------------------------------------
 dir.create("tmp")
 file.copy(from = "data/Augusta2011.tif", to = "tmp")
-# file.copy(from = "data/Augusta2011_seg100.tif", to = "tmp")
 file.copy(from = "data/nlcd_colors.txt", to = "tmp")
 
 setwd("tmp/")
