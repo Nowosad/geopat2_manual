@@ -21,6 +21,11 @@ setwd("tmp/")
 
 ## create a point map -------------------------------------------------------
 # point map
+sel_points = read.csv("Augusta2011_sel_points.txt", header = FALSE) 
+augusta2011 = raster("Augusta2011.tif")
+
+plot(augusta2011)
+points(sel_points, add = TRUE, pch = 20)
 
 ## create a distmatrix -------------------------------------------------------
 system("gpat_pointshis -i Augusta2011.tif -o Augusta2011_selected.txt  -s cooc -z 50 -n pdf --xy_file=Augusta2011_sel_points.txt")
