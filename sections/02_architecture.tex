@@ -823,16 +823,14 @@ The default is 1.
 % \\\\
 {\bf Description:}
 
-This module segments a grid-of-scenes into regions of uniform patterns in the same fashion as traditional segmentation algorithms segment image (or other rasters) into segments of uniform color and texture.  % CITE(Niesterowicz and Stepinski, 2013)
+This module segments a grid-of-scenes into regions of uniform patterns in the same fashion as traditional segmentation algorithms segment image (or other rasters) into segments of uniform color and texture (\cite{Niesterowicz2013}).
 The difference is that gpat\_segment segments a grid-of-scenes rather than an ordinary grid, and uses scene signature as attribute rather than color or image texture to decide how to delineate the segments. 
-The module uses a variant of the region growing algorithm %CITE (Zucker, 1976; Câmara et al., 1996; Li and Narayanan, 2004; Blaschke, 2010). 
-% It has two free parameters: a similarity threshold that defines the minimum similarity between two scenes to be treated as “similar” and, optionally, a minimum number of scenes to constitute a separate segment.
+The module uses a variant of the region growing algorithm (\cite{Camara1996,Li2004c,Blaschke2010}).
 The segmentation provided by the gpat\_segment module is typically used as an intermediate step in regionalization of the
 dataset. 
 The goal of regionalization is to generalize and thus simplify spatial representation of data so it is more meaningful and
 easier to analyze.
-Examples of regionalization include delineation of landscape types % CITE(Niesterowicz and Stepinski, 2013) 
-or delineation of physiographic units. %CITE (Jasiewicz et al., 2014). 
+Examples of regionalization include delineation of landscape types  (\cite{Niesterowicz2013}) or delineation of physiographic units (\cite{Jasiewicz2014}).
 Regionalization is achieved by clustering segments output by gpat\_segment into a number of distinct pattern type classes.
 An output of the gpat\_distmtx module could be used as a distance matrix for clustering in an external software.
 
