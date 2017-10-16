@@ -1,0 +1,59 @@
+No,index,description,class_level,landscape_level
+1,pland,class percentage of landscape,1,0
+2,lpi,largest patch index,1,1
+3,ed,edge density,1,1
+4,area_mn,patch area mean,1,1
+5,area_am,patch area area-weighted mean,1,1
+6,area_md,patch area median,1,1
+7,area_ra,patch area range,1,1
+8,area_sd,patch area standard deviation,1,1
+9,area_cv,patch area coeff. of variation,1,1
+10,gyrate_mn,radius of gyration mean,1,1
+11,gyrate_am,radius of gyration area-weighted mean,1,1
+12,gyrate_md,radius of gyration median,1,1
+13,gyrate_ra,radius of gyration range,1,1
+14,gyrate_sd,radius of gyration standard deviation,1,1
+15,gyrate_cv,radius of gyration coeff. of variation,1,1
+16,pafrac,perimeter-area fractal dimension,1,1
+17,para_mn,perimeter-area ratio mean,1,1
+18,para_am,perimeter-area ratio area-weighted mean,1,1
+19,para_md,perimeter-area ratio median,1,1
+20,para_ra,perimeter-area ratio range,1,1
+21,para_sd,perimeter-area ratio standard deviation,1,1
+22,para_cv,perimeter-area ratio coeff. of variation,1,1
+23,shape_mn,shape index mean,1,1
+24,shape_am,shape index area-weighted mean,1,1
+25,shape_md,shape index median,1,1
+26,shape_ra,shape index range,1,1
+27,shape_sd,shape index standard deviation,1,1
+28,shape_cv,shape index coeff. of variation,1,1
+29,frac_mn,fractal index mean,1,1
+30,frac_am,fractal index area-weighted mean,1,1
+31,frac_md,fractal index median,1,1
+32,frac_ra,fractal index range,1,1
+33,frac_sd,fractal index standard deviation,1,1
+34,frac_cv,fractal index coeff. of variation,1,1
+35,contig_mn,contiguity index mean,1,1
+36,contig_am,contiguity index area-weighted mean,1,1
+37,contig_md,contiguity index median,1,1
+38,contig_ra,contiguity index range,1,1
+39,contig_sd,contiguity index standard deviation,1,1
+40,contig_cv,contiguity index coeff. of variation,1,1
+41,contag,contagion index,0,1
+42,iji,interspersion & juxtaposition index,1,1
+43,pladj,percentage of like adjacencies,1,1
+44,ai,aggregation index,1,1
+45,lsi,landscape shape index,1,1
+46,cohesion,patch cohesion index,1,1
+47,pd,patch density,1,1
+48,split,splitting index,1,1
+49,division,landscape division index,1,1
+50,mesh,effective mesh size,1,1
+51,prd,patch richness density,0,1
+52,rpr,relative patch richness,0,1
+53,shdi,Shannon's diversity index,0,1
+54,sidi,Simpson's diversity index,0,1
+55,msidi,modified Simpson's diversity index,0,1
+56,shei,Shannon's evenness index,0,1
+57,siei,Simpson's evenness index,0,1
+58,msiei,modified Simpson's evenness index,0,1
