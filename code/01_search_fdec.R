@@ -39,23 +39,11 @@ dev.off()
 
 ## search his calculations --------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o grid -s fdec -z 64 -f 64 -n pdf")
+system("gpat_gridhis -i Augusta2011.tif -o grid2 -s sdec -z 64 -f 64 -n pdf")
 system("gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s fdec -z 64 -n pdf --xy_file=coordinates.txt")
+system("gpat_pointshis -i Augusta2011.tif -o query_signatures2.txt -s sdec -z 64 -n pdf --xy_file=coordinates.txt")
 system("gpat_search -i grid -r query_signatures.txt")
-
-## the second figure --------------------------------------------------------
-locs = stack(c("loc_00001.tif", "loc_00002.tif", "loc_00003.tif",
-               "loc_00004.tif"))
-
-png("../figs/searchhis_plot2.png", width = 500, height = 450)
-levelplot(locs, names.attr = c("Point 1", "Point 2", "Point 3", "Point 4"), margin=FALSE,
-          xlab=NULL, ylab=NULL, scales=list(draw=FALSE))
-dev.off()
-
-## trim images --------------------------------------------------------------
-
-system("mogrify -trim ../figs/searchhis_plot2.png")
-
-# gpat_pointsts -i grid -o query_signatures.txt --xy_file=coordinates.txt
+system("gpat_search -i grid2 -r query_signatures2.txt")
 
 ## clean ---------------------------------------------------------------------
 setwd("..")
