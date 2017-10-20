@@ -1,8 +1,17 @@
 library(tidyverse)
 library(xtable)
 
-lind = read_csv("data/landscape_indices_list.csv") %>% 
-        set_names(c("ID", "Name", "Description", "Class level", "Landscape level"))
+lind1 = read_csv("data/landscape_indices_list.csv") %>% 
+        set_names(c("ID", "Name", "Description", "Class level", "Landscape level")) %>% 
+        filter(Name != "pland")
+
+lind2 = read_csv("data/landscape_indices_list.csv") %>% 
+        set_names(c("ID", "Name", "Description", "Class level", "Landscape level")) %>% 
+        filter(Name == "pland")
+
+
+lind = bind_rows(lind1, lind2) %>% 
+        mutate(ID = row_number())
 
 lind_table = xtable(lind, caption = "Landscape metrics implemented in GeoPAT 2.0", label = "lindtable")
 
