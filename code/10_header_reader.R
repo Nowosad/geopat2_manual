@@ -31,7 +31,7 @@ header_parser = function(file_path){
                    proj_4 = proj_4)
 }
 
-grid_creator = function(header){
+grid_creator = function(header, proj = TRUE){
         x1 = header$start_x
         y1 = header$start_y
         x2 = header$start_x + header$res_x * header$n_cols
@@ -43,9 +43,12 @@ grid_creator = function(header){
         
         my_bb = single_cell_creator(x1, y1, x2, y2) %>% 
                 st_polygon() %>% 
-                st_sfc() %>% 
-                st_set_crs(header$proj_4)
+                st_sfc()
         
+        if (proj){
+                my_bb = my_bb %>% 
+                        st_set_crs(header$proj_4)
+        }
         my_grid = st_make_geopat_grid(my_bb, n = c(header$n_cols, header$n_rows))
         my_grid
 }
@@ -54,3 +57,7 @@ my_grid = header_parser("Augusta2011_grid100.hdr") %>%
         grid_creator()
 
 # my_grid %>% st_write("lalal.gpkg", layer_options = "OVERWRITE=YES")
+
+## clean --------------------------------------------------------------------
+setwd("..")
+unlink("tmp", recursive = TRUE, force = TRUE)
