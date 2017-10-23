@@ -1,13 +1,7 @@
 library(tidyverse)
 library(xtable)
 
-lind1 = read_csv("data/landscape_indices_list.csv") %>% 
-        filter(index != "pland")
-
-lind2 = read_csv("data/landscape_indices_list.csv") %>% 
-        filter(index == "pland")
-
-lind = bind_rows(lind1, lind2) %>% 
+lind = read_csv("data/landscape_indices_list.csv") %>% 
         mutate(No = row_number()) %>% 
         select(No, index, description, landscape_level, class_level) %>% 
         set_names(c("ID", "Name", "Description", "Landscape level", "Class level"))
