@@ -36,7 +36,12 @@ file.copy(from = "Augusta2011_matrix.csv", to = "../data/")
 dist_matrix = read.csv("Augusta2011_matrix.csv")[, -1] %>% as.dist()
 hclust_result = hclust(d = dist_matrix, method = "ward.D")
 plot(hclust_result)
-# create gpatUtils package
+
+sel_points$class = cutree(hclust_result, 5)
+
+## back to the map -----------------------------------------------------------
+plot(augusta2011)
+points(sel_points, pch = 20, cex = 3, col = sel_points$class)
 
 ## clean --------------------------------------------------------------------
 setwd("..")
