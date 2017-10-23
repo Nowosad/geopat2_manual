@@ -37,16 +37,16 @@ This feature is experimental.
 \subsection{Landscape indices vector ({\it lind} and {\it linds})}
 
 Two types of landscape indices are present in GeoPAT - landscape level indices and class level indices.
-Each of landscape level indices, except {\it pland}, produce one value for each "landscape" (basic unit of analysis - it could be a motifel or a polygon).
-Class percentage of landscape {\it pland} gives the proportional abundance of each class for each "landscape" in percentages.
-Therefore, it produces one value for each class for each "landscape". 
+Each of landscape level indices produce one value for each "landscape" (basic unit of analysis - it could be a motifel or a polygon).
 Class level indices produce as many values as there are classes in the input dataset.
+For example, class percentage of landscape {\it pland} gives the proportional abundance of each class for each "landscape" in percentages.
+Therefore, it produces one value for each class for each "landscape". 
 The complete list of landscape indices supported by GeoPAT is in Table~\ref{lindtable}.
 
 GeoPAT provides two ways to calculate landscape indices - {\it lind} (Landscape indices vector) and {\it linds} (Selected landscape indices vector).
 The {\it lind} signature calculates all of the landscape level indices first, and all of the class level indices second.
-Class level indices are arranged in such a way that the first index ({\it lpi}) is calculated for all classes, then the second index ({\it ed}) for all classes, etc. 
-The {\it linds} signature calculates only the landscape level indices. 
+Class level indices are arranged in such a way that the first index ({\it pland}) is calculated for all classes, then the second index ({\it lpi}) for all classes, etc. 
+The {\it linds} signature calculates the landscape level indices and only one of the class level indices - class percentage of landscape {\it pland}. 
 
 % + Kolejność liczb w wynikowym pliku dla opcji "linds": Najpierw wszystkie indeksy landscape level w takiej kolejności jak w załączonym pliku csv, potem kompozycja klas w procentach, czyli np. dla NLCD będzie to wyglądać tak: 
 % 
