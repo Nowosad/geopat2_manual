@@ -42,6 +42,15 @@ save_tmap(tmap_gb, filename = "../figs/searchts_plot1.png",
           height = 600, width = 390, scale = 0.5)
 
 ## search his calculations --------------------------------------------------
+system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid")
+system("gpat_globnorm -i GB_pr_grid -o GB_pr_grid_norm")
+system("gpat_pointsts -i GB_pr_grid_norm -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
+system("gpat_search -i GB_pr_grid_norm -r query_signatures_ts.txt -m tsEUC")
+
+system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid")
+system("gpat_pointsts -i GB_pr_grid -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
+system("gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC")
+
 system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n")
 system("gpat_pointsts -i GB_pr_grid -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
 system("gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC")
@@ -51,10 +60,10 @@ system("gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC")
 locs = stack(c("loc_00001.tif", "loc_00002.tif", "loc_00003.tif",
                "loc_00004.tif", "loc_00005.tif"))
 
-png("../figs/searchts_plot2.png", width = 500, height = 450)
+# png("../figs/searchts_plot2.png", width = 500, height = 450)
 levelplot(locs, names.attr=c("1.London", "2.Glasgow", "3.Cardiff", "4.Fort William", "5.Dublin"),
           margin=FALSE, xlab=NULL, ylab=NULL, scales=list(draw=FALSE))
-dev.off()
+# dev.off()
 
 system("mogrify -trim ../figs/searchts_plot2.png")
 
