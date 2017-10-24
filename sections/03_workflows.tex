@@ -21,7 +21,7 @@ Thus it is perfect for various pattern analyzes.
 
 Examples of time-series analysis are based on monthly sums of precipitation for area of Great Britain from the WorldClim database (Figure \ref{FIG:PRCP}).
 It consists of twelve raster files, where each file has 240 rows and 319 columns.
-Precipitation values are expressed in milimeters.
+Precipitation values are expressed in millimeters.
 
 \begin{figure}[H]
 	\centering
@@ -194,7 +194,7 @@ The lowest values indicate the biggest change of a land cover pattern.
 \subsection{Segmentation \label{segmentation}}
 
 Segmentation module enables user to create maps of segments.
-Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjecent segments.
+Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjacent segments.
 The input is a grid of signatures.
 The result is a raster (GeoTIFF) and vector (ESRI Shapefile) file containing the segments.
 Quality of segmentation could be also determined with raster maps of inhomogeneity, isolation, and overall quality.
@@ -438,7 +438,7 @@ gpat_distmtx -i Augusta2011_psign.txt -o Augusta2011_matrix_seg.csv
 \end{minipage}
 
 For example, in the section \ref{segmentation} we created segments with homogeneous patterns of land cover.
-Now we can find and group similar non-adjacent segements with clustering.
+Now we can find and group similar non-adjacent segments with clustering.
 Firstly, we need to change the resolution of the segment file to 30 meters (this is the resolution of the land cover data).
 Next, we need to create a signature text file for each of the segments.
 Based on the new file we can calculate a distance between each pair of the segments using selected dissimilarity metric, such as Jensen-Shannon divergence.
