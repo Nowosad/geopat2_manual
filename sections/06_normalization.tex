@@ -1,3 +1,10 @@
+There are two ways to normalize pattern signatures.
+The first one (used in {\it gpat gridhis}, {\it gpat pointshis} and {\it gpat polygon}) works independly on each of the pattern signatures.
+The role of the second one (used in {\it gpat_globnorm} is to normalize all of the pattern signatures together. 
+Decision on the normalization method and its type should depends on both, numerical signatures and dissimilarity measures used.
+For example, the class co-occurrence histogram signature should be localy normalized (used in {\it gpat gridhis}, {\it gpat pointshis} and {\it gpat polygon}) before a segmentation using the Jensen Shannon Divergence measure.
+However, in case of a segmentation based on the landscape indices a global normalilzation {\it gpat_globnorm} is recommended, while local normalization should be avoided.
+
 \subsection{01}
 
 Normalization to the [0,1] interval.
