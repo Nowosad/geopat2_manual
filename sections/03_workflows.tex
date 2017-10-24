@@ -423,21 +423,24 @@ A default similarity measure, Jensen-Shannon divergence, can be used here, as it
 	\label{FIG:CLUSTER_SEGMENT}
 \end{figure}
 
-The first step is to calculate the signature file based on a raster data which contain a pattern to analyze and a raster data with segments (or any other irregular regions) using the {\it gpat\_polygon} module.
-The second step is to create and export a distance matrix using {\it gpat\_distmtx} (Figure \ref{FIG:CLUSTER_SEGMENT}).
+The first step is to unify the resolution and extent of the input raster data and the segment file, which can be done using a GIS software, for example {\it gdalwrap}.
+The second step is to calculate the signature file based on a raster data which contain a pattern to analyze and a raster data with segments (or any other irregular regions) using the {\it gpat\_polygon} module.
+The third step is to create and export a distance matrix using {\it gpat\_distmtx} (Figure \ref{FIG:CLUSTER_SEGMENT}).
 
 {\bf Example:}
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100.tif -o Augusta2011_psign.txt
+gdalwarp -tr 30 30 Augusta2011_seg100.tif Augusta2011_seg100_res.tif
+gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100_res.tif -o Augusta2011_psign.txt
 gpat_distmtx -i Augusta2011_psign.txt -o Augusta2011_matrix_seg.csv
 \end{lstlisting}
 \end{minipage}
 
 For example, in the section \ref{segmentation} we created segments with homogeneous patterns of land cover.
 Now we can find and group similar non-adjacent segements with clustering.
-Firstly, we need to create a signature text file for each of the segments.
+Firstly, we need to change the resolution of the segment file to 30 meters (this is the resolution of the land cover data).
+Next, we need to create a signature text file for each of the segments.
 Based on the new file we can calculate a distance between each pair of the segments using selected dissimilarity metric, such as Jensen-Shannon divergence.
 
 \newpage
