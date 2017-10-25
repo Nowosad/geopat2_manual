@@ -33,15 +33,28 @@ system("gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv")
 
 file.copy(from = "Augusta2011_matrix.csv", to = "../data/")
 ## clustering ----------------------------------------------------------------
-dist_matrix = read.csv("Augusta2011_matrix.csv")[, -1] %>% as.dist()
-hclust_result = hclust(d = dist_matrix, method = "ward.D")
-plot(hclust_result)
 
-sel_points$class = cutree(hclust_result, 5)
+dist_file = read.csv("Augusta2011_matrix.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, labels=FALSE)
+
+sel_points$class = cutree(hclust_result, k = 5)
 
 ## back to the map -----------------------------------------------------------
 plot(augusta2011)
 points(sel_points, pch = 20, cex = 3, col = sel_points$class)
+
+## create a plot
+png("../figs/clustering_example_motifels_his1.png", width = 400, height = 300)
+plot(hclust_result, labels=FALSE, xlab="", sub="")
+rect.hclust(hclust_result, k = 5, border = "blue")
+dev.off()
+
+png("../figs/clustering_example_motifels_his2.png", width = 400, height = 300)
+plot(augusta2011)
+points(sel_points, pch = 20, cex = 3, col = sel_points$class)
+dev.off()
 
 ## clean --------------------------------------------------------------------
 setwd("..")
