@@ -17,18 +17,32 @@ system("gpat_grd2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt")
 system("gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv")
 
 ## r clustering -------------------------------------------------------------
-dist_matrix = read.csv("Augusta2011_matrix_grid.csv")[, -1] %>% as.dist()
-hclust_result = hclust(d = dist_matrix, method = "ward.D")
-plot(hclust_result)
+library(sf)
+library(rgeopat2)
+dist_file = read.csv("Augusta2011_matrix_grid.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, labels = FALSE)
 hclust_cut = cutree(hclust_result, 5)
 
 ## return to map -----------------------------------------------------------
-my_classes = data.frame(class = hclust_cut)
-
 my_grid = gpat_gridcreate("Augusta2011_grid100.hdr")
-my_grid = st_as_sf(my_classes, my_grid)
+my_grid$class = hclust_cut
 
 plot(my_grid)
+
+## create a plot
+png("../figs/clustering_example_grid1.png", width = 400, height = 300)
+par(mar = c(0, 2, 1, 0))
+plot(hclust_result, labels = FALSE, xlab = "", sub = "")
+rect.hclust(hclust_result, k = 5, border = "blue")
+dev.off()
+
+png("../figs/clustering_example_grid2.png", width = 400, height = 300)
+par(mar = c(0, 0, 1, 0))
+plot(my_grid)
+dev.off()
 
 ## clean --------------------------------------------------------------------
 setwd("..")

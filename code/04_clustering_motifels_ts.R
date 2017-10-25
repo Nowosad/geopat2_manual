@@ -35,27 +35,39 @@ system("gpat_distmtx -i GB_pr_points.txt -o GB_pr_distmat.csv -m tsEUC")
 
 file.copy(from = "GB_pr_distmat.csv", to = "../data/")
 ## r clustering -------------------------------------------------------------
-dist_matrix = read.csv("GB_pr_distmat.csv")[, -1] %>% as.dist()
-hclust_result = hclust(d = dist_matrix, method = "ward.D")
-plot(hclust_result)
+library(sf)
+library(tmap)
+library(rgeopat2)
+dist_file = read.csv("GB_pr_distmat.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, labels = FALSE)
 
-hclust_cut = cutree(hclust_result, 6)
-
-sel_points = read.csv("GB_cities.csv", header = FALSE) %>%
-        mutate(class = as.factor(hclust_cut))
+sel_points = read.csv("GB_cities.csv", header = FALSE) 
+sel_points$class = as.factor(cutree(hclust_result, k = 4))
 
 sel_points_st = st_as_sf(sel_points, coords = c("V1", "V2"))
 
-gb = rnaturalearth::ne_countries(scale = 50, continent = "Europe", returnclass = "sf") %>%
-        filter(admin %in% c("United Kingdom", "Ireland"))
-
-library(tmap)
-tmap_gb = tm_shape(gb) +
+tmap_gb = tm_shape(british_isles) +
         tm_polygons() +
         tm_shape(sel_points_st) +
         tm_dots(col = "class", size = 0.25, title = "Class: ")
 
 tmap_gb
+
+## create a plot
+png("../figs/clustering_example_motifels_ts1.png", width = 400, height = 500)
+plot(hclust_result, labels=FALSE, xlab="", sub="")
+rect.hclust(hclust_result, k = 4, border = "blue")
+dev.off()
+
+png("../figs/clustering_example_motifels_ts2.png", width = 400, height = 500)
+tm_shape(british_isles) +
+        tm_polygons() +
+        tm_shape(sel_points_st) +
+        tm_dots(col = "class", size = 0.25, title = "Class: ") + 
+        tm_layout(frame = FALSE)
+dev.off()
 
 ## clean --------------------------------------------------------------------
 setwd("..")

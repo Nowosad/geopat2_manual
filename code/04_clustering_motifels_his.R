@@ -47,6 +47,7 @@ points(sel_points, pch = 20, cex = 3, col = sel_points$class)
 
 ## create a plot
 png("../figs/clustering_example_motifels_his1.png", width = 400, height = 300)
+par(mar = c(0, 0, 1, 0))
 plot(hclust_result, labels=FALSE, xlab="", sub="")
 rect.hclust(hclust_result, k = 5, border = "blue")
 dev.off()
