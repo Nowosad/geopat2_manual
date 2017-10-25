@@ -453,9 +453,9 @@ tm_shape(british_isles) +
 The {\tt gpat\_read\_distmtx} function reads a distance matrix from a file. 
 Next, we use and visualize a result of hierarchical clustering (left panel of figure \ref{FIG:CLUSTER_POINTSTS2}).
 Based on the dendrogram, data is divided into four groups and the information about class numbers is added to the object containing our selected points.
-Using the {\tt st_as_sf} function, we transform our selected points into spatial object.
+Using the {\tt st\_as\_sf} function, we transform our selected points into spatial object.
 Finally, we visualize the results using functions from the {\tt tmap} package (right panel of figure \ref{FIG:CLUSTER_POINTS2}).
-For this purpose, we use a map of British Isles (\it british\_isles} from the {\tt rgeopat2} package and the spatial object with our selected points ({\it sel_points_st}).
+For this purpose, we use a map of British Isles {\it british\_isles} from the {\tt rgeopat2} package and the spatial object with our selected points ({\it sel\_points\_st}).
 
 \begin{figure}[H]
   \begin{subfigure}[b]{0.5\textwidth}
@@ -521,8 +521,8 @@ plot(my_grid)
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{clustering_example_grid2.png}
   \end{subfigure}
-  \label{FIG:CLUSTER_GRID2}
   \caption{Example of a clustering of a grid of motifels}
+  \label{FIG:CLUSTER_GRID2}
 \end{figure}
 
 \FloatBarrier
@@ -578,8 +578,8 @@ plot(segm["class"])
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{clustering_example_polygon2.png}
   \end{subfigure}
-  \label{FIG:CLUSTER_SEGMENT2}
   \caption{Example of a clustering of a grid of segments (regions)}
+  \label{FIG:CLUSTER_SEGMENT2}
 \end{figure}
 
 
