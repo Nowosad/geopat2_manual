@@ -51,8 +51,8 @@ Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity 
 	\label{FIG:SEARCH}
 \end{figure}
 
-The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\it gpat\_gridhis} and {\it gpat\_pointshis} respectively. 
-The second step is to use these signature files as inputs to {\it gpat\_search} module in order to the produce similarity maps.\\\\
+The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\tt gpat\_gridhis} and {\tt gpat\_pointshis} respectively. 
+The second step is to use these signature files as inputs to {\tt gpat\_search} module in order to the produce similarity maps.\\\\
 
 {\bf Example:}
 
@@ -96,8 +96,8 @@ Figure \ref{FIG:SEARCHTS} presents general workflow path for producing similarit
 	\label{FIG:SEARCHTS}
 \end{figure}
 
-The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\it gpat\_gridts} and {\it gpat\_pointsts} respectively. 
-The second step is to use these signature files as inputs to {\it gpat\_search} module in order to the produce similarity maps.\\\\
+The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\tt gpat\_gridts} and {\tt gpat\_pointsts} respectively. 
+The second step is to use these signature files as inputs to {\tt gpat\_search} module in order to the produce similarity maps.\\\\
 
 {\bf Example:}
 
@@ -151,8 +151,8 @@ Figure \ref{FIG:CHANGE} presents general workflow path for producing maps of cha
 	\label{FIG:CHANGE}
 \end{figure}
 
-The first step is to prepare signature files for both dataset, using either {\it gpat\_gridhis} for categorical data or {\it gpat\_gridts} for time series data.
-The second step is to use these signature files as inputs to the {\it gpat\_compare} module in order to the produce change maps. \\\\
+The first step is to prepare signature files for both dataset, using either {\tt gpat\_gridhis} for categorical data or {\tt gpat\_gridts} for time series data.
+The second step is to use these signature files as inputs to the {\tt gpat\_compare} module in order to the produce change maps. \\\\
 
 {\bf Example:}
 
@@ -219,9 +219,9 @@ gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_
 \end{lstlisting}
 \end{minipage}
 
-The first step is to prepare a signature file for the dataset, using the {\it gpat\_gridhis} module.
-The second step is to use this signature file as input to the {\it gpat\_segment} module in order to the produce a segmentation map. 
-The third, optional, step is to determine a quality of segmentation using the {\it gpat\_segquality} module.\\\\
+The first step is to prepare a signature file for the dataset, using the {\tt gpat\_gridhis} module.
+The second step is to use this signature file as input to the {\tt gpat\_segment} module in order to the produce a segmentation map. 
+The third, optional, step is to determine a quality of segmentation using the {\tt gpat\_segquality} module.\\\\
 
 \newpage
 
@@ -281,9 +281,9 @@ gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_ih.tif -o GB_pr_seg_
 \end{lstlisting}
 \end{minipage}
 
-The first step is to prepare a signature file for the dataset, using the {\it gpat\_gridts} module.
-The second step is to use this signature file as input to the {\it gpat\_segment} module in order to the produce a segmentation map. 
-The third, optional, step is to determine a quality of segmentation using the {\it gpat\_segquality} module.\\\\
+The first step is to prepare a signature file for the dataset, using the {\tt gpat\_gridts} module.
+The second step is to use this signature file as input to the {\tt gpat\_segment} module in order to the produce a segmentation map. 
+The third, optional, step is to determine a quality of segmentation using the {\tt gpat\_segquality} module.\\\\
 
 \newpage
 
@@ -350,8 +350,8 @@ devtools::install_github("nowosad/rgeopat2")
 	\label{FIG:CLUSTER_POINTS}
 \end{figure}
 
-The first step is to prepare a signature file for query motifels using the {\it gpat\_pointsts} module. 
-The second step is to calculate a distance matrix based on a selected similarity measure using {\it gpat\_distmtx} (Figure \ref{FIG:CLUSTER_POINTS}).
+The first step is to prepare a signature file for query motifels using the {\tt gpat\_pointsts} module. 
+The second step is to calculate a distance matrix based on a selected similarity measure using {\tt gpat\_distmtx} (Figure \ref{FIG:CLUSTER_POINTS}).
 
 {\bf Example:}
 
@@ -409,9 +409,9 @@ Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_POINTS
 \end{figure}
 
 Procedure for time-series data is slightly different (Figure \ref{FIG:CLUSTER_POINTSTS}).
-The first step is to create a signature grid file using a time-series of rasters using the {\it gpat\_gridts} module.
-The second step is to extract only selected motifels using {\it gpat\_pointsts}.
-The third step is to calculate and export a distance matrix with {\it gpat\_distmtx}.
+The first step is to create a signature grid file using a time-series of rasters using the {\tt gpat\_gridts} module.
+The second step is to extract only selected motifels using {\tt gpat\_pointsts}.
+The third step is to calculate and export a distance matrix with {\tt gpat\_distmtx}.
 
 {\bf Example:}
 
@@ -479,9 +479,9 @@ For this purpose, we use a map of British Isles {\it british\_isles} from the {\
 	\label{FIG:CLUSTER_GRID}
 \end{figure}
 
-The first step is to create a signature grid using either the {\it gpat\_gridhis} or {\it gpat\_gridts} module.
-The second step is to convert the obtained signature grid from binary to text format with {\it gpat\_grd2txt}.
-The final step is to calculate and export a distance matrix using the {\it gpat\_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
+The first step is to create a signature grid using either the {\tt gpat\_gridhis} or {\tt gpat\_gridts} module.
+The second step is to convert the obtained signature grid from binary to text format with {\tt gpat\_grd2txt}.
+The final step is to calculate and export a distance matrix using the {\tt gpat\_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
 
 {\bf Example:}
 
@@ -544,9 +544,9 @@ Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_GRID2}
 	\label{FIG:CLUSTER_SEGMENT}
 \end{figure}
 
-The first step is to unify the resolution and extent of the input raster data and the segment file, which can be done using a GIS software, for example {\it gdalwrap}.
-The second step is to calculate the signature file based on a raster data which contain a pattern to analyze and a raster data with segments (or any other irregular regions) using the {\it gpat\_polygon} module.
-The third step is to create and export a distance matrix using {\it gpat\_distmtx} (Figure \ref{FIG:CLUSTER_SEGMENT}).
+The first step is to unify the resolution and extent of the input raster data and the segment file, which can be done using a GIS software, such example {\tt gdalwrap}.
+The second step is to calculate the signature file based on a raster data which contain a pattern to analyze and a raster data with segments (or any other irregular regions) using the {\tt gpat\_polygon} module.
+The third step is to create and export a distance matrix using {\tt gpat\_distmtx} (Figure \ref{FIG:CLUSTER_SEGMENT}).
 
 {\bf Example:}
 
