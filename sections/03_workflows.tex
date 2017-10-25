@@ -371,7 +371,7 @@ Next, we can calculate distances between all of these motifels using selected si
 dist_file = read.csv("Augusta2011_matrix.csv")[, -1]
 dist_matrix = as.dist(dist_file)
 hclust_result = hclust(d = dist_matrix, method = "ward.D2")
-plot(hclust_result, labels=FALSE)
+plot(hclust_result, labels = FALSE)
 sel_points$class = cutree(hclust_result, k = 5)
 plot(augusta2011)
 points(sel_points, pch = 20, cex = 3, col = sel_points$class)
