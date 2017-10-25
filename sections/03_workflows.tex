@@ -499,6 +499,8 @@ Next, we convert the signature grid to a text file.
 This new file will be an output to for the calculations of a distance matrix.
 A default similarity measure, Jensen-Shannon divergence, can be used here, as it is suitable for a land-cover data.
 
+Created distance matrix can be used in R:
+
 \begin{minipage}{\linewidth}
 \lstset{backgroundcolor=\color{antiflashwhite}}
 \begin{lstlisting}
@@ -513,6 +515,12 @@ my_grid$class = hclust_cut
 plot(my_grid)
 \end{lstlisting}
 \end{minipage}
+
+The {\tt gpat\_read\_distmtx} function reads a distance matrix from a file. 
+Next, we use and visualize a result of hierarchical clustering (left panel of figure \ref{FIG:CLUSTER_GRID2}).
+Based on the dendrogram, data is divided into five groups and the information about class numbers is added to the object containing our selected points.
+Using the {\tt gpat\_gridcreate} function, we create a new grid polygon and add the class numbers to it.
+Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_GRID2}).
 
 \begin{figure}[H]
   \begin{subfigure}[b]{0.5\textwidth}
@@ -556,6 +564,8 @@ Firstly, we need to change the resolution of the segment file to 30 meters (this
 Next, we need to create a signature text file for each of the segments.
 Based on the new file we can calculate a distance between each pair of the segments using selected dissimilarity metric, such as Jensen-Shannon divergence.
 
+Created distance matrix can be used in R:
+
 \begin{minipage}{\linewidth}
 \lstset{backgroundcolor=\color{antiflashwhite}}
 \begin{lstlisting}
@@ -566,10 +576,16 @@ hclust_result = hclust(d = dist_matrix, method = "ward.D2")
 plot(hclust_result, label = FALSE)
 hclust_cut = cutree(hclust_result, 3)
 segm = st_read("Augusta2011_seg100.shp")
-segm$class = (hclust_cut)
+segm$class = hclust_cut
 plot(segm["class"])
 \end{lstlisting}
 \end{minipage}
+
+The {\tt gpat\_read\_distmtx} function reads a distance matrix from a file. 
+Next, we use and visualize a result of hierarchical clustering (left panel of figure \ref{FIG:CLUSTER_SEGMENT2}).
+Based on the dendrogram, data is divided into three groups and the information about class numbers is added to the object containing our selected points.
+Using the {\tt st\_read} function, we read our polygons into R and add the class number to each polygon.
+Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_SEGMENT2}).
 
 \begin{figure}[H]
   \begin{subfigure}[b]{0.5\textwidth}
