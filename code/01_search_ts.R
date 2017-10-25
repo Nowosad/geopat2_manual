@@ -59,6 +59,10 @@ system("gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC")
 system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n")
 system("gpat_pointsts -i GB_pr_grid -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
 system("gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m tsEUC")
+
+system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n")
+system("gpat_pointsts -i GB_pr_grid -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
+system("gpat_search -i GB_pr_grid -r query_signatures_ts.txt -m euc")
 #how to input two time-series at once???
 
 ## the second figure --------------------------------------------------------
