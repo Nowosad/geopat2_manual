@@ -42,6 +42,11 @@ save_tmap(tmap_gb, filename = "../figs/searchts_plot1.png",
           height = 600, width = 390, scale = 0.5)
 
 ## search his calculations --------------------------------------------------
+system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid -n")
+system("gpat_globnorm -i GB_pr_grid -o GB_pr_grid_norm")
+system("gpat_pointsts -i GB_pr_grid_norm -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
+system("gpat_search -i GB_pr_grid_norm -r query_signatures_ts.txt -m tsEUC")
+
 system("gpat_gridts -i GB_pr01.tif -i GB_pr02.tif -i GB_pr03.tif -i GB_pr04.tif -i GB_pr05.tif -i GB_pr06.tif -i GB_pr07.tif -i GB_pr08.tif -i GB_pr09.tif -i GB_pr10.tif -i GB_pr11.tif -i GB_pr12.tif -o GB_pr_grid")
 system("gpat_globnorm -i GB_pr_grid -o GB_pr_grid_norm")
 system("gpat_pointsts -i GB_pr_grid_norm -o query_signatures_ts.txt --xy_file=coordinates_gb.txt")
