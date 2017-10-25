@@ -353,6 +353,30 @@ gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv
 For example, we can create signatures based on a given size (e.g. 50) and signature type for selected motifels using a text file with the coordinates of points of interest.
 Next, we can calculate distances between all of these motifels using selected similarity measure (in this example, we used the default one - 'jsd' Jensen-Shannon Divergence).
 
+\begin{minipage}{\linewidth}
+\lstset{backgroundcolor=\color{antiflashwhite}}
+\begin{lstlisting}
+dist_file = read.csv("Augusta2011_matrix.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, labels=FALSE)
+sel_points$class = cutree(hclust_result, k = 5)
+plot(augusta2011)
+points(sel_points, pch = 20, cex = 3, col = sel_points$class)
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_motifels_his1.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_motifels_his2.png}
+  \end{subfigure}
+  \label{FIG:CLUSTER_POINTS2}
+  \caption{Picture 2}
+\end{figure}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{cluster_pointsts_scheme.png}
@@ -380,6 +404,37 @@ For this purpose, we need to have twelve rasters with values of a monthly sum of
 Firstly, we can create a signature grid. 
 Next step is to extract the signature only for the locations in our GB\ cities.csv file.
 Finally, we can calculate and export distance matrix using euclidean distance {\it tsEUC}.
+
+\begin{minipage}{\linewidth}
+\lstset{backgroundcolor=\color{antiflashwhite}}
+\begin{lstlisting}
+library(sf)
+library(tmap)
+library(rgeopat2)
+dist_file = read.csv("GB_pr_distmat.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, labels = FALSE)
+sel_points = read.csv("GB_cities.csv", header = FALSE) 
+sel_points$class = as.factor(cutree(hclust_result, k = 4))
+sel_points_st = st_as_sf(sel_points, coords = c("V1", "V2"))
+tm_shape(british_isles) +
+        tm_polygons() +
+        tm_shape(sel_points_st) +
+        tm_dots(col = "class", size = 0.25, title = "Class: ")
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_motifels_ts1.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_motifels_ts2.png}
+  \end{subfigure}
+  \label{FIG:CLUSTER_POINTSTS2}
+  \caption{Picture 2}
+\end{figure}
 
 \FloatBarrier
 
@@ -412,6 +467,33 @@ Next, we convert the signature grid to a text file.
 This new file will be an output to for the calculations of a distance matrix.
 A default similarity measure, Jensen-Shannon divergence, can be used here, as it is suitable for a land-cover data.
 
+\begin{minipage}{\linewidth}
+\lstset{backgroundcolor=\color{antiflashwhite}}
+\begin{lstlisting}
+library(sf)
+library(rgeopat2)
+dist_file = read.csv("Augusta2011_matrix_grid.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, labels = FALSE)
+hclust_cut = cutree(hclust_result, 5)
+my_grid = gpat_gridcreate("Augusta2011_grid100.hdr")
+my_grid$class = hclust_cut
+plot(my_grid)
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_grid1.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_grid2.png}
+  \end{subfigure}
+  \label{FIG:CLUSTER_GRID2}
+  \caption{Picture 2}
+\end{figure}
+
 \FloatBarrier
 
 \subsubsection{Clustering of segments / predefined irregular regions}
@@ -442,5 +524,32 @@ Now we can find and group similar non-adjacent segments with clustering.
 Firstly, we need to change the resolution of the segment file to 30 meters (this is the resolution of the land cover data).
 Next, we need to create a signature text file for each of the segments.
 Based on the new file we can calculate a distance between each pair of the segments using selected dissimilarity metric, such as Jensen-Shannon divergence.
+
+\begin{minipage}{\linewidth}
+\lstset{backgroundcolor=\color{antiflashwhite}}
+\begin{lstlisting}
+library(sf)
+dist_file = read.csv("Augusta2011_matrix_seg.csv")[, -1]
+dist_matrix = as.dist(dist_file)
+hclust_result = hclust(d = dist_matrix, method = "ward.D2")
+plot(hclust_result, label = FALSE)
+hclust_cut = cutree(hclust_result, 3)
+segm = st_read("Augusta2011_seg100.shp")
+segm$class = (hclust_cut)
+plot(segm["class"])
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_polygon1.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{clustering_example_polygon2.png}
+  \end{subfigure}
+  \label{FIG:CLUSTER_SEGMENT2}
+  \caption{Picture 2}
+\end{figure}
+
 
 \newpage
