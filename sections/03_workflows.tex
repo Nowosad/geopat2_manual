@@ -365,11 +365,13 @@ gpat_distmtx -i Augusta2011_selected.txt -o Augusta2011_matrix.csv
 For example, we can create signatures based on a given size (e.g. 50) and signature type for selected motifels using a text file with the coordinates of points of interest.
 Next, we can calculate distances between all of these motifels using selected similarity measure (in this example, we used the default one - 'jsd' Jensen-Shannon Divergence).
 
+Created distance matrix can be used in R:
+
 \begin{minipage}{\linewidth}
 \lstset{backgroundcolor=\color{antiflashwhite}}
 \begin{lstlisting}
-dist_file = read.csv("Augusta2011_matrix.csv")[, -1]
-dist_matrix = as.dist(dist_file)
+library(rgeopat2)
+dist_matrix = gpat_read_distmtx("Augusta2011_matrix.csv")
 hclust_result = hclust(d = dist_matrix, method = "ward.D2")
 plot(hclust_result, labels = FALSE)
 sel_points$class = cutree(hclust_result, k = 5)
@@ -377,6 +379,9 @@ plot(augusta2011)
 points(sel_points, pch = 20, cex = 3, col = sel_points$class)
 \end{lstlisting}
 \end{minipage}
+
+The {\tt read.csv} function reads a distance matrix from a file. 
+
 
 \begin{figure}[H]
   \begin{subfigure}[b]{0.5\textwidth}
@@ -423,8 +428,7 @@ Finally, we can calculate and export distance matrix using euclidean distance {\
 library(sf)
 library(tmap)
 library(rgeopat2)
-dist_file = read.csv("GB_pr_distmat.csv")[, -1]
-dist_matrix = as.dist(dist_file)
+dist_matrix = gpat_read_distmtx("GB_pr_distmat.csv")
 hclust_result = hclust(d = dist_matrix, method = "ward.D2")
 plot(hclust_result, labels = FALSE)
 sel_points = read.csv("GB_cities.csv", header = FALSE) 
@@ -484,8 +488,7 @@ A default similarity measure, Jensen-Shannon divergence, can be used here, as it
 \begin{lstlisting}
 library(sf)
 library(rgeopat2)
-dist_file = read.csv("Augusta2011_matrix_grid.csv")[, -1]
-dist_matrix = as.dist(dist_file)
+dist_matrix = gpat_read_distmtx("Augusta2011_matrix_grid.csv")
 hclust_result = hclust(d = dist_matrix, method = "ward.D2")
 plot(hclust_result, labels = FALSE)
 hclust_cut = cutree(hclust_result, 5)
@@ -541,8 +544,8 @@ Based on the new file we can calculate a distance between each pair of the segme
 \lstset{backgroundcolor=\color{antiflashwhite}}
 \begin{lstlisting}
 library(sf)
-dist_file = read.csv("Augusta2011_matrix_seg.csv")[, -1]
-dist_matrix = as.dist(dist_file)
+library(rgeopat2)
+dist_matrix = gpat_read_distmtx("Augusta2011_matrix_seg.csv")
 hclust_result = hclust(d = dist_matrix, method = "ward.D2")
 plot(hclust_result, label = FALSE)
 hclust_cut = cutree(hclust_result, 3)
