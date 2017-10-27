@@ -32,14 +32,19 @@ my_grid = gpat_gridcreate(header_filepath)
 my_grid_brick = gpat_gridcreate(header_filepath, brick = TRUE)
 
 detach(package:ggplot2)
-augusta = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
-                       xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE))
+augusta1 = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
+                       xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE),
+                       main = "The rectangular grid topology (size and shift: 100)")
 
-grid1plot = augusta + 
+augusta2 = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
+                     xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE),
+                     main = "The brick wall topology (size and shift: 100)")
+
+grid1plot = augusta1 + 
         layer(sp.polygons(as(my_grid, "Spatial"), lwd=4, col='black'))
 grid1plot
 
-grid2plot = augusta + 
+grid2plot = augusta2 + 
         layer(sp.polygons(as(my_grid_brick, "Spatial"), lwd=4, col='black'))
 grid2plot
 
