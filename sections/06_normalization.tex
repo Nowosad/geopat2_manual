@@ -1,9 +1,9 @@
 There are two ways to normalize pattern signatures.
-The first one (used in {\it gpat\_gridhis}, {\it gpat\_pointshis} and {\it gpat\_polygon}) works independently on each of the pattern signatures.
-The role of the second one (used in {\it gpat\_globnorm} is to normalize each of the signature elements for all the grid. 
+The first one (used in {\tt gpat\_gridhis}, {\tt gpat\_pointshis} and {\tt gpat\_polygon}) works independently on each of the pattern signatures.
+The role of the second one (used in {\tt gpat\_globnorm} is to normalize each of the signature elements for all the grid. 
 Decision on the normalization method and its type should depends on both, numerical signatures and dissimilarity measures used.
-For example, the class co-occurrence histogram signature should be locally normalized (used in {\it gpat\_gridhis}, {\it gpat\_pointshis} and {\it gpat\_polygon}) before a segmentation using the Jensen Shannon Divergence measure.
-However, in case of a segmentation based on the landscape indices a global normalization {\it gpat\_globnorm} is recommended, while a local normalization should be avoided.
+For example, the class co-occurrence histogram signature should be locally normalized (used in {\tt gpat\_gridhis}, {\tt gpat\_pointshis} and {\tt gpat\_polygon}) before a segmentation using the Jensen Shannon Divergence measure.
+However, in case of a segmentation based on the landscape indices a global normalization {\tt gpat\_globnorm} is recommended, while a local normalization should be avoided.
 
 \subsection{01}
 
@@ -20,7 +20,7 @@ Normalization to N(0,1) (hi = (hi - avg) / std).
 \subsection{ind01}
 
 Normalization to [0,1] for 72 landscape indices.
-Used in the {\it gpat\_globnorm} module only.
+Used in the {\tt gpat\_globnorm} module only.
 It accepts only the grids built using the selected landscape indices vector signature ({\it linds}).
 
 \subsection{none}
