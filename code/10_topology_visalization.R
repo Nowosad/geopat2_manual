@@ -48,6 +48,10 @@ grid2plot = augusta2 +
         layer(sp.polygons(as(my_grid_brick, "Spatial"), lwd=4, col='black'))
 grid2plot
 
+library(gridExtra)
+grid_plot = arrangeGrob(grid1plot, grid2plot, ncol = 1)
+
+ggsave("../figs/topology.png", grid_plot, width = 6.44, height = 7.85)
 ## the end --------------------------------------------------------------------
 setwd("..")
 unlink("tmp", recursive = TRUE, force = TRUE)
