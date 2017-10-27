@@ -73,7 +73,7 @@ The four final maps (Figure \ref{FIG:SEARCH2} shows similarity to each of the gi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{searchhis_plot1.png}
-	\caption{Points of interest on the top of a landcover map}
+	\caption{Points of interest on the top of a land cover map}
 	\label{FIG:SEARCH1}
 \end{figure}
 
@@ -165,7 +165,7 @@ gpat_compare -i Augusta2006_grid100 -i Augusta2011_grid100 -o Augusta0611_compar
 \end{minipage}
 
 For example, we want to compare a change in land cover patterns between years 2006 and 2011. 
-For this purpose, we can use a landcover data from NLCD for 2006 and 2011 (Figure \ref{FIG:CHANGEDET1}).
+For this purpose, we can use a land cover data from NLCD for 2006 and 2011 (Figure \ref{FIG:CHANGEDET1}).
 Both of these datafiles need to have the same extent and resolution.
 
 Firstly, we need to create a grid of signatures for both GeoTIFF files.
@@ -242,7 +242,7 @@ As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ES
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{augusta2011_seg.png}
-	\caption{Segments of landcover patterns of the 3km scale for Augusta}
+	\caption{Segments of land cover patterns of the 3km scale for Augusta}
 	\label{FIG:SEG1}
 \end{figure}
 
@@ -263,7 +263,7 @@ In this example it is 0.82.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{segmentation_qualityall.png}
-	\caption{Quality of the segmentation of landcover patterns}
+	\caption{Quality of the segmentation of land cover patterns}
 	\label{FIG:SEG3}
 \end{figure}
 
@@ -493,11 +493,11 @@ gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv
 \end{lstlisting}
 \end{minipage}
 
-For example, we want to find groups of areas with similar pattern of a land-cover in scale of 3 kilometers.
+For example, we want to find groups of areas with similar pattern of a land cover in scale of 3 kilometers.
 Firstly, we need to calculate a signature grid with the size and shift options set to 100 (30 meters resolution multiplied by 100 is 3 kilometers).
 Next, we convert the signature grid to a text file.
 This new file will be an output to for the calculations of a distance matrix.
-A default similarity measure, Jensen-Shannon divergence, can be used here, as it is suitable for a land-cover data.
+A default similarity measure, Jensen-Shannon divergence, can be used here, as it is suitable for a land cover data.
 
 Created distance matrix can be used in R:
 
