@@ -1,4 +1,4 @@
-In this section, the basic GeoPAT procedures are presented. These are: 
+In this section, the basic GeoPAT procedures are presented: 
 
 \begin{itemize}
 	\item {\bf Search} - search for areas similar to a query
@@ -7,9 +7,9 @@ In this section, the basic GeoPAT procedures are presented. These are:
 	\item {\bf Clustering} - grouping patterns that are similar to each other
 \end{itemize}
 
-The procedures are explained using the workflow schemes and examples.
+The procedures are explained using several workflow schemes and examples.
 The examples how to process categorical data are shown on a $42\times 69$ km ($1400\times 2300$ px) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}).
-This area is characterized by high diversity of land cover categories and patterns.
+This area is characterized by a high diversity of land cover categories and patterns.
 Thus it is perfect for various pattern analyzes.
 
 \begin{figure}[H]
@@ -19,7 +19,7 @@ Thus it is perfect for various pattern analyzes.
 	\label{FIG:AUGUSTA}
 \end{figure}
 
-Examples of time-series analysis are based on monthly sums of precipitation for area of Great Britain from the WorldClim database (Figure \ref{FIG:PRCP}).
+Examples of time-series analysis are based on monthly sums of precipitation for area of Great Britain from the WorldClim database (\cite{hijmans2005very}; Figure \ref{FIG:PRCP}).
 It consists of twelve raster files, where each file has 240 rows and 319 columns.
 Precipitation values are expressed in millimeters.
 
@@ -34,11 +34,11 @@ Precipitation values are expressed in millimeters.
 
 \subsection{Search}
 
-Search functionality enables user to produce maps of similarity. 
+Search functionality enables users to produce maps of similarity. 
 These maps show the level of similarity between a specified motifel (query) and a grid of motifels.
 The input is one or more GeoTIFF raster maps (depending on a data and signature type; see appendix \ref{signatures} for more information), and XY coordinates of one or more points in space.
-The result is one or more GeoTIFF raster maps which have the same extent as the grid of motifels specified by user.
-The number of resulting maps is the same as the number of points provided.
+The result is one or more GeoTIFF raster maps that have the same extent as a grid of motifels specified by user.
+The number of output maps is the same as the number of points provided.
 The workflows for categorical and time series maps differ.
 
 \subsubsection{Search on categorical maps}
@@ -68,7 +68,7 @@ For example, we can search for the most similar motifels to those located in the
 Firstly, we need to build a grid of a motifels of a desired signature, size, shift, etc. 
 Secondly, query motifels are extracted using a set of coordinates as an input. 
 Finally, we can obtain the maps of similarity by comparing the grid from the first step with the query motifels from the second step.
-The four final maps (Figure \ref{FIG:SEARCH2} shows similarity to each of the given points, where the brightest color indicates the most similar areas and the darkest color indicates the least similar areas.
+The four final maps (Figure \ref{FIG:SEARCH2}) shows similarity to each of the given points, where the brightest color indicates the most similar areas and the darkest color indicates the least similar areas.
 
 \begin{figure}[H]
 	\centering
@@ -121,10 +121,7 @@ For this purpose, we need to have maps of precipitation (e.g. twelve rasters wit
 \end{wrapfigure}
 
 Firstly, a grid which contains temporal patterns of precipitation need to be built based on the precipitation rasters.
-
-Secondly, query signatures are extracted based on the coordinates of points of interest - in our case cities of London, Glasgow, Cardiff, Fort William, and Dublin. 
-
-Finally, we can create the maps of similarity (one for each city). 
+Secondly, query signatures are extracted based on the coordinates of points of interest - in our case cities of London, Glasgow, Cardiff, Fort William, and Dublin. Finally, we can create the maps of similarity (one for each city). 
 To do so, we need to specify the similarity measure proper for time series data, such as {\it tsEUC} (time series - euclidean distance).
 Our final five maps show where the annual precipitation patterns are the most and the least similar to those in our selected cities (Figure \ref{FIG:SEARCHTS2}). \\\\\\\\\\
 
@@ -230,8 +227,12 @@ For example, we want to find and delineate areas of similar land cover patterns.
 Firstly, we need to create a grid of signatures. 
 Several options could be specified, such as the size and shift, type of motifel's signature, and normalization method.
 Values of size and shift could be used to delineate patterns in different spatial scale, while the motifel's signature type and normalization method need to be selected based on the output data type.
-We want to create segments with a spatial scale of three kilometers. 
-To do so, we must to set the size and shift to 100 (one cell has resolution of 30 meters; 30 meters x 100 = 3 kilometers).
+We want to create segments with a spatial scale of six kilometers. 
+To do so, we must to set adequate size and shift. 
+As a default, segmentation process uses the brick topology, in which rectangular areas are merged to create each brick.
+Therefore, to create segments with a spatial scale of six kilometers (area of 36 sq km), we need to set both size and shift to 100.
+It is because one cell has resolution of 30 meters, and firstly using {\tt gpat_gridhis} it is combined into a grid of signature of 3 kilometers (30 meters x 100 = 3 kilometers), and secondly using {\tt gpat_segment} it is merged into bricks of four grids of signatures (6 by 6 kilometers). 
+% See Appendix \ref{topology} for the details.
 We left the rest of the parameters to the default values, with the signature in form of spatial coocurrence of the categories and the pdf normalization.
 
 Secondly, the output of the previous step is used for segmentation. 
@@ -242,7 +243,7 @@ As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ES
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{augusta2011_seg.png}
-	\caption{Segments of land cover patterns of the 3km scale for Augusta}
+	\caption{Segments of land cover patterns of the 6km scale for Augusta}
 	\label{FIG:SEG1}
 \end{figure}
 
