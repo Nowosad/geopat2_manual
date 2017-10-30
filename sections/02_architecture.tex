@@ -810,6 +810,9 @@ Skips hierarchical phase of the segmentation.
 
 As the default, the 6-connected brick wall topology is used, where square motifels are “laid” in alternative layers with each layer shifted a half motifel length with respect to the previous one like in masonry. 
 This option sets quad mode, which means that the rectangular grid topology with 4-connectivity will be used. 
+Important note: the rectangular grid topology performs calculations on an input grid of signatures. 
+However, as a default, neighboring signatures are merged to create the brick wall topology.
+% See Appendix \ref{topology} for the details.
 
 \newoption{threads (-t)}
 
