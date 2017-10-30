@@ -231,7 +231,7 @@ We want to create segments with a spatial scale of six kilometers.
 To do so, we must to set adequate size and shift. 
 As a default, segmentation process uses the brick topology, in which rectangular areas are merged to create each brick.
 Therefore, to create segments with a spatial scale of six kilometers (area of 36 sq km), we need to set both size and shift to 100.
-It is because one cell has resolution of 30 meters, and firstly using {\tt gpat_gridhis} it is combined into a grid of signature of 3 kilometers (30 meters x 100 = 3 kilometers), and secondly using {\tt gpat_segment} it is merged into bricks of four grids of signatures (6 by 6 kilometers). 
+It is because one cell has resolution of 30 meters, and firstly using {\tt gpat\_gridhis} it is combined into a grid of signature of 3 kilometers (30 meters x 100 = 3 kilometers), and secondly using {\tt gpat\_segment} it is merged into bricks of four grids of signatures (6 by 6 kilometers). 
 % See Appendix \ref{topology} for the details.
 We left the rest of the parameters to the default values, with the signature in form of spatial coocurrence of the categories and the pdf normalization.
 
