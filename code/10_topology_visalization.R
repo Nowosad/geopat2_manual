@@ -73,9 +73,9 @@ grid3plot = augusta3 +
 grid3plot
 
 library(gridExtra)
-grid_plot = arrangeGrob(grid0plot, grid1plot, grid2plot, grid3plot, ncol = 1)
+grid_plot = arrangeGrob(grid1plot, grid2plot, ncol = 1)
 
-ggsave("../figs/topology.png", grid_plot, width = 6.44, height = 7.85)
+ggplot2::ggsave("../figs/topology100.png", grid_plot, width = 6.44, height = 7.85)
 ## the end --------------------------------------------------------------------
 setwd("..")
 unlink("tmp", recursive = TRUE, force = TRUE)
