@@ -118,10 +118,8 @@ Defines method of calculating signatures of motifels. GeoPAT offers the followin
 	\item cooc -- Spatial coocurrence of categories
 	\item sdec -- Simple 2-level decomposition
 	\item fdec -- Full decomposition
-	\item lbp -- Histogram of local binary patterns
 	\item lind -- Landscape indices vector
 	\item linds -- Selected landscape indices vector
-	\item jcov -- J-Coocuttence vector
 	\item ent -- Shannon entropy
 \end{itemize}
 See Appendix \ref{signatures} for the details.
@@ -185,14 +183,84 @@ gpat_gridts [-nh] -i <file_name> [-i <file_name>]... -o <file_name> [-d <n>]
 
 \newoption{input}
 
+Defines raster layers which will be used as a source for bulding time series grid.
+Number of input layers has to be equal to time serie length times size of time serie element.
+In order to provide input maps, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
+The order of input layers is important. Following time serie:
+
+\begingroup
+\begin{equation} \label{eq:time_serie}
+ts = \begin{bmatrix}
+attr_{1,1}, & attr_{2,1}, &  attr_{3,1} \\ 
+attr_{1,2}, & attr_{2,2}, &  attr_{3,2} \\ 
+attr_{1,3}, & attr_{2,3}, &  attr_{3,3} \\ 
+attr_{1,4}, & attr_{2,4}, &  attr_{3,4} \\
+attr_{1,5}, & attr_{2,5}, &  attr_{3,5} \\
+attr_{1,6}, & attr_{2,6}, &  attr_{3,6}
+\end{bmatrix}
+\end{equation}
+\endgroup
+
+has lentgth of 6 and each element contains 3 attributes. For such time serie input GeoTiff (each GeoTiff contains one attribute) files should be in following order:
+$attr_{1,1}$, $attr_{2,1}$, $attr_{3,1}$,
+$attr_{1,2}$, $attr_{2,2}$, $attr_{3,2}$, 
+ ... 
+$attr_{1,5}$, $attr_{2,5}$, $attr_{3,5}$,
+$attr_{1,6}$, $attr_{2,6}$, $attr_{3,6}$.
+
+In this case a call of gpat\_gridts should look like: \\
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridts -i attr11.tif -i attr21.tif -i attr31.tif -i attr12.tif, ... -o new_grid
+\end{lstlisting}
+\end{minipage}
+
+
+
 \newoption{output}
+
+Output consists of two files: one of them is a dataset containing a grid of time series in binary form, the other one is a header text file (the .hdr extension) containing a grid topology and an information about the input data parameters.
+Modifying the header is strongly discouraged as it may cause some calculations to fail. 
+Structure of the header is as follows:\\
+
+\begin{itemize}
+	\item dim -- number of dimensions (for time series it is 2)
+	\item dims -- size of each dimension (two numbers: size of time serie element, length of time serie)
+	\item type -- type of data stored in the grid (integer, float, etc.)
+	\item at0 -- top left x
+	\item at1 -- w-e grid resolution
+	\item at2 -- rotation (0 if grid is north-up)
+	\item at3 -- top left y
+	\item at4 -- rotation (0 if grid is north-up)
+	\item at5 -- n-s grid resolution
+	\item rows -- number of rows in the grid
+	\item cols -- number of cols in the grid
+	\item proj -- projection in wkt style
+	\item desc -- command used to create the grid
+\end{itemize}
 
 \newoption{dimension}
 
+The dimension of a time serie element. This number describes length of vectors that
+builds a time serie.
+
 \newoption{normalize}
 
-% \\\\
+An option to normalize each attribute to $[0.0, 1.0]$ globally.\\
+
 {\bf Description:}
+
+This module creates a grid of time series (grid of time pattern signatures).
+The output is a grid of the same spatial extent as the input raster map, with the same cell size.
+Time series are stored as numerical vectors in a binary form.
+The module outputs a header file (.hdr) containing a topology of a grid and a binary file containing time series ordered by rows.
+
+This module uses raster data in GeoTIFF format as an input. 
+Number of inpot files has to be equal to number of a time serie element dimension.
+
+The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_pointsts, gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grd2txt, and gpat\_globnorm}.
+
 
 \newparagraph{gpat\_pointshis}
 Calculates numerical signatures of individual motifels within a raster map.
@@ -245,10 +313,8 @@ GeoPAT offers the following methods:
 	\item cooc -- Spatial coocurrence of categories
 	\item sdec -- Simple 2-level decomposition
 	\item fdec -- Full decomposition
-	\item lbp -- Histogram of local binary patterns
 	\item lind -- Landscape indices vector
 	\item linds -- Selected landscape indices vector
-	\item jcov -- J-Coocuttence vector
 	\item ent -- Shannon entropy
 \end{itemize}
 See Appendix \ref{signatures} for details.
@@ -354,6 +420,8 @@ gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-
 
 \newoption{input}
 
+A grid file created by gpat\_gridts is an input for gpat\_pointsts.
+
 \newoption{output}
 
 Name of output text file containing signatures.
@@ -387,6 +455,14 @@ Useful when using the coordinate pair mode and when scenes are processed one by 
 If the append flag is used and the output file already exists, signatures will be appended at the end of file instead of overwriting it.
 \\\\
 {\bf Description:}
+
+This module extracts time serie for a given location or collection of locations.
+User provides coordinates of each location and optionally description of location. 
+The coordinates must be in the input grid's coordinate system. 
+Coordinates can be defined in the same way as in gpat\_pointshis. 
+
+The output text file can be used as an input to the following modules: {\tt gpat\_search}, {\tt gpat\_distmtx}.
+
 
 \newparagraph{gpat\_polygon}
 Calculates numerical signatures of irregular regions.
@@ -441,10 +517,8 @@ GeoPAT offers the following methods:
 	\item cooc -- Spatial coocurrence of categories
 	\item sdec -- Simple 2-level decomposition
 	\item fdec -- Full decomposition
-	\item lbp -- Histogram of local binary patterns
 	\item lind -- Landscape indices vector
 	\item linds -- Selected landscape indices vector
-	\item jcov -- J-Coocuttence vector
 	\item ent -- Shannon entropy
 \end{itemize}
 See Appendix \ref{signatures} for the details.
@@ -526,14 +600,12 @@ GeoPAT offers the following measures:
 	\item jsd -- Jensen Shannon Divergence
 	\item euc -- Euclidean distance
 	\item eucn -- Normalized euclidean distance
-	\item eucp -- Normalized euclidean distance (periodic)
 	\item wh -- Wave-Hedges distance
-	\item jac -- Jaccard distance
 	\item tsEUC -- time series - euclidean distance
-	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTW -- time series - Dynamic Time Warping distance
 	\item tsDTWP -- periodic time series - Dynamic Time Warping distance
-	\item tsDTWPa -- time series - Synchronized Dynamic Time Warping distance
+	\item tsEUCP -- periodic time series - euclidean distance
+	\item tsDTWPa -- periodic time series - Synchronized Dynamic Time Warping distance
 \end{itemize}
 See Appendix \ref{measures} for the details.
 
@@ -652,14 +724,12 @@ GeoPAT offers the following measures:
 	\item jsd -- Jensen Shannon Divergence
 	\item euc -- Euclidean distance
 	\item eucn -- Normalized euclidean distance
-	\item eucp -- Normalized euclidean distance (periodic)
 	\item wh -- Wave-Hedges distance
-	\item jac -- Jaccard distance
 	\item tsEUC -- time series - euclidean distance
-	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTWP -- periodic time series - Dynamic Time Warping distance
-	\item tsDTWPa -- time series - Synchronized Dynamic Time Warping distance
+	\item tsDTWPa -- periodic time series - Synchronized Dynamic Time Warping distance
 \end{itemize}
 See Appendix \ref{measures} for the details.
 
@@ -746,14 +816,12 @@ GeoPAT offers the following measures:
 	\item jsd -- Jensen Shannon Divergence
 	\item euc -- Euclidean distance
 	\item eucn -- Normalized euclidean distance
-	\item eucp -- Normalized euclidean distance (periodic)
 	\item wh -- Wave-Hedges distance
-	\item jac -- Jaccard distance
 	\item tsEUC -- time series - euclidean distance
-	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTWP -- periodic time series - Dynamic Time Warping distance
-	\item tsDTWPa -- time series - Synchronized Dynamic Time Warping distance
+	\item tsDTWPa -- periodic time series - Synchronized Dynamic Time Warping distance
 \end{itemize}
 See Appendix \ref{measures} for the details.
 
@@ -870,14 +938,12 @@ GeoPAT offers the following measures:
 	\item jsd -- Jensen Shannon Divergence
 	\item euc -- Euclidean distance
 	\item eucn -- Normalized euclidean distance
-	\item eucp -- Normalized euclidean distance (periodic)
 	\item wh -- Wave-Hedges distance
-	\item jac -- Jaccard distance
 	\item tsEUC -- time series - euclidean distance
-	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTWP -- periodic time series - Dynamic Time Warping distance
-	\item tsDTWPa -- time series - Synchronized Dynamic Time Warping distance
+	\item tsDTWPa -- periodic time series - Synchronized Dynamic Time Warping distance
 \end{itemize}
 See Appendix \ref{measures} for the details.
 
@@ -1056,14 +1122,12 @@ GeoPAT offers the following measures:
 	\item jsd -- Jensen Shannon Divergence
 	\item euc -- Euclidean distance
 	\item eucn -- Normalized euclidean distance
-	\item eucp -- Normalized euclidean distance (periodic)
 	\item wh -- Wave-Hedges distance
-	\item jac -- Jaccard distance
 	\item tsEUC -- time series - euclidean distance
-	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTW -- time series - Dynamic Time Warping distance
+	\item tsEUCP -- periodic time series - euclidean distance
 	\item tsDTWP -- periodic time series - Dynamic Time Warping distance
-	\item tsDTWPa -- time series - Synchronized Dynamic Time Warping distance
+	\item tsDTWPa -- periodic time series - Synchronized Dynamic Time Warping distance
 \end{itemize}
 See Appendix \ref{measures} for the details.
 
