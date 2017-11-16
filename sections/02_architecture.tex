@@ -528,6 +528,11 @@ See Appendix \ref{normalization} for the details.
 Normalization method used should depend on a selected signature method. 
 For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, sdec, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
 
+\newoption{max buffer size}
+
+As a default, the {\tt gpat\_polygon} module uses up to 4096 Mb (4 Gb) of RAM. 
+This could not be enough for large files, therefore this option allows to change the memory limit. 
+
 \newoption{threads (-t)}
 
 The module is parallel, therefore use more than one processing thread can be used in order to speed up calculations. 
