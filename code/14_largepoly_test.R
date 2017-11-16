@@ -10,7 +10,7 @@ system("gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta
 system("gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100.tif -o Augusta2011_psign.txt -s 'ent' -n none")
 
 ##  new gpat version lower test-------------------------------------------------
-system("gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100.tif -o Augusta2011_psign.txt -s 'ent' -n none -m 30")
+system("gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100.tif -o Augusta2011_psign.txt -s 'ent' -n none -m 20") #should fail
 
 ## gpat clustering  prep -----------------------------------------------------
 system("gdalwarp -tr 1 1 Augusta2011.tif Augusta20111.tif")
@@ -19,7 +19,7 @@ system("gpat_segment -i Augusta20111_grid100 -o Augusta20111_seg100.tif -v Augus
 system("gpat_polygon -i Augusta20111.tif -e Augusta20111_seg100.tif -o Augusta20111_psign.txt -s 'ent' -n none")
 
 ## new gpat version ---------------------------------------------------------
-system("gpat_polygon -i Augusta20111.tif -e Augusta20111_seg100.tif -o Augusta20111_psign.txt -s 'ent' -n none -m 16000")
+system("gpat_polygon -i Augusta20111.tif -e Augusta20111_seg100.tif -o Augusta20111_psign.txt -s 'ent' -n none -m 24000") #should work
 
 ## clean --------------------------------------------------------------------
 setwd("..")
