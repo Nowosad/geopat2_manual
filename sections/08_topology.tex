@@ -1,8 +1,7 @@
 % intro
 
 Basic concept in GeoPAT 2.0 is to divide a raster into a regular grid of motifels.
-This grid encapsulate a complex content - a pattern corresponding to composition and spatial
-configuration of cells in each motifels.
+This grid encapsulate a complex content - a pattern corresponding to composition and spatial configuration of cells in each motifels.
 For the geoprocessing operations, such as search and comparison, a grid of motifels has a simple rectangular grid topology (left panel in Figure \ref{FIG:TOPO1}). 
 
 \begin{figure}[H]
@@ -37,13 +36,13 @@ For example, we created a new grid using {\tt gpat\_gridhis} with the size and s
 This means that each motifel encapsulates pattern in an area of 9 sq km (one cell size is 30 meters; 30 meters x 100 = 3 km; 3 km x 3km = 9 sq km).
 However, the segmentation module uses the brick topology as a default.
 Thus, neighboring motifels are merged and create a new "brick" motifels.
-This time each motifel encapsulates pattern in an area of 36 sq km (9 sq km motifels are combined into quadruples).
+As a result each motifel encapsulates pattern in an area of 36 sq km (9 sq km motifels are combined into quadruples).
 This means that if we want to segment patterns in scale of 9 sq km, we need to create a new grid of the size and shift twice smaller - 50.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{topology100.png}
-	\caption{Comparision between the rectangular grid topology and the brick topology for Augusta}
+	\caption{Comparison between the rectangular grid topology and the brick topology for Augusta}
 	\label{FIG:TOPO3}
 \end{figure}
 

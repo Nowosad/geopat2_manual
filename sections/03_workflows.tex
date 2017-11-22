@@ -9,8 +9,7 @@ In this section, the basic GeoPAT procedures are presented:
 
 The procedures are explained using several workflow schemes and examples.
 The examples how to process categorical data are shown on a $42\times 69$ km ($1400\times 2300$ px) part of the National Land Cover Dataset (NLCD) covering area around the city of Augusta, GA (Figure \ref{FIG:AUGUSTA}).
-This area is characterized by a high diversity of land cover categories and patterns.
-Thus it is perfect for various pattern analyzes.
+This area is characterized by a high diversity of land cover categories and patterns and thus it is perfect for various pattern analyzes.
 
 \begin{figure}[H]
 	\centering
@@ -68,7 +67,7 @@ For example, we can search for the most similar motifels to those located in the
 Firstly, we need to build a grid of a motifels of a desired signature, size, shift, etc. 
 Secondly, query motifels are extracted using a set of coordinates as an input. 
 Finally, we can obtain the maps of similarity by comparing the grid from the first step with the query motifels from the second step.
-The four final maps (Figure \ref{FIG:SEARCH2}) shows similarity to each of the given points, where the brightest color indicates the most similar areas and the darkest color indicates the least similar areas.
+The four final maps (Figure \ref{FIG:SEARCH2}) show similarity to each of the given points, where the brightest color indicates the most similar areas and the darkest color indicates the least similar areas.
 
 \begin{figure}[H]
 	\centering
@@ -97,7 +96,7 @@ Figure \ref{FIG:SEARCHTS} presents general workflow path for producing similarit
 \end{figure}
 
 The first step is to prepare signature files for both, grid of motifels and query motifels, using two separate modules, {\tt gpat\_gridts} and {\tt gpat\_pointsts} respectively. 
-The second step is to use these signature files as inputs to {\tt gpat\_search} module in order to the produce similarity maps.\\\\
+The second step is to use these signature files as inputs to the {\tt gpat\_search} module in order to the produce similarity maps.\\\\
 
 {\bf Example:}
 
@@ -120,7 +119,7 @@ For this purpose, we need to have maps of precipitation (e.g. twelve rasters wit
 	\label{FIG:SEARCHTS1}
 \end{wrapfigure}
 
-Firstly, a grid which contains temporal patterns of precipitation need to be built based on the precipitation rasters.
+Firstly, a grid which contains temporal patterns of precipitation needs to be built based on the precipitation rasters.
 Secondly, query signatures are extracted based on the coordinates of points of interest - in our case cities of London, Glasgow, Cardiff, Fort William, and Dublin. Finally, we can create the maps of similarity (one for each city). 
 To do so, we need to specify the similarity measure proper for time series data, such as {\it tsEUC} (time series - euclidean distance).
 Our final five maps show where the annual precipitation patterns are the most and the least similar to those in our selected cities (Figure \ref{FIG:SEARCHTS2}). \\\\\\\\\\
@@ -138,7 +137,7 @@ Our final five maps show where the annual precipitation patterns are the most an
 \subsection{Change detection}
 
 Change detection module provides a way to compare patterns between two grids-of-scenes.
-The output map show the level of similarity between two inputs.
+The output map shows the level of similarity between two inputs.
 Figure \ref{FIG:CHANGE} presents general workflow path for producing maps of change. 
 
 \begin{figure}[H]
@@ -176,8 +175,8 @@ It is important to remember that both of the created grid of signatures must by 
 \end{figure}
 
 Secondly, the output map is created based on the grids of signatures.
-The final map shows where a land cover pattern stayed the same (value of 1) and where it changed. 
-The lowest values indicate the biggest change of a land cover pattern.
+The final map shows where a land cover pattern stayed the same (value of 1) and where it has changed. 
+The lowest values indicate the biggest change in a land cover pattern.
 
 \begin{figure}[H]
 	\centering
@@ -193,7 +192,7 @@ The lowest values indicate the biggest change of a land cover pattern.
 Segmentation module enables user to create maps of segments.
 Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjacent segments.
 The input is a grid of signatures.
-The result is a raster (GeoTIFF) and vector (ESRI Shapefile) file containing the segments.
+The result are a raster (GeoTIFF) and vector (ESRI Shapefile) files containing the segments.
 Quality of segmentation could be also determined with raster maps of inhomogeneity, isolation, and overall quality.
 Figure \ref{FIG:SEGMENT} presents general workflow path for segmentation. 
 
@@ -226,9 +225,9 @@ For example, we want to find and delineate areas of similar land cover patterns.
 
 Firstly, we need to create a grid of signatures. 
 Several options could be specified, such as the size and shift, type of motifel's signature, and normalization method.
-Values of size and shift could be used to delineate patterns in different spatial scale, while the motifel's signature type and normalization method need to be selected based on the output data type.
-We want to create segments with a spatial scale of six kilometers. 
-To do so, we must to set adequate size and shift. 
+Values of size and shift could be used to delineate patterns in a different spatial scale, while the motifel's signature type and normalization method need to be selected based on the output data type.
+Let's say that we want to create segments with a spatial scale of six kilometers. 
+To do so, we must set an adequate size and shift. 
 As a default, segmentation process uses the brick topology, in which rectangular areas are merged to create each brick.
 Therefore, to create segments with a spatial scale of six kilometers (area of 36 sq km), we need to set both size and shift to 100.
 It is because one cell has resolution of 30 meters, and firstly using {\tt gpat\_gridhis} it is combined into a grid of signature of 3 kilometers (30 meters x 100 = 3 kilometers), and secondly using {\tt gpat\_segment} it is merged into bricks of four grids of signatures (6 by 6 kilometers). 
@@ -283,7 +282,7 @@ gpat_segquality -i GB_pr_grid -s GB_pr_seg.tif -g GB_pr_seg_ih.tif -o GB_pr_seg_
 \end{minipage}
 
 The first step is to prepare a signature file for the dataset, using the {\tt gpat\_gridts} module.
-The second step is to use this signature file as input to the {\tt gpat\_segment} module in order to the produce a segmentation map. 
+The second step is to use this signature file as input to the {\tt gpat\_segment} module in order to produce a segmentation map. 
 The third, optional, step is to determine a quality of segmentation using the {\tt gpat\_segquality} module.\\\\
 
 \newpage
@@ -330,14 +329,14 @@ Clustering module enables users to create distance matrices, which can be later 
 Distance matrix can be created for selected motifels, a grid of motifels, and predefined regions (e.g. segments).
 
 Examples in this section are using R (\cite{R}) for a clustering and visualization of the results. 
-They require the latest versions of R (\url{https://cloud.r-project.org/}) and a set of packages installed by executing the below code in R:
+They require the latest versions of R (\url{https://cloud.r-project.org/}) and a set of packages (\cite{rsf,rtmap,rrgeopat2}) installed by executing the below code in R:
 
 \begin{minipage}{\linewidth}
 \lstset{backgroundcolor=\color{antiflashwhite}}
 \begin{lstlisting}
 install.packages("sf")
 install.packages("tmap")
-install.packages("nowosad/rgeopat2")
+install.packages("rgeopat2")
 \end{lstlisting}
 \end{minipage}
 
@@ -381,8 +380,8 @@ points(sel_points, pch = 20, cex = 3, col = sel_points$class)
 \end{lstlisting}
 \end{minipage}
 
-The {\tt gpat\_read\_distmtx} function reads a distance matrix from a file. 
-Next, this file is used for a clustering. 
+The {\tt gpat\_read\_distmtx} function reads a distance matrix from a text file. 
+Next, this file is used for clustering. 
 There are several clustering methods in R that accept a distance matrix as an input, such as hierarchical clustering ({\tt hclust}) and partitioning around medoids ({\tt cluster::pam}).
 Here, we use and visualize a result of hierarchical clustering (left panel of figure \ref{FIG:CLUSTER_POINTS2}).
 Based on the dendrogram, data is divided into five groups and the information about class numbers is added to the object containing our selected points.
@@ -426,7 +425,7 @@ gpat_distmtx -i GB_pr_points.txt -o GB_pr_distmat.csv -m tsEUC
 For example, we want to find cities in Great Britain with very similar temporal patterns of a monthly sum of precipitation. 
 For this purpose, we need to have twelve rasters with values of a monthly sum of precipitation for the whole area of Great Britain and the list of the cities coordinates (the GB\_cities.csv file).
 Firstly, we can create a signature grid. 
-Next step is to extract the signature only for the locations in our GB\ cities.csv file.
+Next step is to extract the signature only for the locations from the GB\ cities.csv file.
 Finally, we can calculate and export distance matrix using euclidean distance {\it tsEUC}.
 
 Created distance matrix can be used in R:
@@ -494,10 +493,10 @@ gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv
 \end{minipage}
 
 For example, we want to find groups of areas with similar pattern of a land cover in scale of 3 kilometers.
-Firstly, we need to calculate a signature grid with the size and shift options set to 100 (30 meters resolution multiplied by 100 is 3 kilometers).
+Firstly, we need to calculate a signature grid with the size and shift options set to 100 (30 meters resolution multiplied by 100 gives 3 kilometers).
 Next, we convert the signature grid to a text file.
 This new file will be an output to for the calculations of a distance matrix.
-A default similarity measure, Jensen-Shannon divergence, can be used here, as it is suitable for a land cover data.
+A default similarity measure, Jensen-Shannon divergence, can be used here as it is suitable for a land cover data.
 
 Created distance matrix can be used in R:
 
