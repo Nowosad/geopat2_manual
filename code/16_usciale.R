@@ -34,7 +34,7 @@ p = ggplot(segment(ddata)) +
         scale_y_reverse(expand = c(0.2, 0)) + 
         theme_dendro()
 
-png("dendro.png", width = 600, height = 700)
+png("dendro.png", width = 320, height = 400)
 p
 dev.off()
 
@@ -46,24 +46,31 @@ my_grid2 = my_grid %>%
         dplyr::group_by(class) %>% 
         dplyr::summarise()
 
-# augusta2011t = raster("Augusta2011t.tif") %>% 
-#         as.factor()
-# 
-# rat = levels(augusta2011t)[[1]]
-# rat[["landcoveaugusta2011"]] = rat$ID
-# levels(augusta2011t) = rat
-# 
-# lc_colors = readr::read_delim('nlcd_colors.txt', col_names = FALSE, delim = " ") %>% 
-#         dplyr::mutate(hex=rgb(X2, X3, X4, , maxColorValue = 255)) %>% 
-#         dplyr::filter(X1 %in% rat$ID)
-# 
-# l_map = levelplot(augusta2011t, col.regions = lc_colors$hex, margin = FALSE,
-#           xlab = NULL, ylab = NULL, colorkey = FALSE, scales = list(draw = FALSE),
-#           main = "Clustering") +
+augusta2011t = raster("Augusta2011t.tif") %>%
+        as.factor()
+
+rat = levels(augusta2011t)[[1]]
+rat[["landcoveaugusta2011"]] = rat$ID
+levels(augusta2011t) = rat
+
+lc_colors = readr::read_delim('nlcd_colors.txt', col_names = FALSE, delim = " ") %>%
+        dplyr::mutate(hex=rgb(X2, X3, X4, , maxColorValue = 255)) %>%
+        dplyr::filter(X1 %in% rat$ID)
+
+l_map = levelplot(augusta2011t, col.regions = lc_colors$hex, margin = FALSE,
+          xlab = NULL, ylab = NULL, colorkey = FALSE, scales = list(draw = FALSE),
+          main = "")
+
+# +
 #         layer(sp.polygons(as(my_grid2, "Spatial"), lwd = 1, col = 'black',
 #                           fill = my_grid2$class, alpha = 1))
 
-png("cluster_map.png", width = 600, height = 700)
+
+png("precluster_map.png", width = 320, height = 400)
+plot(l_map)
+dev.off()
+
+png("cluster_map.png", width = 320, height = 400)
 plot(my_grid2, main = "Clusters")
 dev.off()
 
