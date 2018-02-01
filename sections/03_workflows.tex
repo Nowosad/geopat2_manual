@@ -509,7 +509,7 @@ dist_matrix = gpat_read_distmtx("Augusta2011_matrix_grid.csv")
 hclust_result = hclust(d = dist_matrix, method = "ward.D2")
 plot(hclust_result, labels = FALSE)
 hclust_cut = cutree(hclust_result, 5)
-my_grid = gpat_gridcreate("Augusta2011_grid100.hdr")
+my_grid = gpat_create_grid("Augusta2011_grid100.hdr")
 my_grid$class = hclust_cut
 plot(my_grid)
 \end{lstlisting}
@@ -518,7 +518,7 @@ plot(my_grid)
 The {\tt gpat\_read\_distmtx} function reads a distance matrix from a file. 
 Next, we use and visualize a result of hierarchical clustering (left panel of figure \ref{FIG:CLUSTER_GRID2}).
 Based on the dendrogram, data is divided into five groups and the information about class numbers is added to the object containing our selected points.
-Using the {\tt gpat\_gridcreate} function, we create a new grid polygon and add the class numbers to it.
+Using the {\tt gpat\_create\_grid} function, we create a new grid polygon and add the class numbers to it.
 Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_GRID2}).
 
 \begin{figure}[H]
