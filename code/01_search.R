@@ -40,6 +40,7 @@ dev.off()
 ## search his calculations --------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o grid -s cooc -z 50 -f 50 -n pdf")
 system("gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf --xy_file=coordinates.txt")
+# system("gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf -x 1260500 -y 1277638 -d myloc")
 system("gpat_search -i grid -r query_signatures.txt")
 
 ## the second figure --------------------------------------------------------
