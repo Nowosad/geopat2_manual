@@ -15,7 +15,7 @@ This enables spatial analysis such as search, change detection, segmentation, an
 
 ![](figs/logo.png)
 
-The GeoPAT 2.0 software and manual is available at http://sil.uc.edu/cms/index.php?id=geopat2.
+The GeoPAT 2.0 software and manual are available at http://sil.uc.edu/cms/index.php?id=geopat2.
 
 ## How to cite GeoPAT 2.0
 
