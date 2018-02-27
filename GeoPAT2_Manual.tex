@@ -1,4 +1,5 @@
-\documentclass[12pt,margin=0.5in]{article}
+% \documentclass[12pt,margin=0.5in]{article}
+\documentclass[a4paper, 11pt]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
@@ -43,12 +44,30 @@
 
 \graphicspath{{./figs/}{./data/}}
 
-\title{GeoPAT 2.0 user's manual} 
-\author{{\bf Note:} This manual is work in progress \\ \\ \url{http://sil.uc.edu}}
-\date{\today}
-
 \begin{document}
-\maketitle
+
+\begin{titlepage} 
+	
+	\raggedleft % Right align the title page
+	
+	\rule{1pt}{\textheight} % Vertical line
+	\hspace{0.05\textwidth} % Whitespace between the vertical line and title page text
+	\parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
+		
+		{\Huge\bfseries GeoPAT 2.0 \\[0.5\baselineskip] user's manual}\\[2\baselineskip] % Title
+		{\Large\textsc{pawel netzel}}\\ % Author name, lower case for consistent small caps
+		{\Large\textsc{jakub nowosad}}\\ % Author name, lower case for consistent small caps
+		{\Large\textsc{jaroslaw jasiewicz}}\\ % Author name, lower case for consistent small caps
+		{\Large\textsc{jacek niesterowicz}}\\ % Author name, lower case for consistent small caps
+		{\Large\textsc{tomasz stepinski}} % Author name, lower case for consistent small caps
+
+		\vspace{0.5\textheight} % Whitespace between the title block and the publisher
+		{\large\textit{\url{http://sil.uc.edu}}}\\
+		{\large\textit{Cincinnati 2018}}\\
+	}
+
+\end{titlepage}
+
 \newpage
 
 \tableofcontents
