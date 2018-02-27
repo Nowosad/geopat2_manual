@@ -2,7 +2,7 @@ Distance, which assesses the degree of dissimilarity between two scenes, is the 
 When the value of distance function is equal to zero identical histograms are indicated, and thus scenes have identical or very similar patterns, whereas large values of the distance function indicate very different histograms and scenes having significantly different patterns. 
 Note that all histogram distance measures are heuristic and no single measure will work well with all signatures.
 
-\subsection{Jensen Shannon Divergence ({\it jsd})}
+\section{Jensen Shannon Divergence ({\it jsd})}
 
 This measure (\cite{Lin1991}) expresses the informational distance between two histograms $P$ and $Q$ by calculating a deviation between the Shannon entropy of the mixture of the two histograms $(P+Q)/2$ (the second term in eq. \ref{eq:jensen_divergence} below) and the mean of their individual entropies (the second term in eq. \ref{eq:jensen_divergence}).
 The value of the Jensen-Shannon divergence is given by the following formula,
@@ -19,20 +19,20 @@ d_{JSD}=\sqrt{\sum\limits_{i=1}^{d}{
 \noindent where $d$ is the number of bins (the same for both histograms) and $P_i$ and $Q_i$ are the values of $i$th bin in the two histograms. 
 We have found Jensen-Shannon divergence works well (yields dissimilarity values in agreement with human visual perception) for comparison of land cover patterns as encapsulated by crossproduct signatures (\cite{Jasiewicz2013b,Stepinski2014JSTARS,Netzel2015}).
 
-\subsection{Triangular ({\it tri})}
+\section{Triangular ({\it tri})}
  
 This measure gives similar results to Jensen Shannon Divergence (\cite{connor2016tale}), while the calculation time is distinctly smaller.
 More information about this measure can be found in \cite{connor2016tale}.
 
-\subsection{Euclidean distance ({\it euc})}
+\section{Euclidean distance ({\it euc})}
 
 % paper Cha_2007_IJMMMAS.pdf
 
-\subsection{Normalized euclidean distance ({\it eucn})}
+\section{Normalized euclidean distance ({\it eucn})}
 
-% \subsection{Normalized euclidean distance (periodic) ({\it eucp})}
+% \section{Normalized euclidean distance (periodic) ({\it eucp})}
 
-\subsection{Wave-Hedges distance ({\it wh})}
+\section{Wave-Hedges distance ({\it wh})}
 
 This measure is designed to work with co-occurrence signature histograms that tend to be dominated by bins corresponding to adjacent cells having the same class. 
 The value of the Wave Hedges distance is given by the following formula (\cite{Cha2007}),
@@ -50,11 +50,11 @@ In Wave Hedges distance formula all present features contribute to the overall v
 In the case of the co-occurrence histogram this means that composition-related features and configuration-related features contribute equally to the distance value despite the heavy dominance of composition-related features in histograms stemming from all realistic scenes. 
 This makes the Wave Hedges distance particularly suitable for comparison of terrain scenes as encapsulated by co-occurrence signatures (\cite{Jasiewicz2014GMRH}).
 
-% \subsection{Cosine distance ({\it cos})}
+% \section{Cosine distance ({\it cos})}
 
 % paper Cha_2007_IJMMMAS.pdf #20
 
-\subsection{Jaccard distance ({\it jac})}
+\section{Jaccard distance ({\it jac})}
 
 This measure is an extension of the Jaccard similarity coefficient (\cite{Jaccard1908})
 , originally developed to assess a similarity between two sets, but used here for assessing the dissimilarity between two histograms. 
@@ -68,22 +68,22 @@ d_J= 1-\dfrac
 
 \noindent We have found that the Jaccard distance works well for comparison of land cover patterns as encapsulated by decomposition signatures.
 
-% \subsection{Rozicka distance ({\it roz})}
+% \section{Rozicka distance ({\it roz})}
 
 % paper Cha_2007_IJMMMAS.pdf
 
-% \subsection{Rozicka distance (extended) ({\it rozp})}
+% \section{Rozicka distance (extended) ({\it rozp})}
 
-% \subsection{Hassant distance ({\it hass})}
+% \section{Hassant distance ({\it hass})}
 
-\subsection{Euclidean distance - time series ({\it tsEUC})}
+\section{Euclidean distance - time series ({\it tsEUC})}
 
-\subsection{Euclidean distance - periodic time series ({\it tsEUCP})}
+\section{Euclidean distance - periodic time series ({\it tsEUCP})}
 
-\subsection{Dynamic Time Warping distance - time series ({\it tsDTW})}
+\section{Dynamic Time Warping distance - time series ({\it tsDTW})}
 
-\subsection{Dynamic Time Warping distance - periodic time series ({\it tsDTWP})}
+\section{Dynamic Time Warping distance - periodic time series ({\it tsDTWP})}
 
-\subsection{Synchronized Dynamic Time Warping distance - time series ({\it tsDTWPa})}
+\section{Synchronized Dynamic Time Warping distance - time series ({\it tsDTWPa})}
 
 \newpage

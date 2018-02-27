@@ -31,7 +31,7 @@ Precipitation values are expressed in millimeters.
 
 \FloatBarrier
 
-\subsection{Search}
+\section{Search}
 
 Search functionality enables users to produce maps of similarity. 
 These maps show the level of similarity between a specified motifel (query) and a grid of motifels.
@@ -40,7 +40,7 @@ The result is one or more GeoTIFF raster maps that have the same extent as a gri
 The number of output maps is the same as the number of points provided.
 The workflows for categorical and time series maps differ.
 
-\subsubsection{Search on categorical maps}
+\subsection{Search on categorical maps}
 Figure \ref{FIG:SEARCH} presents general workflow path for producing similarity maps using a categorical raster data. 
 
 \begin{figure}[H]
@@ -85,7 +85,7 @@ The four final maps (Figure \ref{FIG:SEARCH2}) show similarity to each of the gi
 
 \FloatBarrier
 
-\subsubsection{Search on time series}
+\subsection{Search on time series}
 Figure \ref{FIG:SEARCHTS} presents general workflow path for producing similarity maps using a time-series raster data. 
 
 \begin{figure}[H]
@@ -134,7 +134,7 @@ Our final five maps show where the annual precipitation patterns are the most an
 
 \FloatBarrier
 
-\subsection{Change detection}
+\section{Change detection}
 
 Change detection module provides a way to compare patterns between two grids-of-scenes.
 The output map shows the level of similarity between two inputs.
@@ -187,7 +187,7 @@ The lowest values indicate the biggest change in a land cover pattern.
 
 \FloatBarrier
 
-\subsection{Segmentation \label{segmentation}}
+\section{Segmentation \label{segmentation}}
 
 Segmentation module enables user to create maps of segments.
 Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjacent segments.
@@ -203,7 +203,7 @@ Figure \ref{FIG:SEGMENT} presents general workflow path for segmentation.
 	\label{FIG:SEGMENT}
 \end{figure}
 
-\subsubsection{Segmentation on categorical maps}
+\subsection{Segmentation on categorical maps}
 
 {\bf Example:}
 
@@ -269,7 +269,7 @@ In this example it is 0.82.
 
 \FloatBarrier
 
-\subsubsection{Segmentation on time series}
+\subsection{Segmentation on time series}
 
 {\bf Example:}
 
@@ -323,7 +323,7 @@ In this example it is 0.67.
 
 \FloatBarrier
 
-\subsection{Clustering \label{clustering}}
+\section{Clustering \label{clustering}}
 
 Clustering module enables users to create distance matrices, which can be later used in a statistical software (such as R) to perform a clustering.
 Distance matrix can be created for selected motifels, a grid of motifels, and predefined regions (e.g. segments).
@@ -340,7 +340,7 @@ install.packages("rgeopat2")
 \end{lstlisting}
 \end{minipage}
 
-\subsubsection{Clustering of individual motifels}
+\subsection{Clustering of individual motifels}
 
 \begin{figure}[H]
 	\centering
@@ -469,7 +469,7 @@ For this purpose, we use a map of British Isles {\it british\_isles} from the {\
 
 \FloatBarrier
 
-\subsubsection{Clustering of a grid of motifels}
+\subsection{Clustering of a grid of motifels}
 
 \begin{figure}[H]
 	\centering
@@ -534,7 +534,7 @@ Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_GRID2}
 
 \FloatBarrier
 
-\subsubsection{Clustering of segments / predefined irregular regions}
+\subsection{Clustering of segments / predefined irregular regions}
 
 \begin{figure}[H]
 	\centering

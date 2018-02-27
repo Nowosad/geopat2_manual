@@ -1,4 +1,4 @@
-\subsection{General description}
+\section{General description}
 
 The GeoPAT consists of twelve modules (Fig. \ref{FIG:GPAT}).
 Five modules are designed for extracting pattern signatures from an original data grid, four modules for actual geoprocessing of the patterns, and three utility modules.
@@ -37,11 +37,11 @@ The role of utility modules ({\tt gpat\_grd2txt}, {\tt gpat\_globnorm}, {\tt gpa
   \item \texttt{gpat\_segquality} - calculate the quality metrics (inhomogeneity and isolation) of a segmentation
 \end{itemize}
 
-\subsection{GeoPAT Modules}
+\section{GeoPAT Modules}
 
-\subsubsection{Signature building}
+\subsection{Signature building}
 
-\newparagraph{gpat\_gridhis}
+\subsubsection{gpat\_gridhis}
 Creates a binary grid of signatures from a categorical raster map(s).
 \\\\
 Usage:
@@ -164,7 +164,7 @@ If shift and size is equal, windows will not overlap. Shift cannot be greater th
 
 The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grd2txt, and gpat\_globnorm}.
 
-\newparagraph{gpat\_gridts}
+\subsubsection{gpat\_gridts}
 Creates a grid of time series signatures from raster maps.
 \\\\
 Usage:
@@ -260,7 +260,7 @@ Number of input files has to be equal to number of the time series element dimen
 
 The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_pointsts}, {\tt gpat\_search}, {\tt gpat\_compare}, {\tt gpat\_segment}, {\tt gpat\_segquality}, {\tt gpat\_grd2txt}, and {\tt gpat\_globnorm}.
 
-\newparagraph{gpat\_pointshis}
+\subsubsection{gpat\_pointshis}
 Calculates numerical signatures of individual motifels within a raster map.
 \\\\
 Usage:
@@ -396,7 +396,7 @@ Example of the content of coordinates file:
 
 The output signature text file can be used as an input to the following modules: {\tt gpat\_search}, {\tt gpat\_distmtx}.
 
-\newparagraph{gpat\_pointsts}
+\subsubsection{gpat\_pointsts}
 Calculates numerical signatures of an individual cell within a time series data.
 \\\\
 Usage:
@@ -461,7 +461,7 @@ Coordinates can be defined in the same way as in gpat\_pointshis.
 
 The output text file can be used as an input to the following modules: {\tt gpat\_search}, {\tt gpat\_distmtx}.
 
-\newparagraph{gpat\_polygon}
+\subsubsection{gpat\_polygon}
 Calculates numerical signatures of irregular regions.
 \\\\
 Usage:
@@ -547,9 +547,9 @@ The module outputs a list of polygon labeled-signatures stored in the form of a 
 
 The output signature text file can be used as an input to the following modules: {\tt gpat\_search}, {\tt gpat\_distmtx}.
 
-\subsubsection{Similarity measuring}
+\subsection{Similarity measuring}
 
-\newparagraph{gpat\_search}
+\subsubsection{gpat\_search}
 Produces similarity maps which show similarity value between query motifels (scenes) and every motifel in the input grid.
 \\\\
 Usage:
@@ -661,7 +661,7 @@ Signature histogram of each query and signatures of histograms in a grid-of-scen
 The number of output map depends on the number of provided query scenes.
 Each output map gets its name from the name of query scene preceded by a prefix.
 
-\newparagraph{gpat\_compare}
+\subsubsection{gpat\_compare}
 Compares two grids-of-scenes (grid of histograms) in a scene-by-scene fashion. 
 \\\\
 Usage:
@@ -758,7 +758,7 @@ Each cell in the output file contains the value of similarity between correspond
 The module is useful for comparing data of the same area created at two different times.
 It is also useful for estimating the uncertainty of the results.
 
-\newparagraph{gpat\_segment}
+\subsubsection{gpat\_segment}
 Segments a grid-of-scenes into regions of uniform patterns.
 \\\\
 Usage:
@@ -908,7 +908,7 @@ Examples of regionalization include delineation of landscape types  (\cite{Niest
 Regionalization is achieved by clustering segments output by {\tt gpat\_segment} into a number of distinct pattern type classes.
 An output of the {\tt gpat\_distmtx} module could be used as a distance matrix for clustering in an external software.
 
-\newparagraph{gpat\_distmtx}
+\subsubsection{gpat\_distmtx}
 Computes a distance matrix between a collection of scenes.
 \\\\
 Usage:
@@ -970,8 +970,8 @@ Clustering itself is not implemented in GeoPAT 2.0; we recommend using clusterin
 An example of {\tt gpat\_distmtx} usage would be the clustering of a collection of cities on the basis of the patterns of land cover classes within their boundaries.
 See section \ref{clustering} for the details.
 
-\subsubsection{Tools}
-\newparagraph{gpat\_grd2txt}
+\subsection{Tools}
+\subsubsection{gpat\_grd2txt}
 Converts a binary file containing grid of signatures (grid-of-scenes) into a text file.
 \\\\
 Usage:
@@ -1006,7 +1006,7 @@ It can be an input for the {\tt gpat\_distmtx} module.
 
 This module converts a binary file containing grid of signatures (grid-of-scenes) into a text file.
 
-\newparagraph{gpat\_globnorm}
+\subsubsection{gpat\_globnorm}
 Normalize a grid of signatures globally. 
 \\\\
 Usage:
@@ -1066,7 +1066,7 @@ The default is 1.
 This module allows for a global normalization of a grid of signatures.
 It could be useful when pattern signatures should have the same scale of values before searching, comparison, segmentation, or clustering.
 
-\newparagraph{gpat\_segquality}
+\subsubsection{gpat\_segquality}
 Computes quality metrics of a segmentation
 \\\\
 Usage:

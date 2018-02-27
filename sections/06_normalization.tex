@@ -5,24 +5,24 @@ Decision on the normalization method and its type should depends on both, numeri
 For example, the class co-occurrence histogram signature should be locally normalized (used in {\tt gpat\_gridhis}, {\tt gpat\_pointshis} and {\tt gpat\_polygon}) before a segmentation using the Jensen Shannon Divergence measure.
 However, in case of a segmentation based on the landscape indices a global normalization {\tt gpat\_globnorm} is recommended, while a local normalization should be avoided.
 
-\subsection{01}
+\section{01}
 
 Normalization to the [0,1] interval.
 
-\subsection{pdf}
+\section{pdf}
 
 Normalization to pdf (sum(hi) = 1).
 
-\subsection{N01}
+\section{N01}
 
 Normalization to N(0,1) (hi = (hi - avg) / std).
 
-\subsection{ind01}
+\section{ind01}
 
 Normalization to [0,1] for 72 landscape indices.
 Used in the {\tt gpat\_globnorm} module only.
 It accepts only the grids built using the selected landscape indices vector signature ({\it linds}).
 
-\subsection{none}
+\section{none}
 
 Normalization process is skipped. 
