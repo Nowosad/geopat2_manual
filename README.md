@@ -1,5 +1,7 @@
 # GeoPAT 2.0 - the manual
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1185408.svg)](https://doi.org/10.5281/zenodo.1185408)
+
 ## Overview
 
 GeoPAT 2.0 (Geospatial Pattern Analysis Toolbox) is a standalone suite of modules written in C and dedicated to analysis of large Earth Science datasets in their entirety using spatial and/or temporal patterns. 
@@ -13,9 +15,11 @@ This enables spatial analysis such as search, change detection, segmentation, an
 
 ![](figs/logo.png)
 
-The GeoPAT 2.0 software is available at http://sil.uc.edu/cms/index.php?id=geopat2.
+The GeoPAT 2.0 software and manual is available at http://sil.uc.edu/cms/index.php?id=geopat2.
 
-The GeoPAT 2.0 manual is at https://rawgit.com/Nowosad/geopat2_manual/master/output/GeoPAT2_Manual.pdf.
+## How to cite GeoPAT 2.0
+
+**Netzel P., Nowosad J., Jasiewicz J., Niesterowicz J, Stepinski T.**, 2018. *GeoPAT 2.0: user's manual*. Zenodo. http://doi.org/10.5281/zenodo.1185408
 
 ## Contribution
 
