@@ -193,7 +193,7 @@ The lowest values indicate the biggest change in a land cover pattern.
 Segmentation module enables user to create maps of segments.
 Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjacent segments.
 The input is a grid of signatures.
-The result are a raster (GeoTIFF) and vector (ESRI Shapefile) files containing the segments.
+The result are a raster (GeoTIFF) and vector (GeoPackage) files containing the segments.
 Quality of segmentation could be also determined with raster maps of inhomogeneity, isolation, and overall quality.
 Figure \ref{FIG:SEGMENT} presents general workflow path for segmentation. 
 
@@ -238,7 +238,7 @@ We left the rest of the parameters to the default values, with the signature in 
 Secondly, the output of the previous step is used for segmentation. 
 There we can modify several parameters of segmentation, such as the similarity measure, and minimum and maximum distance threshold to build areas.
 The threshold values could be used to control a number of final segments.
-As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEG1}).
+As a result, we get the output segmentation as a raster (GeoTIFF) and vector (GeoPackage) (Figure \ref{FIG:SEG1}).
 
 \begin{figure}[H]
 	\centering
@@ -304,7 +304,7 @@ Firstly, we need to create a grid of signatures using twelve raster with monthly
 Depending on the input data it could be important to normalize data using the {\it --normalize} option.
 
 Secondly, the output of the previous step is used for segmentation.
-As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEGTS1}).
+As a result, we get the output segmentation as a raster (GeoTIFF) and vector (GeoPackage) (Figure \ref{FIG:SEGTS1}).
 
 We can evaluate the quality of a segmentation using two metrics - inhomogeneity and isolation (Figure \ref{FIG:SEGTS2}).
 Based on these two raster, it is possible to calculate the segmentation quality raster (Figure \ref{FIG:SEGTS3}).

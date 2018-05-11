@@ -771,7 +771,7 @@ gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n
 
 -i, --input=<file_name>  name of input files (GRID)
 -o, --output=<file_name> name of output file with segments (TIFF)
--v, --vector=<file_name> name of output vector file with segments (SHP)
+-v, --vector=<file_name> name of output vector file with segments (GPKG)
 --size=<n>               output resolution modyfier (default: 1)
 -m, --measure=<name>     similarity measure (use -l to list all measures; defult: jsd)
 -l, --list_measures      list all measures
@@ -806,7 +806,7 @@ In this map, regions (segments) are defined as areas of unique ids.
 
 \newoption{vector}
 
-Vector (shapefile) map of a segmentation.
+Vector (GeoPackage) map of a segmentation.
 This data is automatically created by vectorization of the output file.
 
 \newoption{size}
