@@ -13,13 +13,14 @@ This enables spatial analysis such as search, change detection, segmentation, an
 
 \begin{itemize}
   \item \textbf{Grid} is a topological structure applied to input data.
-Grid is a lattice of cells defined by its geographical position, spatial extent, number of cells, and cell size which defines grid resolution.
-Each cell in the grid contains a vector of values.
+  Grid is a lattice of cells defined by its geographical position, spatial extent, number of cells, and cell size which defines grid resolution.
+  Each cell in the grid contains a vector of values.
   \item \textbf{Pattern signatures} - compact numerical descriptors of patterns. 
   We use histograms of pattern’s features as scene signatures.
+  \item \textbf{Dissimilarity measures} - distance that assesses the degree of dissimilarity between two motifels. 
   \item \textbf{Motifel} is an elementary unit of analysis - a square block of pixels representing local pattern.
-Motifel is represented by histogram of features (co-occurrence, decomposition).
-Distance between motifels is a distance between their histograms (for example using Jensen-Shannon Divergence). 
+  Motifel is represented by histogram of features (co-occurrence, decomposition).
+  Distance between motifels is a distance between their histograms (for example using Jensen-Shannon Divergence). 
 \end{itemize}
 
 % More information could be found... links to papers, presentation, data
