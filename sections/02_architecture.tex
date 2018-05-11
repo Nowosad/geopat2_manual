@@ -68,13 +68,14 @@ gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=
 \newoption{input}
 
 Defines a categorical raster layer(s) which will be used as a source for extracting pattern signature.
-Layers must be a categorical one. For the Cartesian product method ('prod') there can be more than one input map.
-Other methods use a one map only (the first one provided). 
+Layers must be a categorical one. 
+For the Cartesian product method ('prod') there can be more than one input map.
 In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
+Other methods use a one map only (the first one provided). 
 
 \newoption{output}
 
-Output consists of two files: one of them is a dataset containing a grid of signatures in binary form, the other one is a header text file (the .hdr extension) containing a grid topology and an information about the input data parameters.
+Output consists of two files: one of them is a dataset containing a grid of signatures in binary form, the other one is a header text file (the .hdr extension) containing a grid topology and information about the input data parameters.
 Modifying the header is strongly discouraged as it may cause some calculations to fail. 
 Structure of the header is as follows:\\
 
@@ -164,6 +165,8 @@ If shift and size is equal, windows will not overlap. Shift cannot be greater th
 The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grd2txt, and gpat\_globnorm}.
 
 \subsubsection{gpat\_gridts}
+
+\textbf{This feature is experimental.}
 Creates a grid of time series signatures from raster maps.
 \\\\
 Usage:
@@ -395,6 +398,8 @@ Example of the content of coordinates file:
 The output signature text file can be used as an input to the following modules: {\tt gpat\_search}, {\tt gpat\_distmtx}.
 
 \subsubsection{gpat\_pointsts}
+
+\textbf{This feature is experimental.}
 Calculates numerical signatures of an individual cell within a time series data.
 \\\\
 Usage:
