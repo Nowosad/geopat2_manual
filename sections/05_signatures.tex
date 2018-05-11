@@ -21,10 +21,11 @@ The co-occurrence signature is designed to be effective in encapsulating spatial
 \section{Decomposition histogram ({\it fdec})}
 
 This signature method, inspired by the work of \cite{Remmel2006}, is used to describe a scene using a set of sub-scenes having a hierarchy of sizes. 
-For the decomposition method to work best the scene should be a square having a linear size of $2^{D}$ cells.
+For the decomposition method to work the scene should be a square having a linear size of $2^{D}$ cells.
 The scene with $k$ cell classes is scanned without overlap by a series of square moving windows with sizes $w=2^{i}$ cells where $i=2, \ldots, D$ are the decomposition levels. 
 The size of the maximum scanning window, $2^D$, is the size of the scene. 
-At the smallest decomposition level $i=2$ a scene is scanned by a window having a size of 4$\times$4 = 16 cells. 
+As a default, {\it fdec} uses the highest level of decomposition. 
+It can be changed with the level parameter.
 At each scanning position the percentages, ${p_1, \ldots, p_k}$, of the window's area occupied by cells having classes ${1, \ldots, k}$, respectively are recorded and a window area is assigned a list of $k$ tags (one for each class) representing those percentages. 
 These tags are classified into one of three categories, 1 if the percentage is below $\frac{1}{4}$, 2 if it is between $\frac{1}{4}$ and $\frac{1}{2}$, and 3 if it is above $\frac{1}{2}$. 
 Tallying all tags results in a histogram with 3$\times k$ bins (three bins for each class).  
