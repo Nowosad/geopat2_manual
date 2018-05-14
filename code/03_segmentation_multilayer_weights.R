@@ -20,6 +20,8 @@ system("gpat_segment -i Augusta2011_grid100 -i geomorph_grid100 -o multilayer_se
 system("gpat_segquality -i Augusta2011_grid100 -s multilayer_seg2.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif")
 system("gpat_segquality -i geomorph_grid100 -s multilayer_seg2.tif -g geomorph_seg100_ih.tif -o geomorph_seg100_is.tif")
 
+system("gpat_segment -i geomorph_grid100 -i Augusta2011_grid100 -o multilayer_seg3.tif -v multilayer_seg3.tif.gpkg")
+
 ## keep segmentation file --------------------------------------------------
 file.copy(from = "multilayer_seg2.tif", to = "../data/")
 
