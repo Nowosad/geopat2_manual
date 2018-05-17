@@ -7,12 +7,13 @@ library(sf)
 dir.create("tmp")
 file.copy(from = "data/Augusta2011.tif", to = "tmp")
 file.copy(from = "data/coordinates.txt", to = "tmp")
+file.copy(from = "data/coordinates2.txt", to = "tmp")
 file.copy(from = "data/nlcd_colors.txt", to = "tmp")
 
 setwd("tmp/")
 
 ## the first figure ---------------------------------------------------------
-coords = read.csv("coordinates.txt", header = FALSE) %>% 
+coords = read.csv("coordinates2.txt", header = FALSE) %>% 
         mutate(id = row_number()) %>% 
         st_as_sf(., coords = c("V1", "V2"))
 augusta2011 = raster("Augusta2011.tif") %>% 
