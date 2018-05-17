@@ -40,13 +40,12 @@ dev.off()
 
 ## search his calculations --------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o grid -s cooc -z 50 -f 50 -n pdf")
-system("gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf --xy_file=coordinates.txt")
+system("gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf --xy_file=coordinates2.txt")
 # system("gpat_pointshis -i Augusta2011.tif -o query_signatures.txt -s cooc -z 50 -n pdf -x 1260500 -y 1277638 -d myloc")
 system("gpat_search -i grid -r query_signatures.txt")
 
 ## the second figure --------------------------------------------------------
-locs = stack(c("loc_00001.tif", "loc_00002.tif", "loc_00003.tif",
-               "loc_00004.tif"))
+locs = stack(c("open_water.tif", "city.tif", "river.tif", "crops.tif"))
 
 png("../figs/searchhis_plot2.png", width = 500, height = 450)
 levelplot(locs, names.attr = c("Point 1", "Point 2", "Point 3", "Point 4"), margin=FALSE,
