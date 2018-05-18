@@ -24,7 +24,7 @@ setwd("tmp/")
 
 ## temp solution 2 ----------------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100")
-system("gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.shp --lthreshold=0.1 --uthreshold=0.3")
+system("gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.gpkg --lthreshold=0.1 --uthreshold=0.3")
 system("gdalwarp -tr 30 30 Augusta2011_seg100.tif Augusta2011_seg100_res.tif")
 system("gpat_polygon -i Augusta2011.tif -e Augusta2011_seg100_res.tif -o Augusta2011_psign.txt")
 system("gpat_distmtx -i Augusta2011_psign.txt -o Augusta2011_matrix_seg.csv")
@@ -40,7 +40,7 @@ plot(hclust_result, label = FALSE)
 hclust_cut = cutree(hclust_result, 3)
 
 ## return to map
-segm = st_read("Augusta2011_seg100.shp")
+segm = st_read("Augusta2011_seg100.gpkg")
 segm$class = (hclust_cut)
 
 plot(segm["class"])

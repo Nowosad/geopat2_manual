@@ -20,8 +20,6 @@ header_remover = function(x){
         new_vector = x %>% 
                 gsub("(?<=\\[)(.*)(?=>)", "", ., perl = TRUE) %>% 
                 gsub("\\[> ", "", ., perl = TRUE)
-        
-        
 }
 
 grid100 %>% map(~header_remover(.)) %>% 

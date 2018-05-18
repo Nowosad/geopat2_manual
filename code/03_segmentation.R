@@ -28,14 +28,14 @@ dev.off()
 
 ## the code ------------------------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100")
-system("gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.shp --lthreshold=0.1 --uthreshold=0.3")
+system("gpat_segment -i Augusta2011_grid100 -o Augusta2011_seg100.tif -v Augusta2011_seg100.gpkg --lthreshold=0.1 --uthreshold=0.3")
 system("gpat_segquality -i Augusta2011_grid100 -s Augusta2011_seg100.tif -g Augusta2011_seg100_ih.tif -o Augusta2011_seg100_is.tif")
 
 ## keep segmentation file --------------------------------------------------
 file.copy(from = "Augusta2011_seg100.tif", to = "../data/")
 
 ## segmentation plot -------------------------------------------------------
-segm = st_read("Augusta2011_seg100.shp")
+segm = st_read("Augusta2011_seg100.gpkg")
 detach(package:ggplot2)
 raster_seg_plot = levelplot(augusta2011, col.regions=lc_colors$hex, margin=FALSE,
                        xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE)) +
