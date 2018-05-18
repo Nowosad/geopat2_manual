@@ -2,6 +2,7 @@ library(tidyverse)
 library(sf)
 library(raster)
 library(rasterVis)
+library(gridExtra)
 
 ## files prep ----------------------------------------------------------------
 dir.create("tmp")
@@ -47,7 +48,7 @@ system("gpat_segquality -i Augusta2011_grid50 -s multilayer_seg2.tif -g multilay
 system("gpat_segquality -i geomorph_grid50 -s multilayer_seg2.tif -g multilayer_seg2B_ih.tif -o multilayer_seg2B_is.tif")
 
 ## keep segmentation file --------------------------------------------------
-file.copy(from = "multilayer_seg2.tif", to = "../data/")
+file.copy(from = "multilayer_seg2.tif", to = "../data/", overwrite = TRUE)
 
 ## segmentation plot -------------------------------------------------------
 segm = st_read("multilayer_seg2.gpkg")
@@ -60,12 +61,8 @@ raster_seg_plot2B = levelplot(geomorph, col.regions=geomorph_colors$hex, margin=
                               xlab=NULL, ylab=NULL, colorkey=FALSE, scales=list(draw=FALSE)) +
         layer(sp.lines(as(segm, "Spatial"), lwd=4, col='black'))
 
-png("../figs/multilayer_seg2A.png", width = 1000, height = 600)
-raster_seg_plot2A
-dev.off()
-
-png("../figs/multilayer_seg2B.png", width = 1000, height = 600)
-raster_seg_plot2B
+png("../figs/multilayer_seg2AB.png", width = 1000, height = 600)
+grid.arrange(raster_seg_plot2A, raster_seg_plot2B, ncol = 2)
 dev.off()
 
 ## quality plots ------------------------------------------------------------
@@ -91,26 +88,22 @@ qual2A = overlay(inh2A, ins2A, fun = seq_qual)
 qual2B = overlay(inh2B, ins2B, fun = seq_qual)
 qual = overlay(qual2A, qual2B, fun = mean)
 
-png("../figs/segmentation_qualityall_multilayer_landcover2.png", width = 500, height = 450)
-levelplot(qual2A, margin = FALSE, main = "Quality - land cover")
-dev.off()
-
-png("../figs/segmentation_qualityall_multilayer_geomorph2.png", width = 500, height = 450)
-levelplot(qual2B, margin = FALSE, main = "Quality")
-dev.off()
+qual2A_fig = levelplot(qual2A, margin = FALSE, main = "Quality - land cover")
+qual2B_fig = levelplot(qual2B, margin = FALSE, main = "Quality - geomorphons")
+qual_fig = levelplot(qual, margin = FALSE, main = "Quality")
 
 png("../figs/segmentation_qualityall_multilayer2.png", width = 500, height = 450)
-levelplot(qual, margin = FALSE, main = "Quality")
+grid.arrange(qual2A_fig, qual2B_fig, qual_fig, ncol = 1)
 dev.off()
 
 ## overall quality ------------------------------------------------------------
 qual_seg_value = raster::extract(qual, as(segm, "Spatial"), fun = mean, df = TRUE)
 mean(qual_seg_value$layer)
+# 0.7271008
 
 ## trim images ---------------------------------------------------------------
+system("mogrify -trim ../figs/multilayer_seg2AB.png")
 system("mogrify -trim ../figs/segmentation_quality_multilayer2.png")
-system("mogrify -trim ../figs/segmentation_qualityall_multilayer_landcover2.png")
-system("mogrify -trim ../figs/segmentation_qualityall_multilayer_geomorph2.png")
 system("mogrify -trim ../figs/segmentation_qualityall_multilayer2.png")
 
 ## the end --------------------------------------------------------------------
