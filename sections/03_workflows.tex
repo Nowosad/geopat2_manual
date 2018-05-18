@@ -484,7 +484,7 @@ For this purpose, we use a map of British Isles {\it british\_isles} from the {\
 \end{figure}
 
 The first step is to create a signature grid using either the {\tt gpat\_gridhis} or {\tt gpat\_gridts} module.
-The second step is to convert the obtained signature grid from binary to text format with {\tt gpat\_grd2txt}.
+The second step is to convert the obtained signature grid from binary to text format with {\tt gpat\_grid2txt}.
 The final step is to calculate and export a distance matrix using the {\tt gpat\_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
 
 {\bf Example:}
@@ -492,7 +492,7 @@ The final step is to calculate and export a distance matrix using the {\tt gpat\
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
-gpat_grd2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt
+gpat_grid2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt
 gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv
 \end{lstlisting}
 \end{minipage}

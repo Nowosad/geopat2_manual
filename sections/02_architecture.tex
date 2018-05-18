@@ -5,7 +5,7 @@ Five modules are designed for extracting pattern signatures from an original dat
 
 \begin{figure}[H]
  	\centering
-	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT2.png}}
+	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT.png}}
 	\caption{Outline of the GeoPAT 2.0 architecture}
 	\label{FIG:GPAT} 
 \end{figure}
@@ -29,10 +29,10 @@ The role of geoprocessing modules ({\tt gpat\_search}, {\tt gpat\_compare}, {\tt
   \item \texttt{gpat\_distmtx} - clustering
 \end{itemize}
 
-The role of utility modules ({\tt gpat\_grd2txt}, {\tt gpat\_globnorm}, {\tt gpat\_segquality}) is to:
+The role of utility modules ({\tt gpat\_grid2txt}, {\tt gpat\_globnorm}, {\tt gpat\_segquality}) is to:
 
 \begin{itemize}
-  \item \texttt{gpat\_grd2txt} - convert grid of signatures (grid-of-scenes) from a binary to text
+  \item \texttt{gpat\_grid2txt} - convert grid of signatures (grid-of-scenes) from a binary to text
   \item \texttt{gpat\_globnorm} - normalization of grid of signatures (grid-of-scenes) values
   \item \texttt{gpat\_segquality} - calculate the quality metrics (inhomogeneity and isolation) of a segmentation
 \end{itemize}
@@ -162,7 +162,7 @@ Shift defines the resolution of the new grid.
 If window size is bigger than shift (recommended), motifels will overlap.
 If shift and size is equal, windows will not overlap. Shift cannot be greater than size. 
 
-The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grd2txt, and gpat\_globnorm}.
+The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grid2txt, and gpat\_globnorm}.
 
 \subsubsection{gpat\_gridts}
 
@@ -260,7 +260,7 @@ The module outputs a header file (.hdr) containing a topology of the grid and a 
 This module uses raster data in the GeoTIFF format as an input. 
 Number of input files has to be equal to number of the time series element dimension.
 
-The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_pointsts}, {\tt gpat\_search}, {\tt gpat\_compare}, {\tt gpat\_segment}, {\tt gpat\_segquality}, {\tt gpat\_grd2txt}, and {\tt gpat\_globnorm}.
+The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_pointsts}, {\tt gpat\_search}, {\tt gpat\_compare}, {\tt gpat\_segment}, {\tt gpat\_segquality}, {\tt gpat\_grid2txt}, and {\tt gpat\_globnorm}.
 
 \subsubsection{gpat\_pointshis}
 Calculates numerical signatures of individual motifels within a raster map.
@@ -973,14 +973,14 @@ An example of {\tt gpat\_distmtx} usage would be the clustering of a collection 
 See section \ref{clustering} for the details.
 
 \subsection{Tools}
-\subsubsection{gpat\_grd2txt}
+\subsubsection{gpat\_grid2txt}
 Converts a binary file containing grid of signatures (grid-of-scenes) into a text file.
 \\\\
 Usage:
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_grd2txt [-h] -i <file_name> -o <file_name>
+gpat_grid2txt [-h] -i <file_name> -o <file_name>
 
 -i, --input=<file_name>   name of input file (GRID)
 -o, --output=<file_name>  name of output file (TXT)

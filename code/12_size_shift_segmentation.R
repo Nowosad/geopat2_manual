@@ -27,11 +27,11 @@ lc_colors = read_delim('nlcd_colors.txt', col_names = FALSE, delim = " ") %>%
 ## the code ------------------------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100d -z 11 -f 11")
 system("gpat_segment -i Augusta2011_grid100d -o Augusta2011_seg100.tif -v Augusta2011_seg100.gpkg --lthreshold=0.1 --uthreshold=0.3")
-system("gpat_grd2txt -i Augusta2011_grid100d -o Augusta2011_grid100d.txt")
+system("gpat_grid2txt -i Augusta2011_grid100d -o Augusta2011_grid100d.txt")
 
 system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100e -z 100 -f 100")
 system("gpat_segment -i Augusta2011_grid100e -o Augusta2011_seg100.tif -v Augusta2011_seg100.gpkg --lthreshold=0.1 --uthreshold=0.3")
-system("gpat_grd2txt -i Augusta2011_grid100e -o Augusta2011_grid100e.txt")
+system("gpat_grid2txt -i Augusta2011_grid100e -o Augusta2011_grid100e.txt")
 
 ## segmentation plot -------------------------------------------------------
 segm = st_read("Augusta2011_seg100.gpkg")
