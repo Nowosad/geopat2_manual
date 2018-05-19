@@ -283,6 +283,50 @@ In this example it is 0.82.
 
 \subsection{Multilayer segmentation on categorical maps}
 
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50
+gpat_gridhis -i geomorph.tif -o geomorph_grid50 -z 50 -f 50
+gpat_segment -i Augusta2011_grid50 -i geomorph_grid50 -o multilayer_seg1.tif -v multilayer_seg1.gpkg
+gpat_segquality -i Augusta2011_grid50 -s multilayer_seg1.tif -g multilayer_seg1A_ih.tif -o multilayer_seg1A_is.tif
+gpat_segquality -i geomorph_grid50 -s multilayer_seg1.tif -g multilayer_seg1B_ih.tif -o multilayer_seg1B_is.tif
+\end{lstlisting}
+\end{minipage}
+
+The first step is to prepare signature files for each of the input datasets, using the {\tt gpat\_gridhis} module.
+The second step is to use these signature files inputs to the {\tt gpat\_segment} module in order to the produce a segmentation map. 
+The third, optional, step is to determine a quality of the segmentation using the {\tt gpat\_segquality} module.\\\\
+
+\newpage
+
+For example, we want to find and delineate areas of similar patterns of two layers - land cover classes and geomorphons categories. 
+
+Firstly, we need to create a grid of signatures for both of the datasets.
+In this we decided to create segments with a spatial scale of three kilometers. 
+Therefore, the size and shift parameters need to be set to 50 (30 meters resolution x 50 (size and shift) x 2 (brick topology) = 3,000 meters).
+
+Secondly, the outputs of the previous step is used for segmentation. 
+There we can modify several parameters of segmentation, such as the similarity measure, and minimum and maximum distance threshold to build areas.
+The threshold values could be used to control a number of final segments.
+The {\tt gpat\_segment} module offers two modes for creating multi-layer segmentation. 
+As a default, a motifel must meet the threshold conditions in all input layers to be joined to a segment.
+However, it could be modified using the weights parameter.
+This parameter allows to add weights to the layers to control the role of individual layers in the segmentation process.
+In this mode, the weighted geometric mean of all layers in the motifel must be below the threshold to be joined to a segment.
+As a result of the {\tt gpat\_segment} module, we get the output segmentation as a raster (GeoTIFF) and vector (GeoPackage) (Figure \ref{FIG:SEGM1}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{multilayer_seg1AB.png}
+	\caption{Segments based on the joined patterns of land cover and geomorphons of the 3km scale for Augusta}
+	\label{FIG:SEGM1}
+\end{figure}
+
+It is also possible to the quality of the segmentation for each layer using two metrics - inhomogeneity and isolation.
+See the previous example to learn more about it.
+
 \subsection{Segmentation on time series}
 \textbf{This feature is experimental.}
 
