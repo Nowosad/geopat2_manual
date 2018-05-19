@@ -13,9 +13,19 @@ This area is characterized by a high diversity of land cover categories and patt
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{atlanta.png}
+	\includegraphics[width=0.75\textwidth]{atlanta.png}
 	\caption{Part of NLCD, covering area around Augusta, GA used in the examples}
 	\label{FIG:AUGUSTA}
+\end{figure}
+
+Additional categorical data, geomorph, is used for the multi-layer segmentation example (Figure \ref{FIG:GEOMORPH}).
+It represents geomorphons (\cite{jasiewicz2013geomorphons}) for the Augusta area and its projection and resolution matches the Augusta dataset.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{geomorph_baseplot.png}
+	\caption{Geomorphons for an area around Augusta, GA used in the multi-layer segmentation example}
+	\label{FIG:GEOMORPH}
 \end{figure}
 
 Examples of time-series analysis are based on monthly sums of precipitation for area of Great Britain from the WorldClim database (\cite{hijmans2005very}; Figure \ref{FIG:PRCP}).
@@ -24,13 +34,14 @@ Precipitation values are expressed in millimeters.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{prcp.png}
+	\includegraphics[width=0.75\textwidth]{prcp.png}
 	\caption{Monthly sums of precipitation for area of Great Britain used in the time-series examples}
 	\label{FIG:PRCP}
 \end{figure}
 
 \FloatBarrier
 
+\newpage
 \section{Search}
 
 Search functionality enables users to produce maps of similarity. 
@@ -134,7 +145,7 @@ Our final five maps show where the annual precipitation patterns are the most an
 \end{figure}
 
 \FloatBarrier
-
+\newpage
 \section{Change detection}
 
 Change detection module provides a way to compare patterns between two grids-of-scenes.
@@ -187,7 +198,7 @@ The lowest values indicate the biggest change in a land cover pattern.
 \end{figure}
 
 \FloatBarrier
-
+\newpage
 \section{Segmentation \label{segmentation}}
 
 Segmentation module enables user to create maps of segments.
@@ -326,7 +337,7 @@ In this example it is 0.67.
 \end{figure}
 
 \FloatBarrier
-
+\newpage
 \section{Clustering \label{clustering}}
 
 Clustering module enables users to create distance matrices, which can be later used in a statistical software (such as R) to perform a clustering.
@@ -411,6 +422,7 @@ Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_POINTS
 	\label{FIG:CLUSTER_POINTSTS}
 \end{figure}
 
+\subsection{Clustering of individual time-series points}
 \textbf{This feature is experimental.}
 Procedure for time-series data is slightly different (Figure \ref{FIG:CLUSTER_POINTSTS}).
 The first step is to create a signature grid file using a time-series of rasters using the {\tt gpat\_gridts} module.
