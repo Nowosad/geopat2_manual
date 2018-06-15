@@ -12,7 +12,7 @@ setwd("tmp/")
 
 ## the code ------------------------------------------------------------------
 system("gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100 -n none -s ent")
-system("gpat_grd2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt")
+system("gpat_grid2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt")
 
 grid100 = read_lines("Augusta2011_grid100.txt")
 
@@ -20,8 +20,6 @@ header_remover = function(x){
         new_vector = x %>% 
                 gsub("(?<=\\[)(.*)(?=>)", "", ., perl = TRUE) %>% 
                 gsub("\\[> ", "", ., perl = TRUE)
-        
-        
 }
 
 grid100 %>% map(~header_remover(.)) %>% 

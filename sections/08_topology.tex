@@ -6,7 +6,7 @@ For the geoprocessing operations, such as search and comparison, a grid of motif
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{topology1.png}
+	\includegraphics[width=0.75\textwidth]{topology1.png}
 	\caption{Two possible topologies for a grid of motifels: rectangular (4-connected grid) and brick (6-connected grid)}
 	\label{FIG:TOPO1}
 \end{figure}
@@ -22,12 +22,12 @@ Square motifels are arranged in alternative layers, where each layer is shifted 
 The {\tt gpat\_gridhis} module creates objects only in the rectangular (4-connected grid) topology. 
 However, {\tt gpat\_segment} uses the brick (6-connected grid) topology during its segmentation procedure as a default.
 (Note: it is possible to use the rectangular topology in the segmentation procedure by adding the {\it -q} flag).
-It this process, neighboring motifels are merged to create the brick wall topology (Figure \ref{FIG:TOPO2}).
+It this process, neighboring motifels are merged to create the brick wall topology (Figure \ref{FIG:TOPO2}, \ref{FIG:TOPO3}).
 Importantly, this influence the size and shift of motifels and therefore change a size of analyzed area.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{topology2.png}
+	\includegraphics[width=0.75\textwidth]{topology2.png}
 	\caption{Process of merging elements of the rectangular topology to the brick topology: (A) input grid in the rectangular topology, (B) neighboring motifels in the rectangular topology are merged to create the brick wall topology, (C) output grid in the brick topology}
 	\label{FIG:TOPO2}
 \end{figure}
@@ -41,8 +41,7 @@ This means that if we want to segment patterns in scale of 9 sq km, we need to c
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{topology100.png}
+	\includegraphics[width=0.65\textwidth]{topology100.png}
 	\caption{Comparison between the rectangular grid topology and the brick topology for Augusta}
 	\label{FIG:TOPO3}
 \end{figure}
-

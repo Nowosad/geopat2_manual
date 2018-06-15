@@ -5,8 +5,8 @@ Five modules are designed for extracting pattern signatures from an original dat
 
 \begin{figure}[H]
  	\centering
-	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT2.png}}
-	\caption{Outline of the GeoPAT 2.0 architecture}
+	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{GPAT.png}}
+	\caption{Outline of the GeoPAT 2 architecture}
 	\label{FIG:GPAT} 
 \end{figure}
 
@@ -29,10 +29,10 @@ The role of geoprocessing modules ({\tt gpat\_search}, {\tt gpat\_compare}, {\tt
   \item \texttt{gpat\_distmtx} - clustering
 \end{itemize}
 
-The role of utility modules ({\tt gpat\_grd2txt}, {\tt gpat\_globnorm}, {\tt gpat\_segquality}) is to:
+The role of utility modules ({\tt gpat\_grid2txt}, {\tt gpat\_globnorm}, {\tt gpat\_segquality}) is to:
 
 \begin{itemize}
-  \item \texttt{gpat\_grd2txt} - convert grid of signatures (grid-of-scenes) from a binary to text
+  \item \texttt{gpat\_grid2txt} - convert grid of signatures (grid-of-scenes) from a binary to text
   \item \texttt{gpat\_globnorm} - normalization of grid of signatures (grid-of-scenes) values
   \item \texttt{gpat\_segquality} - calculate the quality metrics (inhomogeneity and isolation) of a segmentation
 \end{itemize}
@@ -53,7 +53,7 @@ gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=
 -i, --input=<file_name>    name of input file (GeoTIFF)
 -o, --output=<file_name>   name of output file (GRID)
 -s, --signature=<name>     motifel's signature (use -l to list all signatures, default: 'cooc')
---level=<n>                full decomposition level (default: 0, auto)
+--level=<n>                full decomposition level (default: auto)
 -z, --size=<n>             motifel size in cells (default: 150)
 -f, --shift=<n>            shift of motifels (default: 100)
 -n, --normalization=<name> signature normalization method (use -l to list all methods, default: 'pdf')
@@ -68,13 +68,14 @@ gpat_gridhis [-lh] -i <file_name> -o <file_name> [-s <signature_name>] [--level=
 \newoption{input}
 
 Defines a categorical raster layer(s) which will be used as a source for extracting pattern signature.
-Layers must be a categorical one. For the Cartesian product method ('prod') there can be more than one input map.
-Other methods use a one map only (the first one provided). 
+Layers must be a categorical one. 
+For the Cartesian product method ('prod') there can be more than one input map.
 In order to provide more than one input map, type multiple input options ("-i map1.tif -i map2.tif" or "--input=map1.tif --input=map2.tif").
+Other methods use a one map only (the first one provided). 
 
 \newoption{output}
 
-Output consists of two files: one of them is a dataset containing a grid of signatures in binary form, the other one is a header text file (the .hdr extension) containing a grid topology and an information about the input data parameters.
+Output consists of two files: one of them is a dataset containing a grid of signatures in binary form, the other one is a header text file (the .hdr extension) containing a grid topology and information about the input data parameters.
 Modifying the header is strongly discouraged as it may cause some calculations to fail. 
 Structure of the header is as follows:\\
 
@@ -116,7 +117,6 @@ Defines method of calculating signatures of motifels. GeoPAT offers the followin
 \begin{itemize}
 	\item prod -- Cartesian product of input category lists
 	\item cooc -- Spatial coocurrence of categories
-	\item sdec -- Simple 2-level decomposition
 	\item fdec -- Full decomposition
 	\item lind -- Landscape indices vector
 	\item linds -- Selected landscape indices vector
@@ -134,7 +134,7 @@ It defines the highest level of decomposition. See Appendix \ref{signatures} for
 Specifies normalization method used on the local signatures. 
 See Appendix \ref{normalization} for the details.
 Normalization method used should depend on a selected signature method. 
-For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, sdec, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
+For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
 
 \newoption{threads (-t)}
 
@@ -162,9 +162,11 @@ Shift defines the resolution of the new grid.
 If window size is bigger than shift (recommended), motifels will overlap.
 If shift and size is equal, windows will not overlap. Shift cannot be greater than size. 
 
-The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grd2txt, and gpat\_globnorm}.
+The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_search, gpat\_compare, gpat\_segment, gpat\_segquality, gpat\_grid2txt, and gpat\_globnorm}.
 
 \subsubsection{gpat\_gridts}
+
+\textbf{This feature is experimental.}
 Creates a grid of time series signatures from raster maps.
 \\\\
 Usage:
@@ -258,7 +260,7 @@ The module outputs a header file (.hdr) containing a topology of the grid and a 
 This module uses raster data in the GeoTIFF format as an input. 
 Number of input files has to be equal to number of the time series element dimension.
 
-The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_pointsts}, {\tt gpat\_search}, {\tt gpat\_compare}, {\tt gpat\_segment}, {\tt gpat\_segquality}, {\tt gpat\_grd2txt}, and {\tt gpat\_globnorm}.
+The output grid may be an input to one of the following GeoPAT modules: {\tt gpat\_pointsts}, {\tt gpat\_search}, {\tt gpat\_compare}, {\tt gpat\_segment}, {\tt gpat\_segquality}, {\tt gpat\_grid2txt}, and {\tt gpat\_globnorm}.
 
 \subsubsection{gpat\_pointshis}
 Calculates numerical signatures of individual motifels within a raster map.
@@ -309,7 +311,6 @@ GeoPAT offers the following methods:
 \begin{itemize}
 	\item prod -- Cartesian product of input category lists
 	\item cooc -- Spatial coocurrence of categories
-	\item sdec -- Simple 2-level decomposition
 	\item fdec -- Full decomposition
 	\item lind -- Landscape indices vector
 	\item linds -- Selected landscape indices vector
@@ -333,7 +334,7 @@ Scene is a square centered at the coordinate pair location, while its extent is 
 Specifies normalization method used on the local signatures. 
 See Appendix \ref{normalization} for the details.
 Normalization method used should depend on a selected signature method. 
-For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, sdec, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
+For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
 
 \newoption{x}
 
@@ -397,6 +398,8 @@ Example of the content of coordinates file:
 The output signature text file can be used as an input to the following modules: {\tt gpat\_search}, {\tt gpat\_distmtx}.
 
 \subsubsection{gpat\_pointsts}
+
+\textbf{This feature is experimental.}
 Calculates numerical signatures of an individual cell within a time series data.
 \\\\
 Usage:
@@ -407,8 +410,8 @@ gpat_pointsts [-ah] -i <file_name> -o <file_name> [-x <double>] [-y <double>] [-
 
 -i, --input=<file_name>    name of input file (GRID)
 -o, --output=<file_name>   name of output file (TXT)
--x <double>                x coord
--y <double>                y coord
+-x <double>                x coordinates
+-y <double>                y coordinates
 -d, --description=<string> description of the location
 --xy_file=<file_name>      name of file with coordinates (TXT)
 -a, --append               append results to output file
@@ -513,7 +516,6 @@ GeoPAT offers the following methods:
 \begin{itemize}
 	\item prod -- Cartesian product of input category lists
 	\item cooc -- Spatial coocurrence of categories
-	\item sdec -- Simple 2-level decomposition
 	\item fdec -- Full decomposition
 	\item lind -- Landscape indices vector
 	\item linds -- Selected landscape indices vector
@@ -526,7 +528,7 @@ See Appendix \ref{signatures} for the details.
 Specifies normalization method used on the local signatures. 
 See Appendix \ref{normalization} for the details.
 Normalization method used should depend on a selected signature method. 
-For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, sdec, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
+For example, the default pdf normalization works well for the histogram-based signatures (pred, cooc, fdec), while normalization should be disabled (none) for the landscape indices signatures (lind, linds) and the Shannon entropy signature.
 
 \newoption{max buffer size}
 
@@ -765,16 +767,17 @@ Usage:
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n>] [-m <measure_name>] [--lthreshold=<double>] [--uthreshold=<double>] [--swap=<double>] [--minarea=<n>] [--maxhist=<n>] [-t <n>]
+gpat_segment [-lcgaqh] -i <file_name> -o <file_name> [-v <file_name>] [--size=<n>] [-m <measure_name>] [--lthreshold=<double>] [--uthreshold=<double>] [-w <integer,integer>] [--swap=<double>] [--minarea=<n>] [--maxhist=<n>] [-t <n>]
 
--i, --input=<file_name>  name of input files (GRID)
+-i, --input=<file_name>  name of input file(s) (GRID)
 -o, --output=<file_name> name of output file with segments (TIFF)
--v, --vector=<file_name> name of output vector file with segments (SHP)
+-v, --vector=<file_name> name of output vector file with segments (GPKG)
 --size=<n>               output resolution modyfier (default: 1)
 -m, --measure=<name>     similarity measure (use -l to list all measures; defult: jsd)
 -l, --list_measures      list all measures
 --lthreshold=<double>    minimum distance threshold to build areas (default: 0.1)
 --uthreshold=<double>    maximum distance threshold to build areas (default: 0.3)
+-w, --weights=<integer,integer>   multilayer only: weights for the multilayer mode
 --swap=<double>          improve segmentation by swapping unmatched areas. -1 to skip (default: 0.001)
 --minarea=<n>            minimum number of motifels in individual segment (default: 0)
 --maxhist=<n>            create similarity/distance matrix for maxhist histograms; leave 0 to use all (default: 200)
@@ -797,6 +800,9 @@ Grid is an output from either {\tt gpat\_gridhis} or {\tt gpat\_gridts} module.
 Header of the grid will define topology of the output layers. 
 Do not modify header file.
 
+Multilayer segmentation is applied when more than one input is provided.
+These input grids must have the same extent and size.
+
 \newoption{output}
 
 Categorical raster map in the GeoTIFF format which defines spatial division of area of interest into polygonal regions (segments).
@@ -804,7 +810,7 @@ In this map, regions (segments) are defined as areas of unique ids.
 
 \newoption{vector}
 
-Vector (shapefile) map of a segmentation.
+Vector (GeoPackage) map of a segmentation.
 This data is automatically created by vectorization of the output file.
 
 \newoption{size}
@@ -844,6 +850,20 @@ It takes values between 0 and 1.
 
 The purpose of uthreshold is to prevent the growth of inhomogeneous segments.
 It takes values between 0 and 1.
+
+\newoption{weights}
+
+Multilayer segmentation works in one of two modes: 
+
+\begin{itemize}
+	\item "all\_layers" - this mode is a default when more than one grid layer is provided.
+A motifel must meet the threshold conditions in all input layers to be joined to a segment.
+This is a rigorous solution and assure the full compatibility of all layers in the output segmentation.
+	\item "weights" - this mode takes comma-separated integer values (one value per input layer).
+The weighted geometric mean of all layers in the motifel must be below the threshold to be joined to a segment.
+Weights allow to control the role of individual layers.
+Layer with a large weight value will have more impact on the resulting segmentation.
+\end{itemize}
 
 \newoption{swap}
 
@@ -971,14 +991,14 @@ An example of {\tt gpat\_distmtx} usage would be the clustering of a collection 
 See section \ref{clustering} for the details.
 
 \subsection{Tools}
-\subsubsection{gpat\_grd2txt}
+\subsubsection{gpat\_grid2txt}
 Converts a binary file containing grid of signatures (grid-of-scenes) into a text file.
 \\\\
 Usage:
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
-gpat_grd2txt [-h] -i <file_name> -o <file_name>
+gpat_grid2txt [-h] -i <file_name> -o <file_name>
 
 -i, --input=<file_name>   name of input file (GRID)
 -o, --output=<file_name>  name of output file (TXT)

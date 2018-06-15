@@ -1,7 +1,7 @@
 \section{System requirements}
 
 The Windows installer and Linux binaries provide all necessary components. 
-To build GeoPAT 2.0 from the source code, the user needs to install the GDAL library and compile and install the ezGDAL and SML libraries.
+To build GeoPAT 2 from the source code, the user needs to install the GDAL library.
 
 \section{Windows installer}
 The Windows installer works under 64 bit versions of Windows 7, 8.1, and 10.
@@ -9,34 +9,32 @@ The installer provides four components:
 \begin{itemize}
   \item{GDAL library package}
   \item{ezGDAL and SML libraries}
-  \item{GeoPAT 2.0 software}
+  \item{GeoPAT 2 software}
   \item{Microsoft Visual C 13 runtime libraries (optional)}
 \end{itemize}
-To start the installation process user has to run GPAT20setup.exe.
+To start the installation process user has to run GPAT2setup.exe.
 The setup program should be run in "Run as administrator" mode.
 If an antivirus software is running on the computer, user should turn it off temporary for the time of GeoPAT installation.
 The installer will create the directory for GDAL and GeoPAT and copy all necessary files.
-Optionally, GPAT20setup.exe will start the Microsoft Visual C runtime libraries installer.
-When installation is completed, the user can find "SIL GeoPAT 2.0" in the Windows start menu with two files - "GeoPAT console" and "Uninstall GeoPAT".
+Optionally, GPAT2setup.exe will start the Microsoft Visual C runtime libraries installer.
+When installation is completed, the user can find "SIL GeoPAT 2" in the Windows start menu with two files - "GeoPAT console" and "Uninstall GeoPAT".
 
 The installer for Windows x64 is available at:
 
 \begin{lstlisting}[escapechar=|]
-|\url{http://sil.uc.edu/cms/data/uploads/software_data/GPAT2/GPAT20setup.exe}|
+|\url{http://sil.uc.edu/cms/data/uploads/software_data/GPAT2/GPAT2setup.exe}|
 \end{lstlisting}
 
 \section{Building from source code}
 
-The building from source code procedure is presented using the Fedora 25 Linux distribution.
+The building from source code procedure is presented using the Fedora 27 Linux distribution.
 This procedure could differ between Linux distributions, therefore the user should modify it to their system (see the travis file for the installation procedure for Ubuntu - \url{https://github.com/Nowosad/geopat2/blob/master/.travis.yml}).
 
-To build GeoPAT 2.0 from the source, the user has to do the four following steps:
+To build GeoPAT 2 from the source, the user has to do the two following steps:
 
 \begin{enumerate}
     \item{Install the developement version of GDAL}
-    \item{Build and install the ezGDAL library}
-    \item{Build and install the SML library}
-    \item{Build and install the GeoPAT 2.0 software}
+    \item{Build and install the GeoPAT 2 software}
 \end{enumerate}
 
 The dnf package manager can be used in a Fedora system to install the development version of GDAL:
@@ -45,57 +43,22 @@ The dnf package manager can be used in a Fedora system to install the developmen
 dnf install gdal-devel
 \end{lstlisting}
 
-To install the ezGDAL library the user has to download the ezGDAL source code and unpack it.
-The source code of ezGDAL is available at:
+The second step of the installation procedure is a compilation of the GeoPAT 2 source code.
+The source code of GeoPAT 2 is available at:
 \begin{lstlisting}[escapechar=|]
-|\url{http://sil.uc.edu/cms/data/uploads/software_data/GPAT2/ezGDAL.tar.gz}|
+|\url{https://github.com/Nowosad/geopat2/archive/master.zip}|
 \end{lstlisting}
-Next, the user has to compile the code by calling the following command in an unpacked source code directory:
+GeoPAT 2 depends on the GDAL, SML, and ezGDAL libraries (SML and ezGDAL are parts of GeoPAT 2).
+Therefore, user has to unpack, compile and install the GeoPAT 2.
 \begin{lstlisting}
 make
-\end{lstlisting}
-And install it using:
-\begin{lstlisting}
 make install
 \end{lstlisting}
+The "make" and "make install" commands should be run in the main GeoPAT 2 source code directory.
+
 By default, the library is placed in the /usr/local/lib directory and the include file is placed in /usr/local/include.
 The user can change the destination directory by adding the PREFIX parameter.
 \begin{lstlisting}
 make PREFIX=/my/destination/directory
 \end{lstlisting}
 When PREFIX is provided, the library is placed in /my/destination/directory/lib and the include file is placed in /my/destination/directory/include.
-
-The installation procedure of the SML library is similar.
-The source code of SML is available at:
-\begin{lstlisting}[escapechar=|]
-|\url{http://sil.uc.edu/cms/data/uploads/software_data/GPAT2/SML.tar.gz}|
-\end{lstlisting}
-After an extraction of the source code of SML, the user should call: 
-\begin{lstlisting}
-make
-make install
-\end{lstlisting}
-The command "make install" should be called using the sudo command or in the root user context.
-After this installation procedure, the user has to ensure that PREFIX/lib is on the library search path.
-It could be done by adding the lib folder to the system library path:
-
-\begin{lstlisting}
-sudo sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/local.conf'
-sudo ldconfig
-\end{lstlisting}
-
-The last step of the installation procedure is a compilation of the GeoPAT 2.0 source code.
-The source code of GeoPAT 2.0 is available at:
-\begin{lstlisting}[escapechar=|]
-|\url{https://github.com/Nowosad/geopat2/archive/master.zip}|
-\end{lstlisting}
-GeoPAT 2.0 depends on the GDAL, SML, and ezGDAL libraries.
-Therefore, after the installation of the above libraries, the user has to unpack, compile and install the GeoPAT 2.0.
-The installation procedure is similar to the installation procedures of the ezGDAL and SML libraries.
-\begin{lstlisting}
-make
-make install
-\end{lstlisting}
-The "make" and "make install" commands should be run in the main GeoPAT 2.0 source code directory.
-The PREFIX parameter works in the same way.
-

@@ -17,7 +17,7 @@ writeRaster(rotate_raster, "Augusta2011t.tif", overwrite = TRUE)
 
 ## gpat clustering  prep -----------------------------------------------------
 system("gpat_gridhis -i Augusta2011t.tif -o Augusta2011_grid30 -z 30 -f 30")
-system("gpat_grd2txt -i Augusta2011_grid30 -o Augusta2011_grid30.txt")
+system("gpat_grid2txt -i Augusta2011_grid30 -o Augusta2011_grid30.txt")
 system("gpat_distmtx -i Augusta2011_grid30.txt -o Augusta2011_matrix_grid.csv")
 
 ## r clustering -------------------------------------------------------------

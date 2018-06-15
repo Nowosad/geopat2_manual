@@ -13,9 +13,19 @@ This area is characterized by a high diversity of land cover categories and patt
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{atlanta.png}
+	\includegraphics[width=0.75\textwidth]{atlanta.png}
 	\caption{Part of NLCD, covering area around Augusta, GA used in the examples}
 	\label{FIG:AUGUSTA}
+\end{figure}
+
+Additional categorical data, geomorph, is used for the multi-layer segmentation example (Figure \ref{FIG:GEOMORPH}).
+It represents geomorphons (\cite{jasiewicz2013geomorphons}) for the Augusta area and its projection and resolution matches the Augusta dataset.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{geomorph_baseplot.png}
+	\caption{Geomorphons for an area around Augusta, GA used in the multi-layer segmentation example}
+	\label{FIG:GEOMORPH}
 \end{figure}
 
 Examples of time-series analysis are based on monthly sums of precipitation for area of Great Britain from the WorldClim database (\cite{hijmans2005very}; Figure \ref{FIG:PRCP}).
@@ -24,13 +34,14 @@ Precipitation values are expressed in millimeters.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{prcp.png}
+	\includegraphics[width=0.75\textwidth]{prcp.png}
 	\caption{Monthly sums of precipitation for area of Great Britain used in the time-series examples}
 	\label{FIG:PRCP}
 \end{figure}
 
 \FloatBarrier
 
+\newpage
 \section{Search}
 
 Search functionality enables users to produce maps of similarity. 
@@ -86,6 +97,7 @@ The four final maps (Figure \ref{FIG:SEARCH2}) show similarity to each of the gi
 \FloatBarrier
 
 \subsection{Search on time series}
+\textbf{This feature is experimental.}
 Figure \ref{FIG:SEARCHTS} presents general workflow path for producing similarity maps using a time-series raster data. 
 
 \begin{figure}[H]
@@ -133,7 +145,7 @@ Our final five maps show where the annual precipitation patterns are the most an
 \end{figure}
 
 \FloatBarrier
-
+\newpage
 \section{Change detection}
 
 Change detection module provides a way to compare patterns between two grids-of-scenes.
@@ -186,13 +198,13 @@ The lowest values indicate the biggest change in a land cover pattern.
 \end{figure}
 
 \FloatBarrier
-
+\newpage
 \section{Segmentation \label{segmentation}}
 
 Segmentation module enables user to create maps of segments.
 Each of the output segment is internally homogeneous in terms of encapsulated pattern and, at the same time, different from the adjacent segments.
 The input is a grid of signatures.
-The result are a raster (GeoTIFF) and vector (ESRI Shapefile) files containing the segments.
+The result are a raster (GeoTIFF) and vector (GeoPackage) files containing the segments.
 Quality of segmentation could be also determined with raster maps of inhomogeneity, isolation, and overall quality.
 Figure \ref{FIG:SEGMENT} presents general workflow path for segmentation. 
 
@@ -237,7 +249,7 @@ We left the rest of the parameters to the default values, with the signature in 
 Secondly, the output of the previous step is used for segmentation. 
 There we can modify several parameters of segmentation, such as the similarity measure, and minimum and maximum distance threshold to build areas.
 The threshold values could be used to control a number of final segments.
-As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEG1}).
+As a result, we get the output segmentation as a raster (GeoTIFF) and vector (GeoPackage) (Figure \ref{FIG:SEG1}).
 
 \begin{figure}[H]
 	\centering
@@ -269,7 +281,54 @@ In this example it is 0.82.
 
 \FloatBarrier
 
+\subsection{Multilayer segmentation on categorical maps}
+
+{\bf Example:}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}
+gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid50 -z 50 -f 50
+gpat_gridhis -i geomorph.tif -o geomorph_grid50 -z 50 -f 50
+gpat_segment -i Augusta2011_grid50 -i geomorph_grid50 -o multilayer_seg1.tif -v multilayer_seg1.gpkg
+gpat_segquality -i Augusta2011_grid50 -s multilayer_seg1.tif -g multilayer_seg1A_ih.tif -o multilayer_seg1A_is.tif
+gpat_segquality -i geomorph_grid50 -s multilayer_seg1.tif -g multilayer_seg1B_ih.tif -o multilayer_seg1B_is.tif
+\end{lstlisting}
+\end{minipage}
+
+The first step is to prepare signature files for each of the input datasets, using the {\tt gpat\_gridhis} module.
+The second step is to use these signature files inputs to the {\tt gpat\_segment} module in order to the produce a segmentation map. 
+The third, optional, step is to determine a quality of the segmentation using the {\tt gpat\_segquality} module.\\\\
+
+\newpage
+
+For example, we want to find and delineate areas of similar patterns of two layers - land cover classes and geomorphons categories. 
+
+Firstly, we need to create a grid of signatures for both of the datasets.
+In this we decided to create segments with a spatial scale of three kilometers. 
+Therefore, the size and shift parameters need to be set to 50 (30 meters resolution x 50 (size and shift) x 2 (brick topology) = 3,000 meters).
+
+Secondly, the outputs of the previous step is used for segmentation. 
+There we can modify several parameters of segmentation, such as the similarity measure, and minimum and maximum distance threshold to build areas.
+The threshold values could be used to control a number of final segments.
+The {\tt gpat\_segment} module offers two modes for creating multi-layer segmentation. 
+As a default, a motifel must meet the threshold conditions in all input layers to be joined to a segment.
+However, it could be modified using the weights parameter.
+This parameter allows to add weights to the layers to control the role of individual layers in the segmentation process.
+In this mode, the weighted geometric mean of all layers in the motifel must be below the threshold to be joined to a segment.
+As a result of the {\tt gpat\_segment} module, we get the output segmentation as a raster (GeoTIFF) and vector (GeoPackage) (Figure \ref{FIG:SEGM1}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{multilayer_seg1AB.png}
+	\caption{Segments based on the joined patterns of land cover and geomorphons of the 3km scale for Augusta}
+	\label{FIG:SEGM1}
+\end{figure}
+
+It is also possible to the quality of the segmentation for each layer using two metrics - inhomogeneity and isolation.
+See the previous example to learn more about it.
+
 \subsection{Segmentation on time series}
+\textbf{This feature is experimental.}
 
 {\bf Example:}
 
@@ -300,7 +359,7 @@ Firstly, we need to create a grid of signatures using twelve raster with monthly
 Depending on the input data it could be important to normalize data using the {\it --normalize} option.
 
 Secondly, the output of the previous step is used for segmentation.
-As a result, we get the output segmentation as a raster (GeoTIFF) and vector (ESRI Shapefile) (Figure \ref{FIG:SEGTS1}).
+As a result, we get the output segmentation as a raster (GeoTIFF) and vector (GeoPackage) (Figure \ref{FIG:SEGTS1}).
 
 We can evaluate the quality of a segmentation using two metrics - inhomogeneity and isolation (Figure \ref{FIG:SEGTS2}).
 Based on these two raster, it is possible to calculate the segmentation quality raster (Figure \ref{FIG:SEGTS3}).
@@ -322,7 +381,7 @@ In this example it is 0.67.
 \end{figure}
 
 \FloatBarrier
-
+\newpage
 \section{Clustering \label{clustering}}
 
 Clustering module enables users to create distance matrices, which can be later used in a statistical software (such as R) to perform a clustering.
@@ -407,6 +466,8 @@ Finally, we visualize the results (right panel of figure \ref{FIG:CLUSTER_POINTS
 	\label{FIG:CLUSTER_POINTSTS}
 \end{figure}
 
+\subsection{Clustering of individual time-series points}
+\textbf{This feature is experimental.}
 Procedure for time-series data is slightly different (Figure \ref{FIG:CLUSTER_POINTSTS}).
 The first step is to create a signature grid file using a time-series of rasters using the {\tt gpat\_gridts} module.
 The second step is to extract only selected motifels using {\tt gpat\_pointsts}.
@@ -479,7 +540,7 @@ For this purpose, we use a map of British Isles {\it british\_isles} from the {\
 \end{figure}
 
 The first step is to create a signature grid using either the {\tt gpat\_gridhis} or {\tt gpat\_gridts} module.
-The second step is to convert the obtained signature grid from binary to text format with {\tt gpat\_grd2txt}.
+The second step is to convert the obtained signature grid from binary to text format with {\tt gpat\_grid2txt}.
 The final step is to calculate and export a distance matrix using the {\tt gpat\_distmtx} module (Figure \ref{FIG:CLUSTER_GRID}).
 
 {\bf Example:}
@@ -487,7 +548,7 @@ The final step is to calculate and export a distance matrix using the {\tt gpat\
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
 gpat_gridhis -i Augusta2011.tif -o Augusta2011_grid100 -z 100 -f 100
-gpat_grd2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt
+gpat_grid2txt -i Augusta2011_grid100 -o Augusta2011_grid100.txt
 gpat_distmtx -i Augusta2011_grid100.txt -o Augusta2011_matrix_grid.csv
 \end{lstlisting}
 \end{minipage}
