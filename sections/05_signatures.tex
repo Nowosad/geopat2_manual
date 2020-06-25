@@ -2,12 +2,7 @@ A signature is a numerical description of a motifel.
 
 \section{Cartesian product ({\it prod})}
 
-This method calculates signature as a $k$-dimensional histogram using $k$ primitive features assigned to each cell. 
-Examples of such features include cell class, the size of the clump to which the cell belongs, the shape of the clump and its spatial orientation (\cite{Williams2008}). 
-Because all features must be categorical (so the histogram can be formed), numerical features need to be categorized. 
-For example, clump sizes need to be categorized into size categories from the smallest to the largest.
-The number of bins in the crossproduct histogram is $N_1 \times N_2 \times \ldots \times N_k$, where $N_i$ is the number of categories of $i$-th feature. 
-Crossproduct signature is designed to be effective in encapsulating spatial structures with clear geometric quality (having relatively low complexity); an example of a dataset with such a structure is the land cover raster.
+This method calculates signature as a number of cells of each class in a motifel.
 
 \section{Class co-occurrence histogram ({\it cooc})}
 
